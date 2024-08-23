@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument*/
+
 import { defineArrayMember, defineField } from "sanity";
-import { getBlockText } from "@sanity/src/utils";
 import { VscSymbolKeyword } from "react-icons/vsc";
+import { getBlockText } from "@sanity/src/utils";
 
 export default defineArrayMember({
 	name: "richtext",

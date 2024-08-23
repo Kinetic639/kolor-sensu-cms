@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument*/
 import { defineArrayMember, defineField } from "sanity";
 import { VscInspect } from "react-icons/vsc";
 import { count } from "@sanity/src/utils";

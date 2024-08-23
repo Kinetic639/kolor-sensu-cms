@@ -1,6 +1,9 @@
 import { defineField, defineType } from "sanity";
 import { VscVerified } from "react-icons/vsc";
-
+interface PreviewParams {
+	title: string;
+	media?: string | null;
+}
 export default defineType({
 	name: "logo",
 	title: "Logo",
@@ -40,7 +43,7 @@ export default defineType({
 			title: "name",
 			media: "image.default",
 		},
-		prepare: ({ title, media } :{title: string, media: string}) => ({
+		prepare: ({ title, media }: PreviewParams) => ({
 			title,
 			subtitle: "Logo",
 			media,

@@ -1,7 +1,7 @@
 import type { StructureResolver } from "sanity/structure";
 
 import { VscMultipleWindows, VscServerProcess } from "react-icons/vsc";
-import { group, singleton } from "./utils";
+import {  singleton } from "./utils";
 
 const structure: StructureResolver = (S) =>
 	S.list()
