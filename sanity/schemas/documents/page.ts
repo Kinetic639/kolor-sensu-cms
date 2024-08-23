@@ -1,5 +1,11 @@
 import { defineField, defineType } from "sanity";
 import { VscHome, VscEyeClosed, VscQuestion, VscEdit } from "react-icons/vsc";
+interface PreviewParams {
+	title: string;
+	slug: string;
+	media?: string | null;
+	noindex?: boolean;
+}
 
 export default defineType({
 	name: "page",
@@ -68,7 +74,7 @@ export default defineType({
 			media: "metadata.image",
 			noindex: "metadata.noIndex",
 		},
-		prepare: ({ title, slug, media, noindex }: { title:string; slug:string; media:string; noindex: boolean }) => ({
+		prepare: ({ title, slug, media, noindex }: PreviewParams) => ({
 			title,
 			subtitle: slug && (slug === "index" ? "/" : `/${slug}`),
 			media:

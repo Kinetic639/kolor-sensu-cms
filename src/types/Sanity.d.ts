@@ -1,8 +1,27 @@
 import type { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import type { SanityDocument } from "next-sanity";
 
+
+
 declare global {
 	namespace Sanity {
+		type Document = {
+			title?: string;
+			metadata?: {
+				slug: { current: string };
+				title: string;
+				description: string;
+				image?: Image;
+				ogimage?: string;
+				noIndex: boolean;
+			};
+		}
+		// Use the Block type from Sanity for block content
+		type SanityBlock = Block;
+
+		// If your content might include custom types or other block-like content, you might define a more specific type:
+		type BlockContent = SanityBlock[];
+
 		// documents
 
 		type Site = SanityDocument<{
@@ -13,7 +32,7 @@ declare global {
 			headerMenu?: Navigation;
 			footerMenu?: Navigation;
 			social?: Navigation;
-			copyright?: string;
+			copyright?: BlockContent;
 			ogimage?: string;
 		}>;
 
@@ -23,7 +42,7 @@ declare global {
 		}>;
 
 		type Announcement = SanityDocument<{
-			content: any;
+			copyright?: BlockContent;
 			cta?: Link;
 			start?: string;
 			end?: string;
@@ -43,7 +62,7 @@ declare global {
 
 		type BlogPost = PageBase & {
 			readonly _type: "blog.post";
-			body: any;
+			body: BlockContent;
 			readTime: number;
 			headings?: { style: string; text: string }[];
 			categories: BlogCategory[];
@@ -66,36 +85,6 @@ declare global {
 				dark: Image;
 			}>;
 		}>;
-
-		type Pricing = SanityDocument<{
-			title: string;
-			highlight?: string;
-			price: {
-				base: number;
-				strikethrough?: number;
-				suffix?: string;
-			};
-			ctas?: CTA[];
-			content?: any;
-		}>;
-
-		type Reputation = SanityDocument<{
-			title?: string;
-			subtitle?: string;
-			repo?: string;
-			limit?: number;
-			avatars?: Image[];
-		}>;
-
-		type Testimonial = SanityDocument<{
-			content: any;
-			author?: {
-				name: string;
-				title?: string;
-				image?: Image;
-			};
-		}>;
-
 		// objects
 
 		type CTA = {

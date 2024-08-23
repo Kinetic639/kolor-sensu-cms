@@ -5,7 +5,7 @@ import dev from "@/lib/env";
 
 export { default as groq } from "groq";
 
-export function fetchSanity<T = any>(
+export function fetchSanity<T = unknown>(
 	query: string,
 	{
 		params = {},

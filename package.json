@@ -7,7 +7,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint --fix --dir src"
+		"lint": "next lint --fix --dir src",
+		"lint-sanity": "next lint --fix --dir sanity"
 	},
 	"dependencies": {
 		"@next/third-parties": "^14.2.6",
