@@ -29,6 +29,7 @@ declare global {
 			ctas?: CTA[];
 			headerMenu?: Navigation;
 			footerMenu?: Navigation;
+			footerDescription?: BlockContent;
 			social?: Navigation;
 			copyright?: BlockContent;
 			ogimage?: string;
@@ -36,7 +37,7 @@ declare global {
 
 		export type Navigation = SanityDocument<{
 			title: string;
-			items?: Link[];
+			items?: (Link | LinkList)[];
 		}>;
 
 		export type Announcement = SanityDocument<{

@@ -45,18 +45,29 @@ export default defineType({
 			to: [{ type: "navigation" }],
 			group: "navigation",
 		}),
-		// defineField({
-		// 	name: "footerMenu",
-		// 	type: "reference",
-		// 	to: [{ type: "navigation" }],
-		// 	group: "navigation",
-		// }),
-		// defineField({
-		// 	name: "social",
-		// 	type: "reference",
-		// 	to: [{ type: "navigation" }],
-		// 	group: "navigation",
-		// }),
+		defineField({
+			name: "footerMenu",
+			type: "reference",
+			to: [{ type: "navigation" }],
+			group: "navigation",
+		}),
+		defineField({
+			name: "footerDescription",
+			type: "array",
+			of: [
+				{
+					type: "block",
+					styles: [{ title: "Normal", value: "normal" }],
+				},
+			],
+			group: "general",
+		}),
+		defineField({
+			name: "social",
+			type: "reference",
+			to: [{ type: "navigation" }],
+			group: "navigation",
+		}),
 		defineField({
 			name: "copyright",
 			type: "array",

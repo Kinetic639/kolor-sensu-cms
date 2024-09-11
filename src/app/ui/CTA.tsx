@@ -28,7 +28,7 @@ export default function CTA({
 		);
 
 	if (link?.type === "external" && link.external)
-		return <a href={stegaClean(link.external)} {...props} />;
+		return <a target="_blank" href={stegaClean(link.external)} {...props} />;
 
 	return props.children;
 }
