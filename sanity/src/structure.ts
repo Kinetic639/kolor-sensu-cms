@@ -16,7 +16,7 @@ const structure: StructureResolver = (S) =>
 			// S.divider(),
 			//
 			// S.documentTypeListItem("announcement").title("Announcements"),
-			// S.documentTypeListItem("navigation"),
+			S.documentTypeListItem("navigation"),
 			// S.documentTypeListItem("redirect").title("Redirects"),
 			// S.divider(),
 			//

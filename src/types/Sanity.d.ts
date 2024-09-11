@@ -1,11 +1,9 @@
 import type { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import type { SanityDocument } from "next-sanity";
 
-
-
 declare global {
 	namespace Sanity {
-		type Document = {
+		export type Document = {
 			title?: string;
 			metadata?: {
 				slug: { current: string };
@@ -15,16 +13,16 @@ declare global {
 				ogimage?: string;
 				noIndex: boolean;
 			};
-		}
-		// Use the Block type from Sanity for block content
-		type SanityBlock = Block;
+		};
+		// Use the Block export type from Sanity for block content
+		export type SanityBlock = Block;
 
 		// If your content might include custom types or other block-like content, you might define a more specific type:
-		type BlockContent = SanityBlock[];
+		export type BlockContent = SanityBlock[];
 
 		// documents
 
-		type Site = SanityDocument<{
+		export type Site = SanityDocument<{
 			title: string;
 			logo?: Logo;
 			announcements?: Announcement[];
@@ -36,12 +34,12 @@ declare global {
 			ogimage?: string;
 		}>;
 
-		type Navigation = SanityDocument<{
+		export type Navigation = SanityDocument<{
 			title: string;
-			items?: (Link | LinkList)[];
+			items?: Link[];
 		}>;
 
-		type Announcement = SanityDocument<{
+		export type Announcement = SanityDocument<{
 			copyright?: BlockContent;
 			cta?: Link;
 			start?: string;
@@ -50,17 +48,17 @@ declare global {
 
 		// pages
 
-		type PageBase = SanityDocument<{
+		export type PageBase = SanityDocument<{
 			title?: string;
 			metadata: Metadata;
 		}>;
 
-		type Page = PageBase & {
+		export type Page = PageBase & {
 			readonly _type: "page";
 			modules?: Module[];
 		};
 
-		type BlogPost = PageBase & {
+		export type BlogPost = PageBase & {
 			readonly _type: "blog.post";
 			body: BlockContent;
 			readTime: number;
@@ -71,13 +69,13 @@ declare global {
 			publishDate: string;
 		};
 
-		type BlogCategory = SanityDocument<{
+		export type BlogCategory = SanityDocument<{
 			title: string;
 		}>;
 
 		// miscellaneous
 
-		type Logo = SanityDocument<{
+		export type Logo = SanityDocument<{
 			name: string;
 			image?: Partial<{
 				default: Image;
@@ -87,18 +85,18 @@ declare global {
 		}>;
 		// objects
 
-		type CTA = {
+		export type CTA = {
 			link?: Link;
 			style?: string;
 		};
 
-		type Image = SanityImageObject &
+		export type Image = SanityImageObject &
 			Partial<{
 				alt: string;
 				loading: "lazy" | "eager";
 			}>;
 
-		type Link = {
+		export type Link = {
 			readonly _type: "link";
 			label: string;
 			type: "internal" | "external";
@@ -107,13 +105,13 @@ declare global {
 			params?: string;
 		};
 
-		type LinkList = {
+		export type LinkList = {
 			readonly _type: "link.list";
 			link: Link;
 			links?: Link[];
 		};
 
-		type Metadata = {
+		export type Metadata = {
 			slug: { current: string };
 			title: string;
 			description: string;
@@ -122,7 +120,7 @@ declare global {
 			noIndex: boolean;
 		};
 
-		type Module<T = string> = {
+		export type Module<T = string> = {
 			_type: T;
 			_key: string;
 			uid?: string;

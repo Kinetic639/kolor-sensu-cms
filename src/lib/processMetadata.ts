@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import processUrl from "./processUrl";
-import { getSite } from "@/lib/sanity/queries";
+import {getSite} from "@/lib/sanity/getSite";
 
 export default async function processMetadata(
 	page: Sanity.Page | Sanity.BlogPost,

@@ -1,7 +1,7 @@
 import React from "react";
 import { fetchSanity, groq } from "@/lib/sanity/fetch";
-import { modulesQuery } from "@/lib/sanity/queries";
 import processMetadata from "@/lib/processMetadata";
+import {modulesQuery} from "@/lib/sanity/queries";
 
 export default async function Page() {
 	const page = await getPage();

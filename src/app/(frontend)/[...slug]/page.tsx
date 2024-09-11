@@ -2,13 +2,32 @@ import { notFound } from "next/navigation";
 import React from "react";
 import client from "@/lib/sanity/client";
 import { fetchSanity, groq } from "@/lib/sanity/fetch";
-import { modulesQuery } from "@/lib/sanity/queries";
 import processMetadata from "@/lib/processMetadata";
+import { modulesQuery } from "@/lib/sanity/queries";
 
 export default async function Page({ params }: Props) {
 	const page = await getPage(params);
 	if (!page) notFound();
-	return <pre>{JSON.stringify(page, null, 2)}</pre>;
+	return (
+		<div>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+			<pre>{JSON.stringify(page, null, 2)}</pre>
+		</div>
+	);
 }
 
 export async function generateMetadata({ params }: Props) {
