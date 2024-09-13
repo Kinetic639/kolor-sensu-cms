@@ -1,43 +1,6 @@
-import { fetchSanity, groq } from "./fetch";
-
-export const linkQuery = groq`
-	...,
-	internal->{ _type, title, metadata }
-`;
-
-const navigationQuery = groq`
-	title,
-	items[]{
-		${linkQuery},
-		link{ ${linkQuery} },
-		links[]{ ${linkQuery} }
-	}
-`;
-
-export const ctaQuery = groq`
-	...,
-	link{ ${linkQuery} }
-`;
-
-export async function getSite() {
-	const site = await fetchSanity<Sanity.Site>(
-		groq`
-			*[_type == 'site'][0]{
-				...,
-				ctas[]{ ${ctaQuery} },
-				headerMenu->{ ${navigationQuery} },
-				footerMenu->{ ${navigationQuery} },
-				social->{ ${navigationQuery} },
-				'ogimage': ogimage.asset->url
-			}
-		`,
-		{ tags: ["site"] },
-	);
-
-	if (!site) throw new Error("Missing 'site' document in Sanity Studio");
-
-	return site;
-}
+import { groq } from "../fetch";
+import { linkQuery } from "./linkQuery";
+import { ctaQuery } from "./ctaQuery";
 
 export const modulesQuery = groq`
 	...,

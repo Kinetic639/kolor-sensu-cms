@@ -4,11 +4,12 @@ import client from "@/lib/sanity/client";
 import { fetchSanity, groq } from "@/lib/sanity/fetch";
 import { modulesQuery } from "@/lib/sanity/queries";
 import processMetadata from "@/lib/processMetadata";
+import Modules from "@/app/ui/modules";
 
 export default async function Page({ params }: Props) {
 	const page = await getPage(params);
 	if (!page) notFound();
-	return <pre>{JSON.stringify(page, null, 2)}</pre>;
+	return <Modules modules={page?.modules} page={page} />;
 }
 
 export async function generateMetadata({ params }: Props) {

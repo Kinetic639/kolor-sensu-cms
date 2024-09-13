@@ -2,10 +2,11 @@ import React from "react";
 import { fetchSanity, groq } from "@/lib/sanity/fetch";
 import { modulesQuery } from "@/lib/sanity/queries";
 import processMetadata from "@/lib/processMetadata";
+import Modules from "@/app/ui/modules";
 
 export default async function Page() {
 	const page = await getPage();
-	return <pre>{JSON.stringify(page, null, 2)}</pre>;
+	return <Modules modules={page?.modules} />;
 }
 
 export async function generateMetadata() {
