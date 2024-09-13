@@ -3,6 +3,29 @@ import type { SanityDocument } from "next-sanity";
 
 declare global {
 	namespace Sanity {
+		// Define the `FAQItem` type, which includes question and answer
+		export type FAQItem = {
+			readonly _type: "faqItem";
+			question: string;
+			answer: string;
+		};
+
+		// Define the `FAQList` type, which includes an array of `FAQItem`s
+		export type FAQList = {
+			readonly _type: "faqList";
+			title: string;
+			items: FAQItem[];
+		};
+
+		export type Card = {
+			readonly _type: "card";
+			title: string;
+			image: Sanity.Image;
+			frontText: string;
+			hoverText?: string;
+			faqList?: FAQList; // Optional related FAQ list
+		};
+
 		export type Document = {
 			title?: string;
 			metadata?: {

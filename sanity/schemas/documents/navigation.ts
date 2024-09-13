@@ -2,6 +2,12 @@ import { defineField, defineType } from "sanity";
 import { VscSymbolClass } from "react-icons/vsc";
 import { count } from "@sanity/src/utils";
 
+// Define types for the `prepare` function parameters
+interface NavigationPreview {
+	title: string;
+	items: Array<{ _type: "link" | "link.list" }>;
+}
+
 export default defineType({
 	name: "navigation",
 	title: "Navigation",
@@ -16,7 +22,10 @@ export default defineType({
 		defineField({
 			name: "items",
 			type: "array",
-			of: [{ type: "link" }, { type: "link.list" }],
+			of: [
+				{ type: "link" }, // Single link type
+				{ type: "link.list" }, // List of links type
+			],
 		}),
 	],
 	preview: {
@@ -24,9 +33,11 @@ export default defineType({
 			title: "title",
 			items: "items",
 		},
-		prepare: ({ title, items }) => ({
-			title,
-			subtitle: count(items),
-		}),
+		prepare({ title, items }: NavigationPreview) {
+			return {
+				title,
+				subtitle: `${count(items)} item(s)`,
+			};
+		},
 	},
 });
