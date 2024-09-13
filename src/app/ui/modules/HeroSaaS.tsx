@@ -10,7 +10,7 @@ export default function HeroSaaS({
 	image,
 }: Partial<{
 	pretitle: string;
-	content: any;
+	content: Sanity.BlockContent;
 	ctas: Sanity.CTA[];
 	image: Sanity.Image & {
 		faded?: boolean;

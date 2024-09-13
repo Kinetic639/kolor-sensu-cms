@@ -15,7 +15,7 @@ export default function Hero({
 	alignItems,
 }: Partial<{
 	pretitle: string;
-	content: any;
+	content: Sanity.BlockContent;
 	ctas: Sanity.CTA[];
 	bgImage: Sanity.Image;
 	bgImageMobile: Sanity.Image;
