@@ -9,6 +9,7 @@ import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
 import { SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import LinkList from "@/app/ui/LinkList";
 
 interface SidebarMenuProps {
 	className?: string;
@@ -42,29 +43,38 @@ export const SidebarMenuDrawer: React.FC<SidebarMenuProps> = ({ headerMenu, ctas
 				className="flex w-full flex-col gap-6 py-12"
 			>
 				{headerMenu?.items?.map((link, index) => {
-					// Get the slug from the internal link's metadata
-					const slug = link.internal?.metadata?.slug?.current;
+					switch (link._type) {
+						case "link":
+							// Get the slug from the internal link's metadata
+							const slug = link.internal?.metadata?.slug?.current;
 
-					// Determine if the link is active
-					const isActive = slug === "index" ? path === "/" : slug && path === `/${slug}`;
+							// Determine if the link is active
+							const isActive = slug === "index" ? path === "/" : slug && path === `/${slug}`;
 
-					return (
-						<motion.div key={index} variants={linkVariants}>
-							<SheetClose asChild>
-								<Link
-									href={processUrl(link.internal!, {
-										base: false,
-										params: link.params,
-									})}
-									className={`relative pb-0.5 text-xl font-medium capitalize transition-all ${
-										isActive ? "text-foreground-hover" : ""
-									} ${isScrolled ? "text-foreground-secondary hover:text-[#2e4654]" : "text-foreground hover:text-foreground-hover"} `}
-								>
-									{link.label}
-								</Link>
-							</SheetClose>
-						</motion.div>
-					);
+							return (
+								<motion.div key={index} variants={linkVariants}>
+									<SheetClose asChild>
+										<Link
+											href={processUrl(link.internal!, {
+												base: false,
+												params: link.params,
+											})}
+											className={`relative pb-0.5 text-xl font-medium capitalize transition-all ${
+												isActive ? "text-foreground-hover" : ""
+											} ${isScrolled ? "text-foreground-secondary hover:text-[#2e4654]" : "text-foreground hover:text-foreground-hover"} `}
+										>
+											{link.label}
+										</Link>
+									</SheetClose>
+								</motion.div>
+							);
+
+						case "link.list":
+							return <LinkList {...link} key={index} />;
+
+						default:
+							return null;
+					}
 				})}
 			</motion.nav>
 			<SheetClose asChild>
