@@ -6,6 +6,9 @@ import navigation from "@sanity/schemas/documents/navigation";
 import link from "@sanity/schemas/objects/link";
 import linkList from "@sanity/schemas/objects/link.list";
 import cta from "@sanity/schemas/objects/cta";
+import HeroSplit from "@sanity/schemas/modules/hero.split";
+import heroSaas from "@sanity/schemas/modules/hero.saas";
+import hero from "@sanity/schemas/modules/hero";
 
 // objects
 
@@ -25,4 +28,7 @@ export const schemaTypes = [
 	linkList,
 
 	// modules
+	hero,
+	heroSaas,
+	HeroSplit,
 ];

@@ -41,7 +41,7 @@ export const NavAnimatedBackground = () => {
 				borderRadius: { duration: 0.2, delay: !isScrolled ? 0.22 : 0 },
 			}}
 			className={cn(
-				"bg-background-secondary absolute bottom-0 z-[-1] hidden h-full rounded-b-full md:block",
+				"bg-background-secondary absolute left-0 top-0 z-[-1] hidden h-full rounded-b-full md:block",
 			)}
 		></motion.span>
 	);

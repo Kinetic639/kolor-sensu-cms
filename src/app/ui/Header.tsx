@@ -14,22 +14,31 @@ export const Header = async () => {
 	return (
 		<div
 			className={cn(
-				"bg-background-secondary md:bg-background sticky top-0 z-50 mx-auto flex max-w-screen-xl items-center justify-between gap-x-6 py-2",
+				"bg-background-secondary md:bg-background sticky top-0 z-50 mx-auto flex w-full justify-center",
 			)}
 		>
-			<NavAnimatedBackground />
-			<Link className={cn("h3 md:h2 ml-2.5 inline-block", logo?.image && "max-w-[250px]")} href="/">
-				{logoImage && (
-					<Img
-						className="inline-block max-h-[2.2em] w-auto"
-						image={logoImage}
-						alt={logo?.name || title}
-					/>
+			<div
+				className={cn(
+					"relative mx-auto flex w-full max-w-screen-xl items-center justify-between gap-x-6 py-2",
 				)}
-			</Link>
-			{headerMenu && <DesktopNavigation headerMenu={headerMenu} />}
-			<CTAButton ctas={ctas || []} className="mr-4 hidden md:block" />
-			<SideDrawer />
+			>
+				<NavAnimatedBackground />
+				<Link
+					className={cn("h3 md:h2 ml-2.5 inline-block", logo?.image && "max-w-[250px]")}
+					href="/"
+				>
+					{logoImage && (
+						<Img
+							className="inline-block max-h-[2.2em] w-auto"
+							image={logoImage}
+							alt={logo?.name || title}
+						/>
+					)}
+				</Link>
+				{headerMenu && <DesktopNavigation headerMenu={headerMenu} />}
+				<CTAButton ctas={ctas || []} className="mr-4 hidden md:block" />
+				<SideDrawer />
+			</div>
 		</div>
 	);
 };

@@ -6,5 +6,9 @@ interface AppWrapperProps {
 }
 
 export const AppWrapper: FC<AppWrapperProps> = ({ children, className }) => {
-	return <main className={cn("", className)}> {children}</main>;
+	return (
+		<main className={cn("flex flex-1 flex-grow flex-col items-stretch", className)}>
+			{children}
+		</main>
+	);
 };
