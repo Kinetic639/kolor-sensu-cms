@@ -22,7 +22,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	return (
 		<html
 			lang="en"
-			className={cn("relative overflow-auto overflow-y-scroll")}
+			className={cn("relative overflow-auto overflow-x-hidden overflow-y-scroll")}
 			suppressHydrationWarning
 		>
 			<body className={cn("flex min-h-screen flex-col", inter.className)}>
@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 				>
 					<AppWrapper>
 						<Header />
-						<main id="main-content" tabIndex={-1} className="flex-1 overflow-hidden pt-4">
+						<main id="main-content" tabIndex={-1} className="flex-1">
 							{children}
 						</main>
 						<Footer />

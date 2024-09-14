@@ -22,7 +22,7 @@ export default function Banner({
 	return (
 		<section
 			className={cn(
-				"mx-auto my-3 bg-background-secondary p-3 py-4 text-center text-foreground-secondary",
+				"mx-auto bg-background-secondary p-3 py-4 text-center text-foreground-secondary",
 				cleanedAlignment === "left" && "text-left",
 				cleanedAlignment === "right" && "text-right",
 				cleanedAlignment === "center" && "text-center",
