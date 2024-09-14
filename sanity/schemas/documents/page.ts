@@ -38,6 +38,9 @@ export default defineType({
 				{ type: "hero" },
 				{ type: "hero.saas" },
 				{ type: "hero.split" },
+				{ type: "banner" },
+				{ type: "cardsSection" },
+
 				// { type: "logo-list" },
 				// { type: "pricing-list" },
 				// { type: "richtext-module" },

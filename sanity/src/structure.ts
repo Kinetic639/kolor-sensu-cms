@@ -1,7 +1,7 @@
 import type { StructureResolver } from "sanity/structure";
+import { VscMultipleWindows, VscServerProcess, VscQuestion, VscCreditCard } from "react-icons/vsc"; // Icon for FAQ
 
-import { VscMultipleWindows, VscServerProcess } from "react-icons/vsc";
-import {  singleton } from "./utils";
+import { singleton } from "./utils";
 
 const structure: StructureResolver = (S) =>
 	S.list()
@@ -26,6 +26,12 @@ const structure: StructureResolver = (S) =>
 			// 	S.documentTypeListItem("reputation"),
 			// 	S.documentTypeListItem("testimonial").title("Testimonials"),
 			// ]).icon(BsDatabaseAdd),
+			S.divider(),
+			S.documentTypeListItem("faqNavigation").icon(VscQuestion),
+
+			S.divider(),
+			S.documentTypeListItem("card").title("Cards").icon(VscCreditCard), // New card section
+			S.divider(),
 		]);
 
 export default structure;
