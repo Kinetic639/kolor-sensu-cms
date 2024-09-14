@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Montserrat } from "next/font/google";
 import { Header } from "@/app/ui/Header";
 import { AppWrapper } from "@/app/ui/AppWrapper";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 		icon: `https://fav.farm/🖤`,
 	},
 };
+const inter = Montserrat({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -23,7 +25,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 			className={cn("relative overflow-auto overflow-y-scroll")}
 			suppressHydrationWarning
 		>
-			<body className="flex min-h-screen flex-col">
+			<body className={cn("flex min-h-screen flex-col", inter.className)}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="light"

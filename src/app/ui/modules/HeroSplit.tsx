@@ -21,7 +21,12 @@ export default function HeroSplit({
 				<Img image={image} imageWidth={1200} />
 			</figure>
 
-			<div className="richtext mx-auto w-full max-w-lg [&_:is(h1,h2)]:text-balance">
+			<div
+				className={cn(
+					"richtext mx-auto flex w-full max-w-lg flex-col [&_:is(h1,h2)]:text-balance",
+					image?.onRight && "items-end text-right",
+				)}
+			>
 				<Typography variant="h1" className="mb-4">
 					{pretitle}
 				</Typography>
