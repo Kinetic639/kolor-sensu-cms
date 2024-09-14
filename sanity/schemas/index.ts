@@ -12,9 +12,9 @@ import hero from "@sanity/schemas/modules/hero";
 import banner from "@sanity/schemas/modules/banner";
 import faqItem from "@sanity/schemas/objects/faqItem";
 import faqList from "@sanity/schemas/objects/faqList";
-import faqLists from "@sanity/schemas/documents/faqLists";
 import cardSection from "@sanity/schemas/modules/cardSection";
 import card from "@sanity/schemas/documents/card";
+import faqNavigation from "@sanity/schemas/documents/faqNavigation";
 
 // objects
 
@@ -26,7 +26,7 @@ export const schemaTypes = [
 	page,
 	logo,
 	navigation,
-	faqLists,
+	faqNavigation,
 
 	// objects
 	metadata,

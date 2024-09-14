@@ -1,15 +1,9 @@
 import { defineField, defineType } from "sanity";
-import { MdQuestionAnswer } from "react-icons/md"; // Icon for FAQ
-
-// Define the type for the `prepare` function parameters
-interface FAQItemPreview {
-	title: string;
-	subtitle: string;
-}
+import { MdQuestionAnswer } from "react-icons/md";
 
 export default defineType({
 	name: "faqItem",
-	title: "Single Question",
+	title: "FAQ Item",
 	icon: MdQuestionAnswer,
 	type: "object",
 	fields: [
@@ -17,14 +11,12 @@ export default defineType({
 			name: "question",
 			type: "string",
 			title: "Question",
-			description: "Enter the question",
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: "answer",
 			type: "text",
 			title: "Answer",
-			description: "Provide the answer for the question",
 			validation: (Rule) => Rule.required().min(10).max(500),
 		}),
 	],
@@ -33,10 +25,13 @@ export default defineType({
 			title: "question",
 			subtitle: "answer",
 		},
-		prepare({ title, subtitle }: FAQItemPreview) {
+		prepare(selection: { title?: string; subtitle?: string }) {
 			return {
-				title,
-				subtitle: subtitle.length > 50 ? `${subtitle.slice(0, 50)}...` : subtitle,
+				title: selection.title || "No question provided",
+				subtitle:
+					selection.subtitle && selection.subtitle.length > 50
+						? `${selection.subtitle.slice(0, 50)}...`
+						: selection.subtitle || "No answer provided",
 			};
 		},
 	},

@@ -51,9 +51,11 @@ export default defineType({
 			title: "title",
 			subtitle: "text",
 		},
-		prepare({ title, subtitle }: { title: string; subtitle: string }) {
+		prepare({ title, subtitle }) {
 			return {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				title: title || "",
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				subtitle: subtitle || "",
 			};
 		},

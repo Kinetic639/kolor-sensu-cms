@@ -16,8 +16,7 @@ interface CardProps {
 	faqList?: Sanity.FAQList;
 }
 
-export default function Card({ title, image, frontText, hoverText, faqList }: CardProps) {
-	console.log(faqList);
+export default function Card({ title, image, frontText, faqList }: CardProps) {
 	return (
 		<div className="group relative overflow-hidden rounded-lg">
 			{/* Card Image */}

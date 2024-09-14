@@ -1,14 +1,9 @@
 import { defineField, defineType } from "sanity";
-import { MdHelpOutline } from "react-icons/md"; // Icon for FAQ List
-
-interface FAQListPreview {
-	title: string;
-	questions: Array<unknown>;
-}
+import { MdHelpOutline } from "react-icons/md";
 
 export default defineType({
 	name: "faqList",
-	title: "Questions List",
+	title: "FAQ List",
 	icon: MdHelpOutline,
 	type: "object",
 	fields: [
@@ -22,7 +17,7 @@ export default defineType({
 			name: "items",
 			type: "array",
 			title: "Questions and Answers",
-			of: [{ type: "faqItem" }], // Reusing the faqItem schema
+			of: [{ type: "faqItem" }],
 		}),
 	],
 	preview: {
@@ -30,9 +25,11 @@ export default defineType({
 			title: "title",
 			questions: "items",
 		},
-		prepare({ title, questions }: FAQListPreview) {
+		prepare({ title, questions }) {
 			return {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				title: title || "FAQ List",
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				subtitle: `${questions?.length || 0} question(s)`,
 			};
 		},

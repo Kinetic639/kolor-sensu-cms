@@ -1,14 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { MdViewAgenda } from "react-icons/md";
 
-// Define types for the `prepare` function
-interface CardPreview {
-	title: string;
-	media: any; // You could improve this with a more specific image type
-	frontText: string;
-	hoverText?: string;
-}
-
 export default defineType({
 	name: "card",
 	title: "Card",
@@ -58,7 +50,7 @@ export default defineType({
 			frontText: "frontText",
 			hoverText: "hoverText",
 		},
-		prepare({ title, media, frontText, hoverText }: CardPreview) {
+		prepare({ title, media, frontText, hoverText }) {
 			return {
 				title,
 				subtitle: hoverText ? `${frontText.substring(0, 50)}... (hover)` : frontText,
