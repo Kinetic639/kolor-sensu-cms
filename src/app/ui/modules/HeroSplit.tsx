@@ -4,6 +4,7 @@ import CTAList from "@/app/ui/CTAList";
 import Img from "@/app/ui/Img";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 import { EdgeBlob } from "@/app/ui/atoms/edge-blob/edge-blob";
+import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 
 export default function HeroSplit({
 	pretitle,
@@ -38,8 +39,8 @@ export default function HeroSplit({
 					<Typography variant="h1" className="mb-4">
 						{pretitle}
 					</Typography>
-					<PortableText value={content} />
-					<CTAList ctas={ctas} className="!mt-4" />
+					<PortableText value={content} components={customPortableTextComponents} />
+					<CTAList ctas={ctas} className="mt-8" />
 				</div>
 			</div>
 		</section>

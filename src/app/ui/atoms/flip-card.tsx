@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Undo } from "lucide-react";
 import Image from "next/image";
@@ -19,7 +19,7 @@ interface FlipCardContent {
 
 export const FlipCard = ({ title, image, frontText, hoverText }: FlipCardContent) => {
 	const [isFlipped, setIsFlipped] = useState(false);
-	const flipBackTimeout = React.useRef<NodeJS.Timeout | null>(null);
+	const flipBackTimeout = useRef<NodeJS.Timeout | null>(null);
 	const isDesktop = useMediaQuery("(min-width: 768px)");
 	const { src } = useNextSanityImage(client, image);
 	const variants = {

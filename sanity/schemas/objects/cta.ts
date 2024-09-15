@@ -13,9 +13,17 @@ export default defineType({
 		}),
 		defineField({
 			name: "style",
+			title: "Button Style",
 			type: "string",
 			options: {
-				list: ["action", { title: "Outline", value: "action-outline" }, "ghost", "link"],
+				list: [
+					{ title: "Action", value: "action" },
+					{ title: "Outline", value: "action-outline" },
+					{ title: "Ghost", value: "ghost" },
+					{ title: "Link", value: "link" },
+					{ title: "Button", value: "button" },
+				],
+				layout: "radio",
 			},
 		}),
 	],

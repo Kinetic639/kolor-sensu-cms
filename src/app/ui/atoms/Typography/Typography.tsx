@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const typographyVariants = cva("", {
 	variants: {
 		variant: {
-			h1: "text-2xl md:text-4xl font-bold",
+			h1: "text-3xl md:text-5xl font-semibold",
 			h2: "text-3xl font-semibold",
 			h3: "text-2xl font-semibold",
 			h4: "text-xl font-semibold",

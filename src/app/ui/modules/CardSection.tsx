@@ -1,8 +1,7 @@
-// CardSection.tsx
 import React from "react";
-import Card from "@/app/ui/Card";
 import { cn } from "@/lib/utils";
 import { FlipCard } from "@/app/ui/atoms/flip-card";
+import { Typography } from "@/app/ui/atoms/Typography/Typography";
 
 export default function CardSection({
 	title,
@@ -23,9 +22,11 @@ export default function CardSection({
 			)}
 		>
 			<div className={cn("mx-auto max-w-screen-xl px-4")}>
-				<div className="mb-12 text-center">
-					<h2 className="mb-2 text-3xl font-medium">{title}</h2>
-					{subtitle && <p className="text-lg text-gray-600">{subtitle}</p>}
+				<div className="mb-16 text-center">
+					<Typography variant="h3" className="mb-3">
+						{title}
+					</Typography>
+					{subtitle && <Typography variant="body1">{subtitle}</Typography>}
 				</div>
 				<div className="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
 					{cards?.map((card, index) => (
