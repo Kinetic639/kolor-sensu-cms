@@ -39,4 +39,25 @@ export const modulesQuery = groq`
 	},
 	_type == 'testimonial.featured' => { testimonial-> },
 	_type == 'testimonial-list' => { testimonials[]-> },
+_type == 'cardsSection' => {
+title,
+subtitle,
+fullscreen,
+cards[]->{
+_id,
+title,
+image,
+frontText,
+hoverText,
+faqList->{
+_id,
+title,
+items[]{
+question,
+answer
+}
+}
+}
+},
+	
 `;

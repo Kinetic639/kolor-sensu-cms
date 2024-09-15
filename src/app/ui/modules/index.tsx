@@ -1,6 +1,8 @@
 import Hero from "./Hero";
 import HeroSplit from "./HeroSplit";
 import HeroSaaS from "./HeroSaaS";
+import Banner from "@/app/ui/Banner";
+import CardSection from "@/app/ui/modules/CardSection";
 
 export default function Modules({
 	modules,
@@ -19,6 +21,10 @@ export default function Modules({
 						return <HeroSplit {...module} key={module._key} />;
 					case "hero.saas":
 						return <HeroSaaS {...module} key={module._key} />;
+					case "banner":
+						return <Banner {...module} key={module._key} />;
+					case "cardsSection":
+						return <CardSection {...module} key={module._key} />;
 					default:
 						return <div data-type={module._type} key={module._key} />;
 				}

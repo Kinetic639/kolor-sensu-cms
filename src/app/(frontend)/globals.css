@@ -6,8 +6,7 @@
   :root {
 
     --background: 22.5 44.4% 92.9%;
-    --background-secondary: 112 18% 47%;
-
+    --background-secondary: 114.4 19.3% 56.3%;
     --foreground: 202.1 29.2% 25.5%;
     --foreground-secondary: 22.5 44.4% 92.9%;
     --foreground-hover: 112 18% 47%;
@@ -56,7 +55,17 @@
 
     --chart-5: 27 87% 67%;
 
-    --radius: 0.5rem
+    --radius: 0.5rem;
+
+    --blob-1-top: hsl(202.1,35.2%,21.2%);
+    --blob-1-center: hsl(22.5,44.4%,92.9%);
+    --blob-1-bot: hsl(137.1,15.7%,56.3%);
+
+    --blob-2-top: hsl(30, 77%, 95%);
+    --blob-2-bot: hsl(13, 72%, 59%);
+
+    --blob-3-top: hsl(112, 58%, 24%);
+    --blob-3-bot: hsl(120, 32%, 85%);
   }
   .dark {
 
@@ -123,4 +132,38 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.flip-card{
+  perspective: 800px;
+}
+.flip-card-inner {
+  transition: transform .2s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.bent-corner {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
+
+}
+
+.bent-corner::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 8px 0 0  0;
+  border-width: 28px 28px 0 0;
+  border-style: solid;
+  z-index: 1;
+  border-color:  hsl(202.1,29.2%,25.5%);
 }

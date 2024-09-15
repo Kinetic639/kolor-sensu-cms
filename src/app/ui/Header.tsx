@@ -14,7 +14,7 @@ export const Header = async () => {
 	return (
 		<div
 			className={cn(
-				"bg-background-secondary md:bg-background sticky top-0 z-50 mx-auto flex w-full justify-center",
+				"sticky top-0 z-50 mx-auto flex w-full justify-center bg-background-secondary md:bg-transparent",
 			)}
 		>
 			<div

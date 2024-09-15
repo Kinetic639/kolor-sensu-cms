@@ -1,10 +1,9 @@
 import { defineField, defineType } from "sanity";
 import { VscSymbolClass } from "react-icons/vsc";
-import { count } from "@sanity/src/utils";
 
 export default defineType({
-	name: "navigation",
-	title: "Navigation",
+	name: "faqNavigation",
+	title: "FAQ Navigation",
 	icon: VscSymbolClass,
 	type: "document",
 	fields: [
@@ -16,7 +15,8 @@ export default defineType({
 		defineField({
 			name: "items",
 			type: "array",
-			of: [{ type: "link" }, { type: "link.list" }],
+			title: "FAQ Items and Lists",
+			of: [{ type: "faqItem" }, { type: "faqList" }],
 		}),
 	],
 	preview: {
@@ -24,11 +24,13 @@ export default defineType({
 			title: "title",
 			items: "items",
 		},
-		prepare: ({ title, items }) => ({
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			title,
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-			subtitle: count(items),
-		}),
+		prepare({ title, items }) {
+			return {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				title,
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+				subtitle: `${items?.length || 0} item(s)`,
+			};
+		},
 	},
 });

@@ -7,7 +7,11 @@ export default defineType({
 	title: "Hero (split)",
 	icon: TfiLayoutMediaLeft,
 	type: "object",
-	groups: [{ name: "content", default: true }, { name: "image" }],
+	groups: [
+		{ name: "content", title: "Content", default: true },
+		{ name: "image", title: "Image" },
+		{ name: "background", title: "Background" }, // Define the background group here
+	],
 	fields: [
 		defineField({
 			name: "pretitle",
@@ -33,6 +37,21 @@ export default defineType({
 		// 	to: [{ type: "reputation" }],
 		// 	group: "content",
 		// }),
+		defineField({
+			name: "backgroundType",
+			title: "Background Type",
+			type: "string",
+			options: {
+				list: [
+					{ title: "Solid", value: "solid" },
+					{ title: "Blob", value: "blob" },
+					{ title: "Transparent", value: "transparent" },
+				],
+				layout: "radio",
+			},
+			initialValue: "solid", // Default value
+			group: "background", // Add it to a new 'background' group
+		}),
 		defineField({
 			name: "image",
 			type: "image",

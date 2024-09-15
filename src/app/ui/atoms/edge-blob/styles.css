@@ -1,0 +1,16 @@
+.blob-container {
+	background: hsl(var(--background));
+	min-height: 500px;
+	width: 500px;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.blob-1, .blob-2, .blob-3 {
+	position: absolute;
+	width: 500px;
+	height: 500px;
+}
