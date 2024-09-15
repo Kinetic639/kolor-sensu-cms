@@ -8,6 +8,7 @@ const structure: StructureResolver = (S) =>
 		.title("Content")
 		.items([
 			singleton(S, "site", "Site settings").icon(VscServerProcess),
+			S.documentTypeListItem("announcement").title("Announcements"),
 			S.divider(),
 
 			S.documentTypeListItem("page").title("Pages").icon(VscMultipleWindows),
@@ -15,7 +16,6 @@ const structure: StructureResolver = (S) =>
 			// S.documentTypeListItem("blog.category").title("Blog categories"),
 			// S.divider(),
 			//
-			// S.documentTypeListItem("announcement").title("Announcements"),
 			S.documentTypeListItem("navigation"),
 			// S.documentTypeListItem("redirect").title("Redirects"),
 			// S.divider(),

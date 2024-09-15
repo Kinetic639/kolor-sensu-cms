@@ -11,6 +11,7 @@ import "./globals.css";
 import VisualEditingControls from "@/app/ui/VisualEditingControls";
 import { ThemeProvider } from "@/lib/providers/ThemeProvider";
 import Footer from "@/app/ui/footer";
+import Announcement from "@/app/ui/Announcement";
 export const metadata: Metadata = {
 	icons: {
 		icon: `https://fav.farm/🖤`,
@@ -33,6 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 					disableTransitionOnChange
 				>
 					<AppWrapper>
+						<Announcement />
 						<Header />
 						<main id="main-content" tabIndex={-1} className="flex-1">
 							{children}

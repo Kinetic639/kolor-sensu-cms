@@ -1,5 +1,5 @@
 import { fetchSanity, groq } from "@/lib/sanity/fetch";
-import {modulesQuery} from "@/lib/sanity/queries";
+import { modulesQuery } from "@/lib/sanity/queries";
 
 export default async function NotFound() {
 	const page = await get404();

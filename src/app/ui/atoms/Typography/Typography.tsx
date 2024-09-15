@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const typographyVariants = cva("", {
 	variants: {
 		variant: {
-			h1: "text-3xl md:text-5xl font-semibold",
+			h1: "text-2xl md:text-4xl font-bold",
 			h2: "text-3xl font-semibold",
 			h3: "text-2xl font-semibold",
 			h4: "text-xl font-semibold",
@@ -19,18 +19,19 @@ const typographyVariants = cva("", {
 			button: "text-sm font-bold uppercase",
 		},
 		color: {
+			inherit: "", // Empty string to ensure no color is applied, allowing it to inherit
 			primary: "text-primary",
 			secondary: "text-secondary",
 			error: "text-destructive",
 			warning: "text-warning",
 			info: "text-info",
 			success: "text-success",
-			default: "text-foreground",
+			default: "text-foreground", // This can still be used for default override
 		},
 	},
 	defaultVariants: {
 		variant: "body1",
-		color: "default",
+		color: "inherit", // Default to inherit text color
 	},
 });
 

@@ -1,10 +1,9 @@
-
 import { ctaQuery, navigationQuery } from "./queries";
-import {fetchSanity, groq} from "@/lib/sanity/fetch";
+import { fetchSanity, groq } from "@/lib/sanity/fetch";
 
 export async function getSite() {
-    const site = await fetchSanity<Sanity.Site>(
-        groq`
+	const site = await fetchSanity<Sanity.Site>(
+		groq`
 			*[_type == 'site'][0]{
 				...,
 				ctas[]{ ${ctaQuery} },
@@ -14,10 +13,10 @@ export async function getSite() {
 				'ogimage': ogimage.asset->url
 			}
 		`,
-        { tags: ["site"] },
-    );
+		{ tags: ["site"] },
+	);
 
-    if (!site) throw new Error("Missing 'site' document in Sanity Studio");
+	if (!site) throw new Error("Missing 'site' document in Sanity Studio");
 
-    return site;
+	return site;
 }

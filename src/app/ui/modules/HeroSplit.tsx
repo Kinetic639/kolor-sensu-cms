@@ -36,7 +36,7 @@ export default function HeroSplit({
 						image?.onRight && "items-end text-right",
 					)}
 				>
-					<Typography variant="h1" className="mb-4">
+					<Typography as="h1" variant="h1" className="mb-4">
 						{pretitle}
 					</Typography>
 					<PortableText value={content} components={customPortableTextComponents} />

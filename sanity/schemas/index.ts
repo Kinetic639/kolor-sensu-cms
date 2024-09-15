@@ -15,6 +15,7 @@ import faqList from "@sanity/schemas/objects/faqList";
 import cardSection from "@sanity/schemas/modules/cardSection";
 import card from "@sanity/schemas/documents/card";
 import faqNavigation from "@sanity/schemas/documents/faqNavigation";
+import announcement from "@sanity/schemas/documents/announcement";
 
 // objects
 
@@ -27,6 +28,7 @@ export const schemaTypes = [
 	logo,
 	navigation,
 	faqNavigation,
+	announcement,
 
 	// objects
 	metadata,

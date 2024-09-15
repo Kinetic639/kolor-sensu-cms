@@ -23,10 +23,14 @@ export default function CardSection({
 		>
 			<div className={cn("mx-auto max-w-screen-xl px-4")}>
 				<div className="mb-16 text-center">
-					<Typography variant="h3" className="mb-3">
+					<Typography as="h3" variant="h3" className="mb-3">
 						{title}
 					</Typography>
-					{subtitle && <Typography variant="body1">{subtitle}</Typography>}
+					{subtitle && (
+						<Typography as="p" variant="body1">
+							{subtitle}
+						</Typography>
+					)}
 				</div>
 				<div className="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
 					{cards?.map((card, index) => (
