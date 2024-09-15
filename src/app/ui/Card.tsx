@@ -17,6 +17,7 @@ interface CardProps {
 }
 
 export default function Card({ title, image, frontText, faqList }: CardProps) {
+	console.log(image);
 	return (
 		<div className="group relative overflow-hidden rounded-lg">
 			{/* Card Image */}

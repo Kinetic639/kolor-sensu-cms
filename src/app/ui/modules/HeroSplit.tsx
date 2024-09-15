@@ -23,7 +23,7 @@ export default function HeroSplit({
 			{backgroundType === "blob" && <EdgeBlob />}
 			<div
 				className={
-					"relative mx-auto grid max-w-screen-xl items-center gap-6 p-4 py-12 md:grid-cols-2 md:gap-x-12"
+					"relative mx-auto grid max-w-screen-xl items-center gap-6 p-4 py-8 md:grid-cols-2 md:gap-x-12 md:py-16"
 				}
 			>
 				<figure className={cn("max-md:full-bleed", image?.onRight && "md:order-1")}>
