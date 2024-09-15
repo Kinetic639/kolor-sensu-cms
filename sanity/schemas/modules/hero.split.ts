@@ -10,7 +10,7 @@ export default defineType({
 	groups: [
 		{ name: "content", title: "Content", default: true },
 		{ name: "image", title: "Image" },
-		{ name: "background", title: "Background" }, // Define the background group here
+		{ name: "background", title: "Background" },
 	],
 	fields: [
 		defineField({
@@ -31,12 +31,6 @@ export default defineType({
 			of: [{ type: "cta" }],
 			group: "content",
 		}),
-		// defineField({
-		// 	name: "reputation",
-		// 	type: "reference",
-		// 	to: [{ type: "reputation" }],
-		// 	group: "content",
-		// }),
 		defineField({
 			name: "backgroundType",
 			title: "Background Type",
@@ -49,8 +43,8 @@ export default defineType({
 				],
 				layout: "radio",
 			},
-			initialValue: "solid", // Default value
-			group: "background", // Add it to a new 'background' group
+			initialValue: "solid",
+			group: "background",
 		}),
 		defineField({
 			name: "image",
@@ -67,6 +61,20 @@ export default defineType({
 					name: "onRight",
 					type: "boolean",
 					initialValue: false,
+				}),
+				defineField({
+					name: "frameStyle",
+					title: "Image Frame Style",
+					type: "string",
+					options: {
+						list: [
+							{ title: "Rectangle", value: "rectangle" },
+							{ title: "Circle", value: "circle" },
+							{ title: "Blob", value: "blob" },
+						],
+						layout: "radio",
+					},
+					initialValue: "rectangle",
 				}),
 				defineField({
 					name: "loading",
