@@ -64,6 +64,7 @@ declare global {
 		}>;
 
 		export type Announcement = SanityDocument<{
+			content: BlockContent;
 			copyright?: BlockContent;
 			cta?: Link;
 			start?: string;

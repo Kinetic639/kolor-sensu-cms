@@ -82,10 +82,10 @@ export const SidebarMenuDrawer: React.FC<SidebarMenuProps> = ({ headerMenu, ctas
 					<Link href={`/${ctas[0].link.internal.metadata.slug.current}`} className={cn("")}>
 						<Button
 							className={cn(
-								"bg-foreground mr-4 w-full self-center rounded-full px-6 py-6 text-center",
+								"mr-4 w-full self-center rounded-full bg-foreground px-6 py-6 text-center",
 								isScrolled
-									? "hover:text-foreground hover:bg-background"
-									: "hover:text-background hover:bg-background-secondary",
+									? "hover:bg-background hover:text-foreground"
+									: "hover:bg-background-secondary hover:text-background",
 							)}
 						>
 							{ctas[0]?.link?.label}

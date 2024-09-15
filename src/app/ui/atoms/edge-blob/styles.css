@@ -9,7 +9,9 @@
 	justify-content: center;
 }
 
-.blob-1, .blob-2, .blob-3 {
+.blob-1,
+.blob-2,
+.blob-3 {
 	position: absolute;
 	width: 500px;
 	height: 500px;

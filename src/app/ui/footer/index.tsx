@@ -6,7 +6,7 @@ export default async function Footer() {
 	const { title, copyright } = await getSite();
 
 	return (
-		<footer className="bg-background-secondary text-foreground-secondary text-center">
+		<footer className="bg-background-secondary text-center text-foreground-secondary">
 			<div className="section border-b border-canvas/20">
 				<div className="mx-auto flex w-full max-w-screen-xl justify-center gap-6 p-4">
 					<Navigation />

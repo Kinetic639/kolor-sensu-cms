@@ -25,7 +25,7 @@ export default async function Social({ className }: React.HTMLProps<HTMLDivEleme
 					case "link":
 						return (
 							<CTA
-								className="hover:text-foreground px-2 py-1 text-xl hover:!opacity-100 group-has-[a:hover]:opacity-50"
+								className="px-2 py-1 text-xl hover:text-foreground hover:!opacity-100 group-has-[a:hover]:opacity-50"
 								link={item}
 								key={key}
 							>

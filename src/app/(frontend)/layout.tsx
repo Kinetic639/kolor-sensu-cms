@@ -11,9 +11,10 @@ import "./globals.css";
 import VisualEditingControls from "@/app/ui/VisualEditingControls";
 import { ThemeProvider } from "@/lib/providers/ThemeProvider";
 import Footer from "@/app/ui/footer";
+import Announcement from "@/app/ui/Announcement";
 export const metadata: Metadata = {
 	icons: {
-		icon: `https://fav.farm/🖤`,
+		icon: "/favicon.png",
 	},
 };
 const inter = Montserrat({ subsets: ["latin"] });
@@ -25,6 +26,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 			className={cn("relative overflow-auto overflow-x-hidden overflow-y-scroll")}
 			suppressHydrationWarning
 		>
+			<head>
+				<link
+					rel="icon"
+					href="/favicon.png?<generated>"
+					type="image/<generated>"
+					sizes="<generated>"
+				/>
+				<title className="sr-only">Kolor Sensu - Centrum Wsparcia Psychologicznego</title>
+			</head>
 			<body className={cn("flex min-h-screen flex-col", inter.className)}>
 				<ThemeProvider
 					attribute="class"
@@ -33,6 +43,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 					disableTransitionOnChange
 				>
 					<AppWrapper>
+						<Announcement />
 						<Header />
 						<main id="main-content" tabIndex={-1} className="flex-1">
 							{children}
