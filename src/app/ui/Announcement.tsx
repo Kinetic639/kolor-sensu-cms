@@ -30,7 +30,7 @@ export default async function Announcement() {
 			<div className="anim-fade-to-r [&_a]:link text-foreground-secondary">
 				{/* Use size="6px" for the desired text size */}
 				<PortableText
-					value={active.content as Sanity.BlockContent} // Explicitly type content
+					value={active.content} // Explicitly type content
 					components={{
 						...customPortableTextComponents,
 						block: {
