@@ -118,6 +118,7 @@ declare global {
 		export type Image = SanityImageObject &
 			Partial<{
 				alt: string;
+				frameStyle: "rectangle" | "circle" | "blob";
 				loading: "lazy" | "eager";
 			}>;
 

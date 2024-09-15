@@ -22,29 +22,18 @@ export default function Banner({
 	return (
 		<section
 			className={cn(
-				"mx-auto bg-background-secondary p-3 py-6 text-center text-foreground-secondary",
+				"mx-auto bg-background-secondary p-3 py-4 text-center text-foreground-secondary",
 				cleanedAlignment === "left" && "text-left",
 				cleanedAlignment === "right" && "text-right",
 				cleanedAlignment === "center" && "text-center",
 			)}
 		>
 			{title && (
-				<Typography
-					variant="h3"
-					className={cn("mx-auto mb-3 w-full max-w-screen-xl px-4 text-foreground-secondary")}
-				>
+				<Typography variant="h3" className={cn("mb-2 text-foreground-secondary")}>
 					{title}
 				</Typography>
 			)}
-			{text && (
-				<Typography
-					as="p"
-					variant="body1"
-					className="mx-auto w-full max-w-screen-xl px-4 text-foreground-secondary"
-				>
-					{text}
-				</Typography>
-			)}
+			{text && <span>{text}</span>}
 			{ctas && <CTAList ctas={ctas} className="mt-4" />}
 		</section>
 	);

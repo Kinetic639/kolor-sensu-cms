@@ -5,6 +5,7 @@ import Img from "@/app/ui/Img";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 import { EdgeBlob } from "@/app/ui/atoms/edge-blob/edge-blob";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
+import { ImageBlobFrame } from "@/app/ui/blob-image-frame";
 
 export default function HeroSplit({
 	pretitle,
@@ -14,11 +15,16 @@ export default function HeroSplit({
 	backgroundType,
 }: Partial<{
 	pretitle: string;
+	frameStyle: string;
 	content: Sanity.BlockContent;
 	ctas: Sanity.CTA[];
-	image: Sanity.Image & { onRight?: boolean };
+	image: Sanity.Image & { onRight?: boolean; frameStyle?: string };
 	backgroundType: string;
 }>) {
+	const cleanedFrameStyle = image?.frameStyle
+		?.replace(/[\u200B-\u200D\uFEFF]/g, "")
+		.trim()
+		.toLowerCase();
 	return (
 		<section className={cn("relative", backgroundType === "solid" && "bg-background")}>
 			{backgroundType === "blob" && <EdgeBlob />}
@@ -28,7 +34,19 @@ export default function HeroSplit({
 				}
 			>
 				<figure className={cn("max-md:full-bleed", image?.onRight && "md:order-1")}>
-					<Img image={image} imageWidth={1200} />
+					{cleanedFrameStyle === "blob" ? (
+						<ImageBlobFrame image={image} />
+					) : (
+						<Img
+							image={image}
+							imageWidth={1200}
+							className={cn(
+								cleanedFrameStyle === "blob" && "blob-frame",
+								cleanedFrameStyle === "circle" && "circle-frame",
+								cleanedFrameStyle === "rectangle" && "rectangle-frame",
+							)}
+						/>
+					)}
 				</figure>
 				<div
 					className={cn(
