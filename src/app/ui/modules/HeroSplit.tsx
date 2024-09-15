@@ -4,6 +4,7 @@ import CTAList from "@/app/ui/CTAList";
 import Img from "@/app/ui/Img";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 import { EdgeBlob } from "@/app/ui/atoms/edge-blob/edge-blob";
+import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 
 export default function HeroSplit({
 	pretitle,
@@ -23,7 +24,7 @@ export default function HeroSplit({
 			{backgroundType === "blob" && <EdgeBlob />}
 			<div
 				className={
-					"relative mx-auto grid max-w-screen-xl items-center gap-6 p-4 py-12 md:grid-cols-2 md:gap-x-12"
+					"relative mx-auto grid max-w-screen-xl items-center gap-6 p-4 py-8 md:grid-cols-2 md:gap-x-12 md:py-16"
 				}
 			>
 				<figure className={cn("max-md:full-bleed", image?.onRight && "md:order-1")}>
@@ -35,11 +36,11 @@ export default function HeroSplit({
 						image?.onRight && "items-end text-right",
 					)}
 				>
-					<Typography variant="h1" className="mb-4">
+					<Typography as="h1" variant="h1" className="mb-4">
 						{pretitle}
 					</Typography>
-					<PortableText value={content} />
-					<CTAList ctas={ctas} className="!mt-4" />
+					<PortableText value={content} components={customPortableTextComponents} />
+					<CTAList ctas={ctas} className="mt-8" />
 				</div>
 			</div>
 		</section>

@@ -21,7 +21,7 @@ export const SideDrawer = async () => {
 	const logoImage = logo?.image?.dark || logo?.image?.default;
 	return (
 		<Sheet>
-			<SheetTrigger asChild className="text-foreground-secondary min-w-14 text-2xl md:hidden">
+			<SheetTrigger asChild className="min-w-14 text-2xl text-foreground-secondary md:hidden">
 				<RiMenu3Fill />
 			</SheetTrigger>
 			<SheetContent className="min-w-[300px]">

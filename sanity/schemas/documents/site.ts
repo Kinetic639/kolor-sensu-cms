@@ -24,13 +24,13 @@ export default defineType({
 			},
 			group: "general",
 		}),
-		// defineField({
-		// 	name: "announcements",
-		// 	type: "array",
-		// 	of: [{ type: "reference", to: [{ type: "announcement" }] }],
-		// 	group: "general",
-		// 	description: "One announcement shown at a time. Top items have higher precedence.",
-		// }),
+		defineField({
+			name: "announcements",
+			type: "array",
+			of: [{ type: "reference", to: [{ type: "announcement" }] }],
+			group: "general",
+			description: "One announcement shown at a time. Top items have higher precedence.",
+		}),
 		defineField({
 			name: "ctas",
 			title: "Call-to-action (Site-wide)",
