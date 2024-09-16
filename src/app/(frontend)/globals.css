@@ -165,3 +165,30 @@
 	z-index: 1;
 	border-color: hsl(202.1, 29.2%, 25.5%);
 }
+
+/* Add these styles to your global CSS or component-specific CSS */
+
+.rectangle-frame {
+	border-radius: 0; /* No border-radius for rectangle */
+}
+
+.circle-frame {
+	border-radius: 50%; /* Circle frame */
+}
+
+.blob-frame {
+	clip-path: url(#blob1);
+	animation: blobFrameAnimation 8s infinite ease-in-out;
+}
+
+@keyframes blobFrameAnimation {
+	0% {
+		clip-path: url(#blob1);
+	}
+	50% {
+		clip-path: url(#blob2);
+	}
+	100% {
+		clip-path: url(#blob1);
+	}
+}
