@@ -17,6 +17,7 @@ export default function SpecialistCard({ specialist }: { specialist: Sanity.Spec
 							image={specialist.image}
 							imageWidth={400}
 							className={cn("mx-auto h-full w-auto object-cover")}
+							alt={specialist.image.alt || "zdjęcie specjalisty"}
 						/>
 					</div>
 				)}
