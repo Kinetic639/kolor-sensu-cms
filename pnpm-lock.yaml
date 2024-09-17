@@ -67,6 +67,12 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      embla-carousel:
+        specifier: ^8.3.0
+        version: 8.3.0
+      embla-carousel-react:
+        specifier: ^8.3.0
+        version: 8.3.0(react@18.3.1)
       feed:
         specifier: ^4.2.2
         version: 4.2.2
@@ -115,6 +121,9 @@ importers:
       react-is:
         specifier: ^18.3.1
         version: 18.3.1
+      react-photo-album:
+        specifier: ^3.0.2
+        version: 3.0.2(@types/react@18.3.4)(react@18.3.1)
       rss:
         specifier: ^1.2.2
         version: 1.2.2
@@ -5021,6 +5030,28 @@ packages:
         integrity: sha512-lbBcvtIJ4J6sS4tb5TLp1b4LyfCdMkwStzXPyAgVgTRAsep4bvrAGaBOP7ZJtQMNJpSQ9SqG4brWOroNaQtm7Q==,
       }
 
+  embla-carousel-react@8.3.0:
+    resolution:
+      {
+        integrity: sha512-P1FlinFDcIvggcErRjNuVqnUR8anyo8vLMIH8Rthgofw7Nj8qTguCa2QjFAbzxAUTQTPNNjNL7yt0BGGinVdFw==,
+      }
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+
+  embla-carousel-reactive-utils@8.3.0:
+    resolution:
+      {
+        integrity: sha512-EYdhhJ302SC4Lmkx8GRsp0sjUhEN4WyFXPOk0kGu9OXZSRMmcBlRgTvHcq8eKJE1bXWBsOi1T83B+BSSVZSmwQ==,
+      }
+    peerDependencies:
+      embla-carousel: 8.3.0
+
+  embla-carousel@8.3.0:
+    resolution:
+      {
+        integrity: sha512-Ve8dhI4w28qBqR8J+aMtv7rLK89r1ZA5HocwFz6uMB/i5EiC7bGI7y+AM80yAVUJw3qqaZYK7clmZMUR8kM3UA==,
+      }
+
   emoji-regex@8.0.0:
     resolution:
       {
@@ -8053,6 +8084,19 @@ packages:
       {
         integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==,
       }
+
+  react-photo-album@3.0.2:
+    resolution:
+      {
+        integrity: sha512-w3+8i6aj9l1jRfcubgVbAlBGSdtiXcqWdcwZcH4/Bavc+v7X7h+S3TkQ723pvDABjhaaxS168g9ECEBP6xnKrQ==,
+      }
+    engines: { node: ">=18" }
+    peerDependencies:
+      "@types/react": ">=18"
+      react: ">=18"
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
 
   react-query@3.39.3:
     resolution:
@@ -13391,6 +13435,18 @@ snapshots:
 
   electron-to-chromium@1.5.13: {}
 
+  embla-carousel-react@8.3.0(react@18.3.1):
+    dependencies:
+      embla-carousel: 8.3.0
+      embla-carousel-reactive-utils: 8.3.0(embla-carousel@8.3.0)
+      react: 18.3.1
+
+  embla-carousel-reactive-utils@8.3.0(embla-carousel@8.3.0):
+    dependencies:
+      embla-carousel: 8.3.0
+
+  embla-carousel@8.3.0: {}
+
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
@@ -15315,6 +15371,12 @@ snapshots:
   react-is@18.3.1: {}
 
   react-lifecycles-compat@3.0.4: {}
+
+  react-photo-album@3.0.2(@types/react@18.3.4)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+    optionalDependencies:
+      "@types/react": 18.3.4
 
   react-query@3.39.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
