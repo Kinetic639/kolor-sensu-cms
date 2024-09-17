@@ -5,6 +5,7 @@ import SpecialistsSection from "@/app/ui/modules/SpecialistsSection";
 import Banner from "@/app/ui/Banner";
 import CardSection from "@/app/ui/modules/CardSection";
 import GalleryModule from "@/app/ui/modules/galleryModule";
+import FAQModule from "@/app/ui/modules/FaqModule";
 
 export default function Modules({
 	modules,
@@ -33,6 +34,8 @@ export default function Modules({
 						);
 					case "galleryModule": // Add the new case for gallery
 						return <GalleryModule {...(module as Sanity.GalleryModule)} key={module._key} />;
+					case "faqModule":
+						return <FAQModule {...module} key={module._key} />;
 					default:
 						return <div data-type={module._type} key={module._key} />;
 				}

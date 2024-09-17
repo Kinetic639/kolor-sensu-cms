@@ -52,8 +52,11 @@ export default defineType({
 		},
 		prepare({ title, media, frontText, hoverText }) {
 			return {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				title,
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
 				subtitle: hoverText ? `${frontText.substring(0, 50)}... (hover)` : frontText,
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				media,
 			};
 		},

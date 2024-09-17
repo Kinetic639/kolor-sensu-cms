@@ -37,6 +37,19 @@ export const modulesQuery = groq`
       }
     ),
   },
+  _type == 'faqModule' => {
+    title,
+    description,
+    showTitle,
+    showDescription,
+    faqNavigation->{
+      title,
+      items[]{
+        question,
+        answer
+      }
+    }
+  },
   _type == 'testimonial.featured' => { testimonial-> },
   _type == 'testimonial-list' => { testimonials[]-> },
  
