@@ -1,8 +1,10 @@
 import Hero from "./Hero";
 import HeroSplit from "./HeroSplit";
 import HeroSaaS from "./HeroSaaS";
+import SpecialistsSection from "@/app/ui/modules/SpecialistsSection";
 import Banner from "@/app/ui/Banner";
 import CardSection from "@/app/ui/modules/CardSection";
+import GalleryModule from "@/app/ui/modules/galleryModule";
 
 export default function Modules({
 	modules,
@@ -25,6 +27,12 @@ export default function Modules({
 						return <Banner {...module} key={module._key} />;
 					case "cardsSection":
 						return <CardSection {...module} key={module._key} />;
+					case "specialistsModule": // Add the new case for specialists
+						return (
+							<SpecialistsSection {...(module as Sanity.SpecialistsModule)} key={module._key} />
+						);
+					case "galleryModule": // Add the new case for gallery
+						return <GalleryModule {...(module as Sanity.GalleryModule)} key={module._key} />;
 					default:
 						return <div data-type={module._type} key={module._key} />;
 				}

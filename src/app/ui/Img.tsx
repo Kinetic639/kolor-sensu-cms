@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useNextSanityImage, type UseNextSanityImageOptions } from "next-sanity-image";
 import { stegaClean } from "@sanity/client/stega";
 import client from "@/lib/sanity/client";
@@ -10,7 +11,6 @@ const SIZES = [
 export default function Img({
 	image,
 	imageWidth,
-	imageSizes = SIZES,
 	alt = "",
 	options,
 	...props
@@ -19,7 +19,7 @@ export default function Img({
 	imageWidth?: number;
 	imageSizes?: number[];
 	options?: UseNextSanityImageOptions;
-} & React.ImgHTMLAttributes<HTMLImageElement>) {
+} & Omit<React.ComponentProps<typeof Image>, "src" | "width" | "height">) {
 	if (!image?.asset) return null;
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -30,15 +30,13 @@ export default function Img({
 	);
 
 	return (
-		<img
+		<Image
 			src={src}
-			srcSet={generateSrcset(image, { width: imageWidth, sizes: imageSizes }) || src}
 			width={width}
 			height={height}
 			alt={stegaClean(image.alt) || alt}
 			loading={stegaClean(image.loading) || "lazy"}
-			decoding="async"
-			{...props}
+			{...props} // Pass additional props to the Image component
 		/>
 	);
 }
@@ -59,7 +57,7 @@ export function Source({
 	if (!image) return null;
 
 	// eslint-disable-next-line react-hooks/rules-of-hooks
-	const { src, width, height } = useNextSanityImage(
+	const { src } = useNextSanityImage(
 		client,
 		image,
 		imageWidth ? { imageBuilder: (b) => b.width(imageWidth) } : options,
@@ -68,8 +66,6 @@ export function Source({
 	return (
 		<source
 			srcSet={generateSrcset(image, { width: imageWidth, sizes: imageSizes }) || src}
-			width={width}
-			height={height}
 			media={media}
 		/>
 	);

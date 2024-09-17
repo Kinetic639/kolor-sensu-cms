@@ -40,6 +40,8 @@ export default defineType({
 				{ type: "hero.split" },
 				{ type: "banner" },
 				{ type: "cardsSection" },
+				{ type: "specialistsModule" },
+				{ type: "galleryModule" },
 
 				// { type: "logo-list" },
 				// { type: "pricing-list" },

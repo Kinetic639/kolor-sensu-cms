@@ -6,7 +6,10 @@ export default defineType({
 	title: "Banner",
 	icon: MdTextFields,
 	type: "object",
-	groups: [{ name: "content", title: "Content", default: true }],
+	groups: [
+		{ name: "content", title: "Content", default: true },
+		{ name: "background", title: "Background" },
+	],
 	fields: [
 		defineField({
 			name: "title",
@@ -44,6 +47,20 @@ export default defineType({
 			type: "array",
 			of: [{ type: "cta" }],
 			group: "content",
+		}),
+		defineField({
+			name: "backgroundType",
+			title: "Background Type",
+			type: "string",
+			options: {
+				list: [
+					{ title: "Solid", value: "solid" },
+					{ title: "Transparent", value: "transparent" },
+				],
+				layout: "radio",
+			},
+			initialValue: "solid",
+			group: "background",
 		}),
 	],
 	preview: {

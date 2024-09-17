@@ -51,6 +51,16 @@ export const customPortableTextComponents: PortableTextComponents = {
 				{children}
 			</Typography>
 		),
+		caption: ({ children }) => (
+			<Typography as="p" variant="caption">
+				{children}
+			</Typography>
+		),
+		body2: ({ children }) => (
+			<Typography as="p" variant="body2">
+				{children}
+			</Typography>
+		),
 	},
 	marks: {
 		// Replace any with the correct type for link mark
@@ -64,18 +74,25 @@ export const customPortableTextComponents: PortableTextComponents = {
 		},
 	},
 	list: {
-		bullet: ({ children }) => <ul className="mb-4 ml-6 list-disc">{children}</ul>,
-		number: ({ children }) => <ol className="mb-4 ml-6 list-decimal">{children}</ol>,
+		// Styling for the top-level bullet list
+		bullet: ({ children }) => <ul className="mb-4 ml-6 list-outside list-disc">{children}</ul>,
+		// Styling for the top-level numbered list
+		number: ({ children }) => <ol className="mb-4 ml-6 list-outside list-decimal">{children}</ol>,
 	},
 	listItem: {
+		// Styling for nested bullet list items
 		bullet: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
-			<Typography as="li" variant="body1" className="mb-2">
+			<Typography as="li" variant="body1" className="mb-1">
 				{children}
+				{/* Target nested lists for styling */}
+				<ul className="ml-6 list-disc">{children}</ul>
 			</Typography>
 		),
+		// Styling for nested numbered list items
 		number: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
 			<Typography as="li" variant="body1" className="mb-2">
 				{children}
+				<ol className="ml-6 list-decimal">{children}</ol>
 			</Typography>
 		),
 	},

@@ -16,6 +16,10 @@ import cardSection from "@sanity/schemas/modules/cardSection";
 import card from "@sanity/schemas/documents/card";
 import faqNavigation from "@sanity/schemas/documents/faqNavigation";
 import announcement from "@sanity/schemas/documents/announcement";
+import specialist from "@sanity/schemas/documents/specialist";
+import specialistModule from "@sanity/schemas/modules/specialistModule";
+import gallery from "@sanity/schemas/documents/gallery";
+import galleryModule from "@sanity/schemas/modules/galleryModule";
 
 // objects
 
@@ -29,6 +33,8 @@ export const schemaTypes = [
 	navigation,
 	faqNavigation,
 	announcement,
+	specialist,
+	gallery,
 
 	// objects
 	metadata,
@@ -45,4 +51,6 @@ export const schemaTypes = [
 	HeroSplit,
 	banner,
 	cardSection,
+	specialistModule,
+	galleryModule,
 ];
