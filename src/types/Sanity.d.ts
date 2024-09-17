@@ -10,12 +10,43 @@ declare global {
 			answer: string;
 		};
 
-		// Define the `FAQList` type, which includes an array of `FAQItem`s
 		export type FAQList = {
 			readonly _type: "faqList";
 			title: string;
 			items: FAQItem[];
 		};
+
+		export type GalleryModule = Module<"galleryModule"> & {
+			title: string;
+			description: string;
+			showCaptions: boolean; // Option to show captions
+			captionStyle: "overlay" | "aside"; // Style of the captions (overlay or aside)
+			captionPosition?: "top" | "left" | "right"; // Position of captions (for aside style)
+			captionAlignment?: "left" | "center" | "right"; // Text alignment within the captions
+			gallery: {
+				_id: string;
+				title: string;
+				description: string;
+				images: {
+					asset: {
+						url: string;
+					};
+					alt?: string;
+					title: string; // Image title
+					description: string; // Image description
+				}[];
+			};
+		};
+
+		export type Specialist = SanityDocument<{
+			title: string;
+			firstName: string;
+			lastName: string;
+			ctas?: CTA[];
+			shortDescription: string;
+			fullDescription: BlockContent;
+			image?: Image;
+		}>;
 
 		export type Card = {
 			readonly _type: "card";
@@ -150,6 +181,11 @@ declare global {
 			_type: T;
 			_key: string;
 			uid?: string;
+		};
+		// Define a module for specialists
+		export type SpecialistsModule = Module<"specialistsModule"> & {
+			title: string;
+			specialists: Specialist[];
 		};
 	}
 }

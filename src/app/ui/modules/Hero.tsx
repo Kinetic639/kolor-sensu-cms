@@ -4,6 +4,8 @@ import css from "./Hero.module.css";
 import { cn } from "@/lib/utils";
 import CTAList from "@/app/ui/CTAList";
 import Img, { Source } from "@/app/ui/Img";
+import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
+import { Typography } from "@/app/ui/atoms/Typography/Typography";
 
 export default function Hero({
 	pretitle,
@@ -17,17 +19,18 @@ export default function Hero({
 	pretitle: string;
 	content: Sanity.BlockContent;
 	ctas: Sanity.CTA[];
+	backgroundType: string;
 	bgImage: Sanity.Image;
 	bgImageMobile: Sanity.Image;
 	textAlign: React.CSSProperties["textAlign"];
 	alignItems: React.CSSProperties["alignItems"];
 }>) {
 	const hasImage = !!bgImage?.asset;
-
 	return (
 		<section
 			className={cn(
-				hasImage && "grid overflow-hidden bg-ink text-canvas *:col-span-full *:row-span-full",
+				hasImage &&
+					"mx-auto grid w-full max-w-screen-xl overflow-hidden bg-ink text-canvas *:col-span-full *:row-span-full",
 			)}
 		>
 			{bgImage?.asset && (
@@ -38,16 +41,20 @@ export default function Hero({
 						image={bgImage}
 						imageWidth={1800}
 						draggable={false}
+						alt={bgImage?.alt || "Background Image"}
 					/>
 				</picture>
 			)}
 
 			{content && (
-				<div className="section flex w-full flex-col">
+				<div
+					className={cn("section mx-auto flex w-full max-w-screen-xl flex-col px-0 py-12 md:px-4")}
+				>
 					<div
 						className={cn(
-							"richtext relative isolate max-w-xl [&_:is(h1,h2)]:text-balance",
+							"richtext relative isolate mx-auto w-full rounded-md px-4 py-8 md:px-6 [&_:is(h1,h2)]:text-balance",
 							bgImage?.asset && "text-shadow",
+							!bgImage?.asset && "bg-[#c4d6c2]",
 							hasImage && css.txt,
 							{
 								"mb-8": stegaClean(alignItems) === "start",
@@ -62,9 +69,11 @@ export default function Hero({
 						)}
 						style={{ textAlign: stegaClean(textAlign) }}
 					>
-						<span className={cn(hasImage && "text-canvas/70")}>{pretitle}</span>
+						<Typography as="h1" variant="h1" className="mb-4">
+							{pretitle}
+						</Typography>
 
-						<PortableText value={content} />
+						<PortableText value={content} components={customPortableTextComponents} />
 
 						<CTAList
 							ctas={ctas}

@@ -40,6 +40,7 @@ export default function HeroSplit({
 						<Img
 							image={image}
 							imageWidth={1200}
+							alt={image?.alt || "Hero Image"}
 							className={cn(
 								cleanedFrameStyle === "blob" && "blob-frame",
 								cleanedFrameStyle === "circle" && "circle-frame",
