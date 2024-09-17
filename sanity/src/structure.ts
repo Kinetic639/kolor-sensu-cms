@@ -32,6 +32,9 @@ const structure: StructureResolver = (S) =>
 			S.divider(),
 			S.documentTypeListItem("card").title("Cards").icon(VscCreditCard), // New card section
 			S.divider(),
+			S.documentTypeListItem("specialist").title("Specialists"),
+			S.divider(),
+			S.documentTypeListItem("gallery").title("Galleries"),
 		]);
 
 export default structure;
