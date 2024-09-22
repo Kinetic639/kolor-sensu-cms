@@ -115,4 +115,17 @@ export const modulesQuery = groq`
       }
     }
   },
+  _type == 'servicesModule' => {
+    title,
+    description,
+    services[]->{
+      _id,
+      title,
+      description,
+      price,
+      duration,
+      points,
+      ctas[]{ ${ctaQuery} }
+    }
+  },
 `;

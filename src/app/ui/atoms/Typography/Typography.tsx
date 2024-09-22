@@ -13,7 +13,7 @@ const typographyVariants = cva("", {
 			h4: "text-xl font-semibold",
 			h5: "text-lg font-medium",
 			h6: "text-base font-medium",
-			body1: "text-base",
+			body1: "text-lg",
 			body2: "text-sm",
 			caption: "text-xs",
 			button: "text-sm font-bold uppercase",

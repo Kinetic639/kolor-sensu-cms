@@ -10,6 +10,7 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			screens: {},
 			colors: {
 				ink: "#000",
 				canvas: "#fff",
@@ -93,6 +94,7 @@ const config: Config = {
 			},
 		},
 	},
+	// eslint-disable-next-line @typescript-eslint/no-require-imports
 	plugins: [require("tailwindcss-animate")],
 	safelist: [{ pattern: /action.*/ }, "ghost"],
 };

@@ -45,7 +45,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 					<AppWrapper>
 						<Announcement />
 						<Header />
-						<main id="main-content" tabIndex={-1} className="flex-1">
+						<main id="main-content" tabIndex={-1} className="flex-1 pb-12">
 							{children}
 						</main>
 						<Footer />

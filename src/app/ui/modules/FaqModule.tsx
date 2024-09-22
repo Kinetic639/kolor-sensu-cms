@@ -25,7 +25,7 @@ export default function FAQModule({
 	const hasFAQItems = faqNavigation?.items && faqNavigation.items.length > 0;
 
 	return (
-		<section className="pb-12">
+		<section className="py-12">
 			<div className="mx-auto w-full max-w-screen-xl px-1 md:px-4">
 				<div className="mb-4 flex flex-col gap-1">
 					{showTitle && (

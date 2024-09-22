@@ -28,13 +28,15 @@ export default function Banner({
 				cleanedAlignment === "center" && "text-center",
 			)}
 		>
-			{title && (
-				<Typography variant="h3" className={cn("mb-2 text-foreground-secondary")}>
-					{title}
-				</Typography>
-			)}
-			{text && <span>{text}</span>}
-			{ctas && <CTAList ctas={ctas} className="mt-4" />}
+			<div className="mx-auto max-w-screen-xl px-1 md:px-4">
+				{title && (
+					<Typography variant="h3" className={cn("mb-2 text-foreground-secondary")}>
+						{title}
+					</Typography>
+				)}
+				{text && <span>{text}</span>}
+				{ctas && <CTAList ctas={ctas} className="mt-4" />}
+			</div>
 		</section>
 	);
 }
