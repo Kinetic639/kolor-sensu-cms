@@ -42,6 +42,7 @@ export default defineType({
 				{ type: "specialistsModule" },
 				{ type: "galleryModule" },
 				{ type: "faqModule" },
+				{ type: "servicesModule" },
 				// { type: "logo-list" },
 				// { type: "pricing-list" },
 				// { type: "richtext-module" },
