@@ -27,7 +27,6 @@ export default defineType({
 			description: "Page content",
 			type: "array",
 			of: [
-				// { type: "accordion-list" },
 				// { type: "blog-list" },
 				// { type: "blog-post-content" },
 				// { type: "breadcrumbs" },
@@ -42,7 +41,9 @@ export default defineType({
 				{ type: "cardsSection" },
 				{ type: "specialistsModule" },
 				{ type: "galleryModule" },
-
+				{ type: "faqModule" },
+				{ type: "servicesModule" },
+				{ type: "contactModule" },
 				// { type: "logo-list" },
 				// { type: "pricing-list" },
 				// { type: "richtext-module" },

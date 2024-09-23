@@ -3,7 +3,7 @@ import { VscSymbolClass } from "react-icons/vsc";
 
 export default defineType({
 	name: "faqNavigation",
-	title: "FAQ Navigation",
+	title: "FAQ Lists",
 	icon: VscSymbolClass,
 	type: "document",
 	fields: [
@@ -15,8 +15,8 @@ export default defineType({
 		defineField({
 			name: "items",
 			type: "array",
-			title: "FAQ Items and Lists",
-			of: [{ type: "faqItem" }, { type: "faqList" }],
+			title: "FAQ Items",
+			of: [{ type: "faqItem" }],
 		}),
 	],
 	preview: {

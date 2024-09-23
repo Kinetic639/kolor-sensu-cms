@@ -35,6 +35,7 @@ const structure: StructureResolver = (S) =>
 			S.documentTypeListItem("specialist").title("Specialists"),
 			S.divider(),
 			S.documentTypeListItem("gallery").title("Galleries"),
+			S.documentTypeListItem("service").title("Usługi"),
 		]);
 
 export default structure;

@@ -37,6 +37,19 @@ export const modulesQuery = groq`
       }
     ),
   },
+  _type == 'faqModule' => {
+    title,
+    description,
+    showTitle,
+    showDescription,
+    faqNavigation->{
+      title,
+      items[]{
+        question,
+        answer
+      }
+    }
+  },
   _type == 'testimonial.featured' => { testimonial-> },
   _type == 'testimonial-list' => { testimonials[]-> },
  
@@ -101,5 +114,22 @@ export const modulesQuery = groq`
         alt
       }
     }
+  },
+  _type == 'servicesModule' => {
+    title,
+    description,
+    services[]->{
+      _id,
+      title,
+      description,
+      price,
+      duration,
+      points,
+      ctas[]{ ${ctaQuery} }
+    }
+  },
+    _type == 'contactModule' => {
+    title,
+    description
   },
 `;
