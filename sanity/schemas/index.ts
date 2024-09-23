@@ -22,6 +22,7 @@ import galleryModule from "@sanity/schemas/modules/galleryModule";
 import faqModule from "@sanity/schemas/modules/faqModule";
 import service from "@sanity/schemas/documents/service";
 import servicesModule from "@sanity/schemas/modules/servicesModule";
+import contactModule from "@sanity/schemas/modules/contactModule";
 
 // objects
 
@@ -57,4 +58,5 @@ export const schemaTypes = [
 	galleryModule,
 	faqModule,
 	servicesModule,
+	contactModule,
 ];

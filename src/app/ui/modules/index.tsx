@@ -7,6 +7,7 @@ import CardSection from "@/app/ui/modules/CardSection";
 import FAQModule from "@/app/ui/modules/FaqModule";
 import GalleryModule from "@/app/ui/modules/galleryModule";
 import ServicesModule from "@/app/ui/modules/ServicesModule";
+import ContactModule from "@/app/ui/modules/ContactModule";
 
 export default function Modules({
 	modules,
@@ -39,6 +40,8 @@ export default function Modules({
 						return <FAQModule {...module} key={module._key} />;
 					case "servicesModule":
 						return <ServicesModule {...(module as Sanity.ServicesModule)} key={module._key} />;
+					case "contactModule":
+						return <ContactModule {...module} key={module._key} />;
 					default:
 						return <div data-type={module._type} key={module._key} />;
 				}
