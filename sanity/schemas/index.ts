@@ -11,7 +11,6 @@ import heroSaas from "@sanity/schemas/modules/hero.saas";
 import hero from "@sanity/schemas/modules/hero";
 import banner from "@sanity/schemas/modules/banner";
 import faqItem from "@sanity/schemas/objects/faqItem";
-import faqList from "@sanity/schemas/objects/faqList";
 import cardSection from "@sanity/schemas/modules/cardSection";
 import card from "@sanity/schemas/documents/card";
 import faqNavigation from "@sanity/schemas/documents/faqNavigation";
@@ -20,6 +19,9 @@ import specialist from "@sanity/schemas/documents/specialist";
 import specialistModule from "@sanity/schemas/modules/specialistModule";
 import gallery from "@sanity/schemas/documents/gallery";
 import galleryModule from "@sanity/schemas/modules/galleryModule";
+import faqModule from "@sanity/schemas/modules/faqModule";
+import service from "@sanity/schemas/documents/service";
+import servicesModule from "@sanity/schemas/modules/servicesModule";
 
 // objects
 
@@ -35,6 +37,7 @@ export const schemaTypes = [
 	announcement,
 	specialist,
 	gallery,
+	service,
 
 	// objects
 	metadata,
@@ -42,7 +45,6 @@ export const schemaTypes = [
 	link,
 	linkList,
 	faqItem,
-	faqList,
 	card,
 
 	// modules
@@ -53,4 +55,6 @@ export const schemaTypes = [
 	cardSection,
 	specialistModule,
 	galleryModule,
+	faqModule,
+	servicesModule,
 ];

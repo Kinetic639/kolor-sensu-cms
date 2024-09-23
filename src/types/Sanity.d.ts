@@ -10,6 +10,22 @@ declare global {
 			answer: string;
 		};
 
+		export type Service = {
+			_id: string;
+			title: string;
+			description: string;
+			price: string;
+			duration: string;
+			points: string[];
+			ctas?: CTA[];
+		};
+
+		export type ServicesModule = Module<"servicesModule"> & {
+			title: string;
+			description: string;
+			services: Service[];
+		};
+
 		export type FAQList = {
 			readonly _type: "faqList";
 			title: string;
