@@ -128,4 +128,8 @@ export const modulesQuery = groq`
       ctas[]{ ${ctaQuery} }
     }
   },
+    _type == 'contactModule' => {
+    title,
+    description
+  },
 `;
