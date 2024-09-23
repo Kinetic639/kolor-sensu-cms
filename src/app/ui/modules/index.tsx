@@ -7,7 +7,6 @@ import CardSection from "@/app/ui/modules/CardSection";
 import FAQModule from "@/app/ui/modules/FaqModule";
 import GalleryModule from "@/app/ui/modules/galleryModule";
 import ServicesModule from "@/app/ui/modules/ServicesModule";
-import { ContactForm } from "@/components/forms/ContactForm";
 import ContactModule from "@/app/ui/modules/ContactModule";
 
 export default function Modules({

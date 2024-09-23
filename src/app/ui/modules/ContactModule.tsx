@@ -1,14 +1,7 @@
 import React from "react";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { Typography } from "@/app/ui/atoms/Typography/Typography";
 
-export default function ContactModule({
-	title,
-	description,
-}: {
-	title?: string;
-	description?: string;
-}) {
+export default function ContactModule() {
 	return (
 		<section className="py-12">
 			<div className="mx-auto flex w-full max-w-screen-xl px-1 md:px-4">
@@ -22,7 +15,7 @@ export default function ContactModule({
 				{/*		{description}*/}
 				{/*	</Typography>*/}
 				{/*)}*/}
-				<div className="flex-1">ssss</div>
+				<div className="flex-1">side content</div>
 				<ContactForm />
 			</div>
 		</section>
