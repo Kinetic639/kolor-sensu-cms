@@ -8,6 +8,7 @@ import FAQModule from "@/app/ui/modules/FaqModule";
 import GalleryModule from "@/app/ui/modules/galleryModule";
 import ServicesModule from "@/app/ui/modules/ServicesModule";
 import ContactModule from "@/app/ui/modules/ContactModule";
+import { ConsultationTestModule } from "@/app/ui/modules/ConsultationTestModule";
 
 export default function Modules({
 	modules,
@@ -42,6 +43,8 @@ export default function Modules({
 						return <ServicesModule {...(module as Sanity.ServicesModule)} key={module._key} />;
 					case "contactModule":
 						return <ContactModule {...module} key={module._key} />;
+					case "consultationTestModule":
+						return <ConsultationTestModule {...module} key={module._key} />;
 					default:
 						return <div data-type={module._type} key={module._key} />;
 				}

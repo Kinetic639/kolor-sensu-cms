@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { VscHome, VscEyeClosed, VscQuestion, VscEdit } from "react-icons/vsc";
+
 interface PreviewParams {
 	title: string;
 	slug: string;
@@ -27,13 +28,6 @@ export default defineType({
 			description: "Page content",
 			type: "array",
 			of: [
-				// { type: "blog-list" },
-				// { type: "blog-post-content" },
-				// { type: "breadcrumbs" },
-				// { type: "callout" },
-				// { type: "creative-module" },
-				// { type: "custom-html" },
-				// { type: "flag-list" },
 				{ type: "hero" },
 				{ type: "hero.saas" },
 				{ type: "hero.split" },
@@ -44,23 +38,31 @@ export default defineType({
 				{ type: "faqModule" },
 				{ type: "servicesModule" },
 				{ type: "contactModule" },
-				// { type: "logo-list" },
-				// { type: "pricing-list" },
-				// { type: "richtext-module" },
-				// { type: "stat-list" },
-				// { type: "step-list" },
-				// { type: "testimonial-list" },
-				// { type: "testimonial.featured" },
+				{ type: "consultationTestModule" },
 			],
 			options: {
 				insertMenu: {
 					views: [{ name: "list" }, { name: "grid" }],
 					groups: [
-						{ name: "blog", of: ["blog-list", "blog-post-content"] },
-						{ name: "hero", of: ["hero", "hero.saas", "hero.split"] },
 						{
-							name: "testimonial",
-							of: ["testimonial-list", "testimonial.featured"],
+							name: "Hero Sections",
+							title: "Hero",
+							of: ["hero", "hero.saas", "hero.split"],
+						},
+						{
+							name: "Content Sections",
+							title: "Content",
+							of: ["banner", "cardsSection", "faqModule", "galleryModule"],
+						},
+						{
+							name: "Specialists & Services",
+							title: "Specialists & Services",
+							of: ["specialistsModule", "servicesModule"],
+						},
+						{
+							name: "Forms & Interaction",
+							title: "Forms & Interaction",
+							of: ["contactModule", "consultationTestModule"],
 						},
 					],
 				},
