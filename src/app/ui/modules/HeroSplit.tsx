@@ -1,6 +1,3 @@
-"use client";
-import { useEffect } from "react";
-import { useAnimation, motion } from "framer-motion";
 import { PortableText } from "@portabletext/react";
 import { cn } from "@/lib/utils";
 import CTAList from "@/app/ui/CTAList";
@@ -9,6 +6,7 @@ import { Typography } from "@/app/ui/atoms/Typography/Typography";
 import { EdgeBlob } from "@/app/ui/atoms/edge-blob/edge-blob";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 import { ImageBlobFrame } from "@/app/ui/blob-image-frame";
+import { MotionDiv } from "@/app/ui/motion/MotionDiv";
 
 export default function HeroSplit({
 	pretitle,
@@ -29,23 +27,12 @@ export default function HeroSplit({
 		.trim()
 		.toLowerCase();
 
-	// Use framer-motion's useAnimation hook to control animations
-	const controls = useAnimation();
-
-	useEffect(() => {
-		void controls.start({
-			opacity: 1,
-			y: 0,
-			transition: { duration: 1, ease: "easeOut", staggerChildren: 0.2 },
-		});
-	}, [controls]);
-
 	return (
 		<section className={cn("relative", backgroundType === "solid" && "bg-background")}>
 			{backgroundType === "blob" && <EdgeBlob />}
 			<div className="relative mx-auto grid max-w-screen-xl items-center gap-6 p-4 pb-24 md:grid-cols-2 md:gap-x-12">
 				<figure className={cn("max-md:full-bleed", image?.onRight && "md:order-1")}>
-					<motion.div
+					<MotionDiv
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.6, ease: "easeIn" }}
@@ -64,31 +51,35 @@ export default function HeroSplit({
 								)}
 							/>
 						)}
-					</motion.div>
+					</MotionDiv>
 				</figure>
 
-				<motion.div
+				<MotionDiv
 					className={cn(
 						"richtext mx-auto flex w-full max-w-lg flex-col [&_:is(h1,h2)]:text-balance",
 						image?.onRight && "items-end text-right",
 					)}
 					initial={{ opacity: 0, y: 50 }}
-					animate={controls}
+					animate={{
+						opacity: 1,
+						y: 0,
+						transition: { duration: 1, ease: "easeOut", staggerChildren: 0.2 },
+					}}
 				>
-					<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+					<MotionDiv initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
 						<Typography as="h1" variant="h1" className="mb-4 text-center font-bold md:text-left">
 							{pretitle}
 						</Typography>
-					</motion.div>
+					</MotionDiv>
 
-					<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+					<MotionDiv initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
 						<PortableText value={content} components={customPortableTextComponents} />
-					</motion.div>
+					</MotionDiv>
 
-					<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
+					<MotionDiv initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
 						<CTAList ctas={ctas} className="mt-8" />
-					</motion.div>
-				</motion.div>
+					</MotionDiv>
+				</MotionDiv>
 			</div>
 		</section>
 	);

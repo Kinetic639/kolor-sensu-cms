@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Montserrat, Rammetto_One, Josefin_Sans } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { Header } from "@/app/ui/Header";
 import { AppWrapper } from "@/app/ui/AppWrapper";
 import { cn } from "@/lib/utils";
