@@ -58,6 +58,9 @@ importers:
       "@sanity/vision":
         specifier: ^3.55.0
         version: 3.55.0(@babel/runtime@7.25.4)(@codemirror/lint@6.8.1)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.2.1)(codemirror@6.0.1(@lezer/common@1.2.1))(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      "@studio-freight/react-lenis":
+        specifier: ^0.0.47
+        version: 0.0.47(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@vercel/analytics":
         specifier: ^1.3.1
         version: 1.3.1(next@14.2.7(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
@@ -88,9 +91,15 @@ importers:
       groq:
         specifier: ^3.55.0
         version: 3.55.0
+      gsap:
+        specifier: ^3.12.5
+        version: 3.12.5
       install:
         specifier: ^0.13.0
         version: 0.13.0
+      lenis:
+        specifier: ^1.1.13
+        version: 1.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
         specifier: ^0.438.0
         version: 0.438.0(react@18.3.1)
@@ -1374,6 +1383,12 @@ packages:
     resolution:
       {
         integrity: sha512-AgVNvED2QTsZp5e3syoHLsrWtwJFYWdx1Vr/m3f4h1ATQz0ax60CfXF3Htdmk69k2MlYZw8gXesnQdHtzyVmAw==,
+      }
+
+  "@darkroom.engineering/tempus@0.0.46":
+    resolution:
+      {
+        integrity: sha512-s5vav3KMHYezvUCl4ee5epg0oimF6M8C9gAaKxFnFaTvX2q3ywFDryIv6XLd0mRFUt3S1uHDJqKaiEcs2ZVSvw==,
       }
 
   "@dnd-kit/accessibility@3.1.0":
@@ -3498,6 +3513,39 @@ packages:
       {
         integrity: sha512-KyHIIpKNaT20FtFPFjCQB5WVSTpLR/n+jQXhWHWVUMm9MaOaG9BGOG0MSyt7yA4+Lm+4c9rTc03tt3nYzeYSfw==,
       }
+
+  "@studio-freight/hamo@0.6.33":
+    resolution:
+      {
+        integrity: sha512-U3Nvw5wDvB/jps2/ZbGL2TFL+CcZvJF/tkjL7S7ajuzDi9T5VkqCguws6tuWHttZ74Z6DfXxV1b8F1EB30AyJg==,
+      }
+    deprecated: Please use @darkroom.engineering/hamo instead
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
+
+  "@studio-freight/lenis@1.0.42":
+    resolution:
+      {
+        integrity: sha512-HJAGf2DeM+BTvKzHv752z6Z7zy6bA643nZM7W88Ft9tnw2GsJSp6iJ+3cekjyMIWH+cloL2U9X82dKXgdU8kPg==,
+      }
+    deprecated: "'@studio-freight/lenis' has been renamed to just 'lenis', run 'npx @darkroom.engineering/codemods' to update your dependecies accordingly."
+
+  "@studio-freight/react-lenis@0.0.47":
+    resolution:
+      {
+        integrity: sha512-h+IAqiyiNo8mRo/CA3/sHCqX2IV0tTLyzZRWsdRaLPtM2aBaRqK0+ISYWTUmktQfcf3qvp4hsn0Oeyt9uXwLTQ==,
+      }
+    peerDependencies:
+      react: ^17 || ^18
+      react-dom: ^17 || ^18
+
+  "@studio-freight/tempus@0.0.38":
+    resolution:
+      {
+        integrity: sha512-AO1O2fEmfUqWGjEofmPNMQRlwgZ96eB5OFsVJjeH8/RKd1/Yf4zbPnXO+r2TD4aueA6X9JRCJU2GUprI9+m8uQ==,
+      }
+    deprecated: Please use @darkroom.engineering/tempus instead
 
   "@swc/counter@0.1.3":
     resolution:
@@ -6207,6 +6255,12 @@ packages:
       }
     engines: { node: ">=18" }
 
+  gsap@3.12.5:
+    resolution:
+      {
+        integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==,
+      }
+
   gunzip-maybe@1.4.2:
     resolution:
       {
@@ -7032,6 +7086,12 @@ packages:
       }
     engines: { node: ">=4.0" }
 
+  just-debounce-it@3.2.0:
+    resolution:
+      {
+        integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==,
+      }
+
   keyv@4.5.4:
     resolution:
       {
@@ -7070,6 +7130,20 @@ packages:
       {
         integrity: sha512-y+SqErxb8h7nE/fiEX07jsbuhrpO9lL8eca7/Y1nuWV2moNlXhyd59iDGcRf6moVyDMbmTNzL40SUyrFU/yDpg==,
       }
+
+  lenis@1.1.13:
+    resolution:
+      {
+        integrity: sha512-iny+vWwUHcZGbJz+p2I75H1muLBRZqSG7t04jnhA+CWOQDFL1vt9bsZDwPPtYEmYVVvqAdo5MbXVFzNOlbgUkQ==,
+      }
+    peerDependencies:
+      react: ">=17.0.0"
+      react-dom: ">=17.0.0"
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   leven@3.1.0:
     resolution:
@@ -7528,6 +7602,13 @@ packages:
       {
         integrity: sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==,
       }
+
+  nanoevents@9.0.0:
+    resolution:
+      {
+        integrity: sha512-X8pU7IOpgKXVLPxYUI55ymXc8XuBE+uypfEyEFBtHkD1EX9KavYTVc+vXZHFyHKzA1TaZoVDqklLdQBBrxIuAw==,
+      }
+    engines: { node: ^18.0.0 || >=20.0.0 }
 
   nanoid@3.3.7:
     resolution:
@@ -11364,6 +11445,8 @@ snapshots:
       style-mod: 4.1.2
       w3c-keyname: 2.2.8
 
+  "@darkroom.engineering/tempus@0.0.46": {}
+
   "@dnd-kit/accessibility@3.1.0(react@18.3.1)":
     dependencies:
       react: 18.3.1
@@ -12889,6 +12972,30 @@ snapshots:
   "@shikijs/core@1.14.1":
     dependencies:
       "@types/hast": 3.0.4
+
+  "@studio-freight/hamo@0.6.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+    dependencies:
+      "@studio-freight/tempus": 0.0.38
+      just-debounce-it: 3.2.0
+      nanoevents: 9.0.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  "@studio-freight/lenis@1.0.42": {}
+
+  "@studio-freight/react-lenis@0.0.47(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+    dependencies:
+      "@studio-freight/hamo": 0.6.33(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@studio-freight/lenis": 1.0.42
+      "@types/react": 18.3.4
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      zustand: 4.5.5(@types/react@18.3.4)(immer@10.1.1)(react@18.3.1)
+    transitivePeerDependencies:
+      - immer
+
+  "@studio-freight/tempus@0.0.38": {}
 
   "@swc/counter@0.1.3": {}
 
@@ -14857,6 +14964,8 @@ snapshots:
 
   groq@3.55.0: {}
 
+  gsap@3.12.5: {}
+
   gunzip-maybe@1.4.2:
     dependencies:
       browserify-zlib: 0.1.4
@@ -15286,6 +15395,8 @@ snapshots:
       object.assign: 4.1.5
       object.values: 1.2.0
 
+  just-debounce-it@3.2.0: {}
+
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
@@ -15303,6 +15414,13 @@ snapshots:
       readable-stream: 2.3.8
 
   leac@0.6.0: {}
+
+  lenis@1.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      "@darkroom.engineering/tempus": 0.0.46
+    optionalDependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   leven@3.1.0: {}
 
@@ -15535,6 +15653,8 @@ snapshots:
       big-integer: 1.6.52
 
   nanoclone@0.2.1: {}
+
+  nanoevents@9.0.0: {}
 
   nanoid@3.3.7: {}
 

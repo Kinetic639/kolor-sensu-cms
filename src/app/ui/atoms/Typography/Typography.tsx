@@ -7,16 +7,16 @@ import { cn } from "@/lib/utils";
 const typographyVariants = cva("", {
 	variants: {
 		variant: {
-			h1: "text-2xl md:text-4xl font-bold",
-			h2: "text-3xl font-semibold",
-			h3: "text-2xl font-semibold",
-			h4: "text-xl font-semibold",
-			h5: "text-lg font-medium",
-			h6: "text-base font-medium",
-			body1: "text-lg",
-			body2: "text-sm",
-			caption: "text-xs",
-			button: "text-sm font-bold uppercase",
+			h1: "text-mobile-h1 md:text-desktop-h1",
+			h2: "text-mobile-h2 md:text-desktop-h2",
+			h3: "text-mobile-h3 md:text-desktop-h3",
+			h4: "text-mobile-h4 md:text-desktop-h4",
+			h5: "text-mobile-h5 md:text-desktop-h5",
+			h6: "text-mobile-h6 md:text-desktop-h6",
+			body1: "text-mobile-p md:text-desktop-p",
+			body2: "text-mobile-small md:text-desktop-small",
+			caption: "text-mobile-small md:text-desktop-small",
+			button: "text-mobile-small md:text-desktop-small font-bold uppercase",
 		},
 		color: {
 			inherit: "", // Empty string to ensure no color is applied, allowing it to inherit

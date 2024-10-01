@@ -16,7 +16,7 @@ function getRandomValues(values: string[], count: number): string {
 
 export const EdgeBlob = () => {
 	return (
-		<div className="absolute left-0 top-0 z-[-10] h-full w-full">
+		<div className="absolute left-0 top-0 z-[-10] h-full w-full overflow-x-clip">
 			{/* Top Blob */}
 			<svg
 				viewBox="0 0 500 500"
