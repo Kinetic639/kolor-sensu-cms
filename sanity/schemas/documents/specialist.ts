@@ -82,9 +82,11 @@ export default defineType({
 			media: "image",
 		},
 		prepare(selection) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const { title, subtitle, media } = selection;
 			return {
 				title: `${title} ${subtitle}`,
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				media,
 			};
 		},

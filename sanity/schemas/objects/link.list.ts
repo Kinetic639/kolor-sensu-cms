@@ -24,7 +24,9 @@ export default defineType({
 			links: "links",
 		},
 		prepare: ({ link, links }) => ({
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
 			title: link.label || link.internal?.title,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			subtitle: count(links, "link"),
 		}),
 	},

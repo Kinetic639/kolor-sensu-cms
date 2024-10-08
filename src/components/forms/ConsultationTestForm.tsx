@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { type z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { FormDataSchema } from "./schema"; // Adjust schema accordingly
+import { FormDataSchema } from "./schema";
 import { Progress } from "@/components/ui/progress";
-// Assuming FieldName is already defined as:
+
 type FieldName = keyof Inputs;
 type Inputs = z.infer<typeof FormDataSchema>;
 

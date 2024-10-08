@@ -45,8 +45,11 @@ export default defineType({
 			end: "end",
 		},
 		prepare: ({ content, cta, start, end }) => ({
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			title: getBlockText(content),
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			subtitle: cta,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			media: (start || end) && VscCalendar,
 		}),
 	},

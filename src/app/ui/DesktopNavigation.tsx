@@ -52,7 +52,7 @@ export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) =>
 										base: false,
 										params: link.params,
 									})}
-									className={`relative pb-0.5 text-[18px] font-medium capitalize transition-all ${
+									className={`relative pb-0.5 text-[18px] font-medium capitalize transition-all duration-200 ${
 										isActive ? "text-foreground" : ""
 									} ${isScrolled ? "text-foreground-secondary hover:text-[#2e4654]" : "text-foreground hover:text-foreground-hover"} `}
 								>
