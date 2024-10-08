@@ -33,7 +33,7 @@ export default function CardSection({
 }>) {
 	// Set up the ref and useInView hook
 	const sectionRef = useRef(null);
-	const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+	const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
 	return (
 		<section

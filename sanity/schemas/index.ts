@@ -24,8 +24,11 @@ import service from "@sanity/schemas/documents/service";
 import servicesModule from "@sanity/schemas/modules/servicesModule";
 import contactModule from "@sanity/schemas/modules/contactModule";
 import consultationTestModule from "@sanity/schemas/modules/consultationTestModule";
-
-// objects
+import blogPost from "@sanity/schemas/documents/blog.post";
+import blogCategory from "@sanity/schemas/documents/blog.category";
+import blogList from "@sanity/schemas/modules/blog-list";
+import blogPostContent from "@sanity/schemas/modules/blog-post-content";
+import uid from "@sanity/schemas/objects/uid";
 
 // modules
 
@@ -40,6 +43,8 @@ export const schemaTypes = [
 	specialist,
 	gallery,
 	service,
+	blogPost,
+	blogCategory,
 
 	// objects
 	metadata,
@@ -48,10 +53,13 @@ export const schemaTypes = [
 	linkList,
 	faqItem,
 	card,
+	uid,
 
 	// modules
 	hero,
 	heroSaas,
+	blogList,
+	blogPostContent,
 	HeroSplit,
 	banner,
 	cardSection,

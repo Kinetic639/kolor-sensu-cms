@@ -58,7 +58,9 @@ export default defineType({
 		},
 		prepare({ title, media }) {
 			return {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				title,
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				media,
 			};
 		},

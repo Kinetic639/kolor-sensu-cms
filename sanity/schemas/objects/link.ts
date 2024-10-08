@@ -29,6 +29,7 @@ export default defineType({
 			name: "internal",
 			type: "reference",
 			to: [{ type: "page" }],
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			hidden: ({ parent }) => parent?.type !== "internal",
 		}),
 		defineField({
@@ -40,6 +41,7 @@ export default defineType({
 					scheme: ["http", "https", "mailto", "tel"],
 					allowRelative: true,
 				}),
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			hidden: ({ parent }) => parent?.type !== "external",
 		}),
 		defineField({
@@ -47,6 +49,7 @@ export default defineType({
 			title: "URL parameters",
 			placeholder: "e.g. #jump-link or ?foo=bar",
 			type: "string",
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			hidden: ({ parent }) => parent?.type !== "internal",
 		}),
 	],
@@ -60,6 +63,7 @@ export default defineType({
 			params: "params",
 		},
 		prepare: ({ label, _type, title, slug, external, params }) => ({
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			title: label || title,
 			subtitle: [
 				_type === "blog.post" ? "/blog" : null,

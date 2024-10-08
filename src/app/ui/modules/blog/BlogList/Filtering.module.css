@@ -1,0 +1,24 @@
+@supports () {
+	.list {
+		gap: 0;
+
+		&::before {
+			content: "";
+			position: absolute;
+			@apply rounded bg-ink/5 transition-all;
+		}
+
+		&:not(:hover)::before {
+			opacity: 0;
+		}
+	}
+
+	.filter {
+		position: relative;
+
+		&:global(.ghost) {
+			background: none !important;
+			backdrop-filter: none !important;
+		}
+	}
+}
