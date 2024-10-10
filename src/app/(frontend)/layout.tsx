@@ -12,12 +12,18 @@ import VisualEditingControls from "@/app/ui/VisualEditingControls";
 import { ThemeProvider } from "@/lib/providers/ThemeProvider";
 import Footer from "@/app/ui/footer";
 import Announcement from "@/app/ui/Announcement";
+import { SmoothScrolling } from "@/app/ui/SmoothScrolling";
 export const metadata: Metadata = {
 	icons: {
 		icon: "/favicon.png",
 	},
 };
-const inter = Montserrat({ subsets: ["latin"] });
+
+const montserrat = Montserrat({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "800", "700"],
+	variable: "--font-montserrat",
+});
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -35,25 +41,27 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 				/>
 				<title className="sr-only">Kolor Sensu - Centrum Wsparcia Psychologicznego</title>
 			</head>
-			<body className={cn("flex min-h-screen flex-col", inter.className)}>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="light"
-					enableSystem
-					disableTransitionOnChange
-				>
-					<AppWrapper>
-						<Announcement />
-						<Header />
-						<main id="main-content" tabIndex={-1} className="flex-1 pb-12">
-							{children}
-						</main>
-						<Footer />
-					</AppWrapper>
-					<Analytics />
-					<SpeedInsights />
-					<VisualEditingControls />
-				</ThemeProvider>
+			<body className={cn("flex min-h-screen flex-col", montserrat.variable, "font-sans")}>
+				<SmoothScrolling>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="light"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<AppWrapper>
+							<Announcement />
+							<Header />
+							<main id="main-content" tabIndex={-1} className="flex-1 pb-12">
+								{children}
+							</main>
+							<Footer />
+						</AppWrapper>
+						<Analytics />
+						<SpeedInsights />
+						<VisualEditingControls />
+					</ThemeProvider>
+				</SmoothScrolling>
 			</body>
 		</html>
 	);

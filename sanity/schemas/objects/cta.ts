@@ -35,7 +35,9 @@ export default defineType({
 			external: "link.external",
 		},
 		prepare: ({ label, pageTitle, internal, external }) => ({
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			title: label || pageTitle,
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			subtitle: external || (internal && (internal === "index" ? "/" : `/${internal}`)),
 		}),
 	},

@@ -9,9 +9,12 @@ import GalleryModule from "@/app/ui/modules/galleryModule";
 import ServicesModule from "@/app/ui/modules/ServicesModule";
 import ContactModule from "@/app/ui/modules/ContactModule";
 import { ConsultationTestModule } from "@/app/ui/modules/ConsultationTestModule";
+import BlogList from "@/app/ui/modules/blog/BlogList";
+import PostContent from "@/app/ui/modules/blog/PostContent";
 
 export default function Modules({
 	modules,
+	post,
 }: {
 	modules?: Sanity.Module[];
 	page?: Sanity.Page;
@@ -21,6 +24,10 @@ export default function Modules({
 		<>
 			{modules?.map((module) => {
 				switch (module._type) {
+					case "blog-post-content":
+						return <PostContent {...module} post={post} key={module._key} />;
+					case "blog-list":
+						return <BlogList {...module} key={module._key} />;
 					case "hero":
 						return <Hero {...module} key={module._key} />;
 					case "hero.split":
@@ -46,7 +53,7 @@ export default function Modules({
 					case "consultationTestModule":
 						return <ConsultationTestModule {...module} key={module._key} />;
 					default:
-						return <div data-type={module._type} key={module._key} />;
+						return <div key={module._key} />;
 				}
 			})}
 		</>

@@ -28,6 +28,8 @@ export default defineType({
 			description: "Page content",
 			type: "array",
 			of: [
+				{ type: "blog-list" },
+				{ type: "blog-post-content" },
 				{ type: "hero" },
 				{ type: "hero.saas" },
 				{ type: "hero.split" },

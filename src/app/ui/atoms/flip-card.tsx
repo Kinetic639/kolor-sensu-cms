@@ -60,7 +60,7 @@ export const FlipCard = ({ title, image, frontText, hoverText }: FlipCardContent
 	}, []);
 
 	return (
-		<div className="perspective-1000 min-h-[450px] w-full min-w-[300px] max-w-[340px] cursor-pointer">
+		<div className="perspective-1000 h-full min-h-[450px] w-full min-w-[300px] max-w-[340px] cursor-pointer">
 			<motion.div
 				className="flip-card-inner relative h-[100%] w-full"
 				variants={variants}

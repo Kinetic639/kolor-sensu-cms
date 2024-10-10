@@ -36,7 +36,7 @@ export const Header = async () => {
 					)}
 				</Link>
 				{headerMenu && <DesktopNavigation headerMenu={headerMenu} />}
-				<CTAButton ctas={ctas || []} className="mr-4 hidden md:block" />
+				<CTAButton ctas={ctas || []} className="mr-4 hidden text-xs md:block" />
 				<SideDrawer />
 			</div>
 		</div>
