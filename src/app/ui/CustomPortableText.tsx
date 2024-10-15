@@ -42,7 +42,7 @@ export const customPortableTextComponents: PortableTextComponents = {
 			</Typography>
 		),
 		h6: ({ children }) => (
-			<Typography as="h6" variant="h6">
+			<Typography as="h6" variant="h6" className="text-center md:text-left">
 				{children}
 			</Typography>
 		),

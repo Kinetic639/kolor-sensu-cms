@@ -48,9 +48,9 @@ export const EdgeBlob = () => {
 			>
 				<defs>
 					<linearGradient id="two" x1="0%" y1="10%" x2="30%" y2="100%">
-						<stop offset="0%" style={{ stopColor: `var(--blob-1-center)` }}></stop>
-						<stop offset="50%" style={{ stopColor: `var(--blob-1-top)` }}></stop>
-						<stop offset="100%" style={{ stopColor: `var(--blob-1-top)` }}></stop>
+						<stop offset="0%" style={{ stopColor: `var(--blob-2-center)` }}></stop>
+						<stop offset="50%" style={{ stopColor: `var(--blob-2-top)` }}></stop>
+						<stop offset="100%" style={{ stopColor: `var(--blob-2-top)` }}></stop>
 					</linearGradient>
 				</defs>
 				<path fill="url(#two)">

@@ -56,7 +56,7 @@ export default function HeroSplit({
 
 				<MotionDiv
 					className={cn(
-						"richtext mx-auto flex w-full max-w-lg flex-col [&_:is(h1,h2)]:text-balance",
+						"mx-auto flex w-full max-w-lg flex-col justify-center",
 						image?.onRight && "items-end text-right",
 					)}
 					initial={{ opacity: 0, y: 50 }}

@@ -24,7 +24,7 @@ const config: Config = {
 				// Mobile font sizes
 				"mobile-h1": ["50.75px", { lineHeight: "1.4", fontWeight: "500" }],
 				"mobile-h2": ["44.79px", { lineHeight: "1.4", fontWeight: "500" }],
-				"mobile-h3": ["37.32px", { lineHeight: "1.4", fontWeight: "500" }],
+				"mobile-h3": ["31.32px", { lineHeight: "1.4", fontWeight: "500" }],
 				"mobile-h4": ["31.1px", { lineHeight: "1.4", fontWeight: "500" }],
 				"mobile-h5": ["25.92px", { lineHeight: "1.4", fontWeight: "500" }],
 				"mobile-h6": ["21.6px", { lineHeight: "1.4", fontWeight: "500" }],
