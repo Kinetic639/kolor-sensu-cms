@@ -52,7 +52,6 @@ export const modulesQuery = groq`
   },
   _type == 'testimonial.featured' => { testimonial-> },
   _type == 'testimonial-list' => { testimonials[]-> },
- 
   _type == 'galleryModule' => {
     title,
     description,
@@ -128,8 +127,24 @@ export const modulesQuery = groq`
       ctas[]{ ${ctaQuery} }
     }
   },
-    _type == 'contactModule' => {
+  _type == 'contactModule' => {
     title,
     description
   },
+  _type == 'productsModule' => {
+    title,
+    description,
+    products[]->{
+      _id,
+      title,
+      description,
+      image {
+        asset->{
+          url
+        },
+        alt
+      },
+      link
+    }
+  }
 `;

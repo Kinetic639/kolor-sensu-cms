@@ -26,6 +26,20 @@ declare global {
 			services: Service[];
 		};
 
+		export type Product = {
+			_id: string;
+			title: string;
+			description: string;
+			image: Sanity.Image;
+			link: string;
+		};
+
+		export type ProductsModule = Module<"productsModule"> & {
+			title: string;
+			description?: string;
+			products: Product[];
+		};
+
 		export type FAQList = {
 			readonly _type: "faqList";
 			title: string;

@@ -5,6 +5,7 @@ import { fetchSanity, groq } from "@/lib/sanity/fetch";
 import { cn } from "@/lib/utils";
 import Filtering from "@/app/ui/modules/blog/BlogList/Filtering";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
+import BlogCarousel from "@/app/ui/modules/blog/BlogList/BlogCarousel";
 
 export default async function BlogList({
 	intro,
@@ -29,7 +30,6 @@ export default async function BlogList({
 			tags: ["posts"],
 		},
 	);
-
 	return (
 		<section className="section space-y-8">
 			{intro && (
@@ -40,16 +40,27 @@ export default async function BlogList({
 
 			{displayFilters && <Filtering predefinedFilters={predefinedFilters} />}
 
-			<List
-				posts={posts}
-				predefinedFilters={predefinedFilters}
-				className={cn(
-					"gap-x-6 gap-y-12",
-					stegaClean(layout) === "grid"
-						? "grid md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]"
-						: "carousel max-xl:full-bleed md:overflow-fade-r pb-4 [--size:320px] max-xl:px-4",
-				)}
-			/>
+			{stegaClean(layout) === "carousel" ? (
+				<BlogCarousel
+					posts={posts}
+					predefinedFilters={predefinedFilters}
+					className={cn(
+						"gap-x-6 gap-y-12",
+						"carousel max-xl:full-bleed md:overflow-fade-r pb-4 [--size:320px] max-xl:px-4",
+					)}
+				/>
+			) : (
+				<List
+					posts={posts}
+					predefinedFilters={predefinedFilters}
+					className={cn(
+						"gap-x-6 gap-y-12",
+						stegaClean(layout) === "grid"
+							? "grid md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]"
+							: "carousel max-xl:full-bleed md:overflow-fade-r pb-4 [--size:320px] max-xl:px-4",
+					)}
+				/>
+			)}
 		</section>
 	);
 }

@@ -33,6 +33,10 @@ const structure: StructureResolver = (S) =>
 			S.divider(),
 
 			// Pages Section
+			S.documentTypeListItem("product").title("Products").icon(VscMultipleWindows),
+			S.divider(),
+
+			// Pages Section
 			S.documentTypeListItem("page").title("Pages").icon(VscMultipleWindows),
 			S.divider(),
 

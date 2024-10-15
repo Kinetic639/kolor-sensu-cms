@@ -34,7 +34,6 @@ export const ContactForm: FC = () => {
 
 	const onSubmit = async (data: FormValues) => {
 		try {
-			console.log("Form data:", data);
 			setIsLoading(true);
 
 			const response = await fetch("/api/contact", {
@@ -68,7 +67,6 @@ export const ContactForm: FC = () => {
 		reset();
 		setIsSubmitSuccessful(false);
 		setIsSuccess(false);
-		console.log("Form canceled");
 	};
 
 	const handleRetry = () => {
