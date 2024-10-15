@@ -40,7 +40,7 @@ export default function CardSection({
 			ref={sectionRef} // Attach ref to the section
 			className={cn(
 				fullscreen && "bg-gradient-to-br from-[#c4d4d9] to-[#688d62]",
-				"w-full px-4 py-4 md:py-16",
+				"w-full px-4 py-12 md:py-16",
 			)}
 		>
 			<div className={cn("mx-auto max-w-screen-xl px-4")}>
@@ -51,7 +51,7 @@ export default function CardSection({
 					animate={isInView ? "animate" : "initial"} // Trigger animation when in view
 				>
 					<MotionDiv variants={childVariants}>
-						<Typography as="h3" variant="h3" className="mb-3">
+						<Typography as="h3" variant="h3" className="mb-5">
 							{title}
 						</Typography>
 					</MotionDiv>

@@ -41,6 +41,7 @@ export default defineType({
 				{ type: "servicesModule" },
 				{ type: "contactModule" },
 				{ type: "consultationTestModule" },
+				{ type: "productsModule" },
 			],
 			options: {
 				insertMenu: {
