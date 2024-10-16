@@ -17,7 +17,6 @@ export default function List({
 	useEffect(reset, [reset]);
 
 	const filtered = posts
-		// filter by predefined filters
 		.filter(
 			(post) =>
 				!predefinedFilters?.length ||
@@ -25,7 +24,6 @@ export default function List({
 					predefinedFilters.some((filter) => filter._id === category._id),
 				),
 		)
-		// filter by selected category
 		.filter(
 			(post) =>
 				selected === "All" || post.categories?.some((category) => category._id === selected),

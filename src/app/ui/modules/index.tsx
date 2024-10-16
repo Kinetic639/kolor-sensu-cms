@@ -8,7 +8,7 @@ import FAQModule from "@/app/ui/modules/FaqModule";
 import GalleryModule from "@/app/ui/modules/galleryModule";
 import ServicesModule from "@/app/ui/modules/ServicesModule";
 import ContactModule from "@/app/ui/modules/ContactModule";
-import { ConsultationTestModule } from "@/app/ui/modules/ConsultationTestModule";
+import { ConsultationTestModule } from "@/app/ui/modules/ConsultationTestModule/ConsultationTestModule";
 import BlogList from "@/app/ui/modules/blog/BlogList";
 import PostContent from "@/app/ui/modules/blog/PostContent";
 import ProductsModule from "@/app/ui/modules/productsModule";

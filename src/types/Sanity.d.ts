@@ -3,7 +3,6 @@ import type { SanityDocument } from "next-sanity";
 
 declare global {
 	namespace Sanity {
-		// Define the `FAQItem` type, which includes question and answer
 		export type FAQItem = {
 			readonly _type: "faqItem";
 			question: string;
@@ -49,10 +48,10 @@ declare global {
 		export type GalleryModule = Module<"galleryModule"> & {
 			title: string;
 			description: string;
-			showCaptions: boolean; // Option to show captions
-			captionStyle: "overlay" | "aside"; // Style of the captions (overlay or aside)
-			captionPosition?: "top" | "left" | "right"; // Position of captions (for aside style)
-			captionAlignment?: "left" | "center" | "right"; // Text alignment within the captions
+			showCaptions: boolean;
+			captionStyle: "overlay" | "aside";
+			captionPosition?: "top" | "left" | "right";
+			captionAlignment?: "left" | "center" | "right";
 			gallery: {
 				_id: string;
 				title: string;
@@ -84,7 +83,7 @@ declare global {
 			image: Sanity.Image;
 			frontText: string;
 			hoverText?: string;
-			faqList?: FAQList; // Optional related FAQ list
+			faqList?: FAQList;
 		};
 
 		export type Document = {
@@ -98,13 +97,10 @@ declare global {
 				noIndex: boolean;
 			};
 		};
-		// Use the Block export type from Sanity for block content
+
 		export type SanityBlock = Block;
 
-		// If your content might include custom types or other block-like content, you might define a more specific type:
 		export type BlockContent = SanityBlock[];
-
-		// documents
 
 		export type Site = SanityDocument<{
 			title: string;
@@ -132,8 +128,6 @@ declare global {
 			end?: string;
 		}>;
 
-		// pages
-
 		export type PageBase = SanityDocument<{
 			title?: string;
 			metadata: Metadata;
@@ -159,8 +153,6 @@ declare global {
 			title: string;
 		}>;
 
-		// miscellaneous
-
 		export type Logo = SanityDocument<{
 			name: string;
 			image?: Partial<{
@@ -169,7 +161,6 @@ declare global {
 				dark: Image;
 			}>;
 		}>;
-		// objects
 
 		export type CTA = {
 			link?: Link;
@@ -212,7 +203,7 @@ declare global {
 			_key: string;
 			uid?: string;
 		};
-		// Define a module for specialists
+
 		export type SpecialistsModule = Module<"specialistsModule"> & {
 			title: string;
 			specialists: Specialist[];
