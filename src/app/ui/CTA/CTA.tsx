@@ -20,7 +20,7 @@ export default function CTA({
 		return (
 			<Link
 				href={link?.internal?.metadata.slug.current || ""}
-				className={cn("flex justify-center md:justify-start", className)}
+				className={cn("flex justify-center max-md:mx-auto lg:justify-start", className)}
 			>
 				<motion.div
 					whileHover={{ scale: 1.05 }} // Add hover effect
@@ -29,7 +29,7 @@ export default function CTA({
 				>
 					<div className="button-container">
 						<div className="btn">
-							<span>{link?.label}</span>
+							<span className="font-medium">{link?.label}</span>
 						</div>
 					</div>
 				</motion.div>
@@ -48,9 +48,9 @@ export default function CTA({
 				>
 					<Button
 						className={cn(
-							"w-full self-center rounded-full p-8 text-center text-base uppercase transition-all duration-300 ease-in-out",
+							"w-full self-center rounded-full p-7 text-center text-base uppercase transition-all duration-300 ease-in-out",
 							style === "solid"
-								? "bg-foreground text-background hover:bg-background hover:text-foreground"
+								? "bg-foreground text-background hover:bg-background-secondary"
 								: "",
 						)}
 					>

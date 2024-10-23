@@ -137,7 +137,7 @@ const ConsultationTestForm: React.FC = () => {
 					</AnimatePresence>
 					<div
 						className={cn(
-							"mt-10 flex flex-col items-center md:flex-row md:items-start",
+							"mt-16 flex flex-col items-center md:flex-row md:items-start",
 							currentStep > 1 ? "justify-between" : "justify-center",
 						)}
 					>
