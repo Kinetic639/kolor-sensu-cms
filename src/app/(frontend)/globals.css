@@ -93,9 +93,9 @@
 
 		--radius: 0.5rem;
 
-		--blob-1-top:hsl(22.5, 44.4%, 92.9%);
+		--blob-1-top: hsl(22.5, 44.4%, 92.9%);
 		--blob-1-center: hsl(22.5, 44.4%, 92.9%);
-		--blob-1-bot: hsl(80, 11%, 50%);
+		--blob-1-bot: hsl(78, 16%, 84%);
 
 		--blob-2-top: hsl(212, 35%, 18%);
 		--blob-2-center: hsla(216, 26%, 25%, 0.5);
@@ -241,7 +241,6 @@
 }
 
 @layer components {
-
 	.carousel {
 		display: flex;
 		overflow-x: auto;
