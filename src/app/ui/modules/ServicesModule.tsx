@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
-import CTAList from "@/app/ui/CTAList";
+import CTAList from "@/app/ui/CTA/CTAList";
 
 export default function ServicesModule({
 	title,

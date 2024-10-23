@@ -1,6 +1,6 @@
 import { PortableText } from "@portabletext/react";
 import { cn } from "@/lib/utils";
-import CTAList from "@/app/ui/CTAList";
+import CTAList from "@/app/ui/CTA/CTAList";
 import Img from "@/app/ui/Img";
 
 export default function HeroSaaS({

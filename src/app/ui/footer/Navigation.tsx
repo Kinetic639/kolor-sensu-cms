@@ -1,5 +1,5 @@
 import { PortableText } from "@portabletext/react";
-import CTA from "@/app/ui/CTA";
+import CTA from "@/app/ui/CTA/CTA";
 import { getSite } from "@/lib/sanity/getSite";
 import LinkList from "@/app/ui/LinkList";
 import Social from "@/app/ui/Social";
