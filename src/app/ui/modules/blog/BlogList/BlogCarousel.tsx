@@ -3,11 +3,11 @@
 import { useEffect } from "react";
 import { categoryStore } from "../store";
 import PostPreview from "../PostPreview";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
-export default function List({
+export default function BlogCarousel({
 	posts,
 	predefinedFilters,
-	...props
 }: {
 	posts: Sanity.BlogPost[];
 	predefinedFilters?: Sanity.BlogCategory[];
@@ -17,6 +17,7 @@ export default function List({
 	useEffect(reset, [reset]);
 
 	const filtered = posts
+		// filter by predefined filters
 		.filter(
 			(post) =>
 				!predefinedFilters?.length ||
@@ -24,6 +25,7 @@ export default function List({
 					predefinedFilters.some((filter) => filter._id === category._id),
 				),
 		)
+		// filter by selected category
 		.filter(
 			(post) =>
 				selected === "All" || post.categories?.some((category) => category._id === selected),
@@ -34,12 +36,20 @@ export default function List({
 	}
 
 	return (
-		<ul {...props} className="mx-auto w-full max-w-screen-xl">
-			{filtered?.map((post) => (
-				<li className="anim-fade" key={post._id}>
-					<PostPreview post={post} />
-				</li>
-			))}
-		</ul>
+		<Carousel
+			opts={{
+				align: "start",
+				loop: true,
+			}}
+			className="mx-auto w-full max-w-screen-xl"
+		>
+			<CarouselContent>
+				{filtered?.map((post, index) => (
+					<CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+						<PostPreview post={post} />
+					</CarouselItem>
+				))}
+			</CarouselContent>
+		</Carousel>
 	);
 }

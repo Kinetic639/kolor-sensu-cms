@@ -93,12 +93,13 @@
 
 		--radius: 0.5rem;
 
-		--blob-1-top: hsl(202.1, 35.2%, 21.2%);
+		--blob-1-top: hsl(22.5, 44.4%, 92.9%);
 		--blob-1-center: hsl(22.5, 44.4%, 92.9%);
-		--blob-1-bot: hsl(137.1, 15.7%, 56.3%);
+		--blob-1-bot: hsl(78, 16%, 84%);
 
-		--blob-2-top: hsl(30, 77%, 95%);
-		--blob-2-bot: hsl(13, 72%, 59%);
+		--blob-2-top: hsl(212, 35%, 18%);
+		--blob-2-center: hsla(216, 26%, 25%, 0.5);
+		--blob-2-bot: hsl(80, 11%, 50%);
 
 		--blob-3-top: hsl(112, 58%, 24%);
 		--blob-3-bot: hsl(120, 32%, 85%);
@@ -226,5 +227,28 @@
 	}
 	100% {
 		clip-path: url(#blob1);
+	}
+}
+.carousel {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+
+	& > * {
+		flex: 0 0 min(300px, 80vw);
+		scroll-snap-align: center;
+	}
+}
+
+@layer components {
+	.carousel {
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+
+		& > * {
+			flex: 0 0 min(300px, 80vw);
+			scroll-snap-align: center;
+		}
 	}
 }

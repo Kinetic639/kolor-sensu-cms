@@ -1,5 +1,5 @@
 import React from "react";
-import { ConsultationTestForm } from "@/components/forms/ConsultationTestForm";
+import ConsultationTestForm from "@/components/forms/ConsultationTestForm";
 
 export const ConsultationTestModule = () => {
 	return (

@@ -1,250 +1,202 @@
 "use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { type z } from "zod";
+import React, { useState, createElement, useEffect } from "react";
+import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { FormDataSchema } from "./schema";
+import { motion, AnimatePresence } from "framer-motion";
+import { FormDataSchema, type FormData } from "./schema";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step4 from "./Step4";
+import Step5 from "./Step5";
+import Step6 from "./Step6";
+import Step7 from "./Step7";
+import Step8 from "./Step8";
+import Step9 from "@/components/forms/Step9";
 import { Progress } from "@/components/ui/progress";
+import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
+import Step0 from "@/components/forms/Step0";
+import { cn } from "@/lib/utils";
 
-type FieldName = keyof Inputs;
-type Inputs = z.infer<typeof FormDataSchema>;
+const steps = [Step0, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9]; // Adding Step9
 
-const steps = [
-	{
-		id: "Step 1",
-		name: "Your Name",
-		fields: ["firstName", "lastName"],
-	},
-	{
-		id: "Step 2",
-		name: "Consultation For",
-		fields: ["consultationFor"],
-	},
-	{
-		id: "Step 3",
-		name: "Details for You",
-		fields: ["email", "phone"],
-	},
-	{
-		id: "Step 4",
-		name: "Details for Child",
-		fields: ["childName", "childAge"],
-	},
-	{
-		id: "Step 5",
-		name: "Details for Couples",
-		fields: ["partnerName", "relationshipDuration"],
-	},
+type FieldNames =
+	| "step0"
+	| "name"
+	| "moodRating"
+	| "meetingType"
+	| "emotionalDifficulties"
+	| "lifeSupportAreas"
+	| "helpfulSupport"
+	| "neurodiversityDiagnosis"
+	| "neurodiversityNeeds"
+	| "email";
+
+const stepFields: FieldNames[][] = [
+	["step0"],
+	["name"],
+	["moodRating"],
+	["meetingType"],
+	["emotionalDifficulties"],
+	["lifeSupportAreas"],
+	["helpfulSupport"],
+	["neurodiversityDiagnosis"],
+	["neurodiversityNeeds"],
+	["email"],
 ];
 
-export function ConsultationTestForm() {
-	const [previousStep, setPreviousStep] = useState(0);
+const ConsultationTestForm: React.FC = () => {
 	const [currentStep, setCurrentStep] = useState(0);
-	const [consultationType, setConsultationType] = useState<"me" | "child" | "couple" | null>(null);
-	const delta = currentStep - previousStep;
-
-	const {
-		register,
-		handleSubmit,
-		watch,
-		reset,
-		trigger,
-		formState: { errors },
-	} = useForm<Inputs>({
+	const [skippedStep8, setSkippedStep8] = useState(false);
+	const isPageScrolled = usePageScrolled();
+	const methods = useForm<FormData>({
 		resolver: zodResolver(FormDataSchema),
+		mode: "onTouched",
+		defaultValues: {
+			neurodiversityDiagnosis: "",
+		},
 	});
+	const moodRating = useWatch({
+		control: methods.control,
+		name: "moodRating",
+	});
+	const progressPercentage = (currentStep / steps.length) * 100;
 
-	const progressPercentage =
-		((currentStep + 1) / (steps.length - 2 + (consultationType ? 1 : 0))) * 100;
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, [currentStep]);
 
-	const processForm: SubmitHandler<Inputs> = (data) => {
-		console.log(data);
-		reset();
+	const goToSummary = () => {
+		setSkippedStep8(true);
+		setCurrentStep(steps.length - 1);
 	};
 
-	const next = async () => {
-		const fields = steps[currentStep].fields as FieldName[]; // Cast fields to FieldName[]
-		const output = await trigger(fields, { shouldFocus: true });
+	const nextStep = async () => {
+		const isValid = await methods.trigger(stepFields[currentStep]);
 
-		if (!output) return;
-
-		if (currentStep === 1) {
-			const consultationFor = watch("consultationFor");
-			setConsultationType(consultationFor);
+		if (currentStep === 7) {
+			const diagnosis = methods.getValues("neurodiversityDiagnosis");
+			if (diagnosis === "3" || diagnosis === "4") {
+				goToSummary();
+				return;
+			} else {
+				setSkippedStep8(false); // If not skipping, reset this flag
+			}
 		}
 
-		if (currentStep < steps.length - 1) {
-			setPreviousStep(currentStep);
-			setCurrentStep((step) => step + 1);
+		if (isValid && currentStep < steps.length - 1) {
+			setCurrentStep(currentStep + 1);
 		}
-	};
-
-	const prev = () => {
-		if (currentStep > 0) {
-			setPreviousStep(currentStep);
-			setCurrentStep((step) => step - 1);
+		if (isValid && isPageScrolled) {
+			window.scrollTo({ top: 0, behavior: "smooth" });
 		}
 	};
 
-	const renderStepFields = () => {
-		if (currentStep === 0) {
-			return (
-				<>
-					<label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">
-						First Name
-					</label>
-					<input id="firstName" {...register("firstName")} className="input" />
-					{errors.firstName && <p>{errors.firstName.message}</p>}
-
-					<label htmlFor="lastName" className="block text-sm font-medium leading-6 text-gray-900">
-						Last Name
-					</label>
-					<input id="lastName" {...register("lastName")} className="input" />
-					{errors.lastName && <p>{errors.lastName.message}</p>}
-				</>
-			);
+	const prevStep = () => {
+		if (currentStep === 9 && skippedStep8) {
+			// If you're in Step 9 and Step 8 was skipped, go back to Step 7
+			setCurrentStep(7);
+		} else if (currentStep > 0) {
+			setCurrentStep(currentStep - 1);
 		}
 
-		if (currentStep === 1) {
-			return (
-				<>
-					<label className="block text-sm font-medium leading-6 text-gray-900">
-						Consultation For:
-					</label>
-					<div>
-						<label>
-							<input type="radio" value="me" {...register("consultationFor")} /> For Me
-						</label>
-						<label>
-							<input type="radio" value="child" {...register("consultationFor")} /> For My Child
-						</label>
-						<label>
-							<input type="radio" value="couple" {...register("consultationFor")} /> For Couples
-						</label>
-					</div>
-					{errors.consultationFor && <p>{errors.consultationFor.message}</p>}
-				</>
-			);
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	};
+
+	const onSubmit = (data: FormData) => {
+		console.log("Final Form Data:", data);
+	};
+
+	const handleKeyDown = async (e: React.KeyboardEvent<HTMLFormElement>) => {
+		if (e.key === "Enter") {
+			e.preventDefault();
+			await nextStep();
 		}
-
-		if (consultationType === "me") {
-			return (
-				<>
-					<label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-						Email
-					</label>
-					<input id="email" {...register("email")} className="input" />
-					{errors.email && <p>{errors.email.message}</p>}
-
-					<label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
-						Phone
-					</label>
-					<input id="phone" {...register("phone")} className="input" />
-					{errors.phone && <p>{errors.phone.message}</p>}
-				</>
-			);
-		}
-
-		if (consultationType === "child") {
-			return (
-				<>
-					<label htmlFor="childName" className="block text-sm font-medium leading-6 text-gray-900">
-						Imię dziecka
-					</label>
-					<input id="childName" {...register("childName")} className="input" />
-					{errors.childName && <p>{errors.childName.message}</p>}
-
-					<label htmlFor="childAge" className="block text-sm font-medium leading-6 text-gray-900">
-						Wiek dziecka
-					</label>
-					<input id="childAge" {...register("childAge")} className="input" />
-					{errors.childAge && <p>{errors.childAge.message}</p>}
-				</>
-			);
-		}
-
-		if (consultationType === "couple") {
-			return (
-				<>
-					<label htmlFor="partnerName" className="block text-sm font-medium"></label>
-					<input id="partnerName" {...register("partnerName")} className="input" />
-					{errors.partnerName && <p>{errors.partnerName.message}</p>}
-
-					<label
-						htmlFor="relationshipDuration"
-						className="block text-sm font-medium leading-6 text-gray-900"
-					>
-						Relationship Duration
-					</label>
-					<input
-						id="relationshipDuration"
-						{...register("relationshipDuration")}
-						className="input"
-					/>
-					{errors.relationshipDuration && <p>{errors.relationshipDuration.message}</p>}
-				</>
-			);
-		}
-
-		return null;
 	};
 
 	return (
-		<section className="flex flex-col justify-between">
-			<Progress value={progressPercentage} />
-
-			{/* Form */}
-			<form className="mt-12 py-12" onSubmit={handleSubmit(processForm)}>
-				<motion.div
-					initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
-					animate={{ x: 0, opacity: 1 }}
-					transition={{ duration: 0.3, ease: "easeInOut" }}
+		<div className="mx-auto flex w-full max-w-screen-lg flex-col gap-10 rounded-2xl bg-[#D8DCCFFF] p-10 shadow-md">
+			{currentStep !== 0 && <Progress value={progressPercentage} />}
+			<FormProvider {...methods}>
+				<form
+					onSubmit={methods.handleSubmit(onSubmit)}
+					onKeyDown={handleKeyDown}
+					className="flex flex-col items-stretch"
 				>
-					{renderStepFields()}
-				</motion.div>
-			</form>
+					<AnimatePresence mode="wait">
+						<motion.div
+							className="flex-1"
+							key={currentStep}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							transition={{ duration: 0.5 }}
+						>
+							{createElement(steps[currentStep])}
+						</motion.div>
+					</AnimatePresence>
+					<div
+						className={cn(
+							"mt-10 flex flex-col items-center md:flex-row md:items-start",
+							currentStep > 1 ? "justify-between" : "justify-center",
+						)}
+					>
+						<div className={cn("flex justify-start", currentStep > 1 && "w-1/3")}>
+							{currentStep > 1 ? (
+								<button
+									type="button"
+									onClick={prevStep}
+									className="group relative rounded-full border border-gray-500 bg-transparent px-6 py-3 text-gray-500 transition-colors duration-300 hover:border-[#2e4554] hover:text-[#2e4554] disabled:opacity-50"
+								>
+									<span className="flex items-center space-x-2">
+										<svg
+											className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth="2"
+												d="M15 19l-7-7 7-7"
+											/>
+										</svg>
+										<span>Wstecz</span>
+									</span>
+								</button>
+							) : (
+								<div></div>
+							)}
+						</div>
 
-			{/* Navigation */}
-			<div className="mt-8 pt-5">
-				<div className="flex justify-between">
-					<button
-						type="button"
-						onClick={prev}
-						disabled={currentStep === 0}
-						className="rounded bg-white px-2 py-1 text-sm font-semibold text-sky-900 shadow-sm ring-1 ring-inset ring-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth="1.5"
-							stroke="currentColor"
-							className="h-6 w-6"
-						>
-							<path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-						</svg>
-					</button>
-					<button
-						type="button"
-						onClick={next}
-						disabled={currentStep === steps.length - 1}
-						className="rounded bg-white px-2 py-1 text-sm font-semibold text-sky-900 shadow-sm ring-1 ring-inset ring-sky-300 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth="1.5"
-							stroke="currentColor"
-							className="h-6 w-6"
-						>
-							<path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-						</svg>
-					</button>
-				</div>
-			</div>
-		</section>
+						<div className={cn("flex justify-center", currentStep > 1 && "w-1/3")}>
+							{currentStep !== steps.length - 1 && (
+								<button
+									type="button"
+									onClick={nextStep}
+									disabled={moodRating === 0}
+									className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
+								>
+									{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
+								</button>
+							)}
+						</div>
+
+						{currentStep > 1 && (
+							<div className="ml-3.5 max-w-[300px] justify-end text-right">
+								Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
+								<a href="tel:800702222" className="font-medium">
+									800 702 222
+								</a>
+							</div>
+						)}
+					</div>
+				</form>
+			</FormProvider>
+		</div>
 	);
-}
+};
+
+export default ConsultationTestForm;
