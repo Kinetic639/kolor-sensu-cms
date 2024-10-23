@@ -11,7 +11,7 @@ const Step1: React.FC = () => {
 	} = useFormContext();
 
 	return (
-		<div>
+		<div className="min-h-[300px]">
 			<Typography as="p" variant="h4" className="mb-8 text-center">
 				Jak do Ciebie mówić?
 			</Typography>

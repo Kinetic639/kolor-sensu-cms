@@ -56,25 +56,3 @@ const ImageBlobFrame: React.FC<ImageBlobFrameProps> = ({ image }) => {
 };
 
 export { ImageBlobFrame };
-
-// <div className="flex w-full flex-1 flex-col items-stretch border border-orange-600 ">
-// 	<div
-// 		className={cn("relative  w-full flex-1 border border-green-600 bg-green-400 ", className)}
-// 		style={{
-// 			clipPath: `url("#user-space")`,
-// 			WebkitClipPath: `url("#user-space")`,
-// 		}}
-// 	>
-// 		<svg viewBox="10 10 75 75" className="absolute left-0 top-0 h-[100%] w-[100%] ">
-// 			<path fill="#49ff8f">
-// 				<animate
-// 					style={{ width: "100%", height: "100%" }}
-// 					attributeName="d"
-// 					dur="32000ms"
-// 					repeatCount="indefinite"
-// 					values={getRandomValues(data, 8)}
-// 				></animate>
-// 			</path>
-// 		</svg>
-// 	</div>
-// </div>

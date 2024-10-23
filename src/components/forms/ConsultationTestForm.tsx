@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, createElement } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import React, { useState, createElement, useEffect } from "react";
+import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { FormDataSchema, type FormData } from "./schema";
@@ -15,10 +15,13 @@ import Step8 from "./Step8";
 import Step9 from "@/components/forms/Step9";
 import { Progress } from "@/components/ui/progress";
 import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
+import Step0 from "@/components/forms/Step0";
+import { cn } from "@/lib/utils";
 
-const steps = [Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9]; // Adding Step9
+const steps = [Step0, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9]; // Adding Step9
 
 type FieldNames =
+	| "step0"
 	| "name"
 	| "moodRating"
 	| "meetingType"
@@ -30,6 +33,7 @@ type FieldNames =
 	| "email";
 
 const stepFields: FieldNames[][] = [
+	["step0"],
 	["name"],
 	["moodRating"],
 	["meetingType"],
@@ -52,7 +56,15 @@ const ConsultationTestForm: React.FC = () => {
 			neurodiversityDiagnosis: "",
 		},
 	});
-	const progressPercentage = ((currentStep + 1) / steps.length) * 100;
+	const moodRating = useWatch({
+		control: methods.control,
+		name: "moodRating",
+	});
+	const progressPercentage = (currentStep / steps.length) * 100;
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, [currentStep]);
 
 	const goToSummary = () => {
 		setSkippedStep8(true);
@@ -62,7 +74,7 @@ const ConsultationTestForm: React.FC = () => {
 	const nextStep = async () => {
 		const isValid = await methods.trigger(stepFields[currentStep]);
 
-		if (currentStep === 6) {
+		if (currentStep === 7) {
 			const diagnosis = methods.getValues("neurodiversityDiagnosis");
 			if (diagnosis === "3" || diagnosis === "4") {
 				goToSummary();
@@ -81,9 +93,9 @@ const ConsultationTestForm: React.FC = () => {
 	};
 
 	const prevStep = () => {
-		if (currentStep === 8 && skippedStep8) {
+		if (currentStep === 9 && skippedStep8) {
 			// If you're in Step 9 and Step 8 was skipped, go back to Step 7
-			setCurrentStep(6);
+			setCurrentStep(7);
 		} else if (currentStep > 0) {
 			setCurrentStep(currentStep - 1);
 		}
@@ -104,12 +116,12 @@ const ConsultationTestForm: React.FC = () => {
 
 	return (
 		<div className="mx-auto flex w-full max-w-screen-lg flex-col gap-10 rounded-2xl bg-[#D8DCCFFF] p-10 shadow-md">
-			<Progress value={progressPercentage} />
+			{currentStep !== 0 && <Progress value={progressPercentage} />}
 			<FormProvider {...methods}>
 				<form
 					onSubmit={methods.handleSubmit(onSubmit)}
 					onKeyDown={handleKeyDown}
-					className="flex min-h-[60vh] flex-col items-stretch"
+					className="flex flex-col items-stretch"
 				>
 					<AnimatePresence mode="wait">
 						<motion.div
@@ -123,10 +135,14 @@ const ConsultationTestForm: React.FC = () => {
 							{createElement(steps[currentStep])}
 						</motion.div>
 					</AnimatePresence>
-					<div className="mt-10 flex flex-col items-center justify-between md:flex-row md:items-start">
-						{/* Left-aligned Wstecz button */}
-						<div className="flex w-1/3 justify-start">
-							{currentStep > 0 ? (
+					<div
+						className={cn(
+							"mt-10 flex flex-col items-center md:flex-row md:items-start",
+							currentStep > 1 ? "justify-between" : "justify-center",
+						)}
+					>
+						<div className={cn("flex justify-start", currentStep > 1 && "w-1/3")}>
+							{currentStep > 1 ? (
 								<button
 									type="button"
 									onClick={prevStep}
@@ -155,24 +171,27 @@ const ConsultationTestForm: React.FC = () => {
 							)}
 						</div>
 
-						{/* Center-aligned Kontynuuj button */}
-						<div className="flex w-1/3 justify-center">
+						<div className={cn("flex justify-center", currentStep > 1 && "w-1/3")}>
 							{currentStep !== steps.length - 1 && (
 								<button
 									type="button"
 									onClick={nextStep}
-									className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary"
+									disabled={moodRating === 0}
+									className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
 								>
-									Kontynuuj
+									{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
 								</button>
 							)}
 						</div>
-						<div className="ml-8 max-w-[300px] justify-end text-right">
-							Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
-							<a href="tel:800702222" className="font-medium">
-								800 702 222
-							</a>
-						</div>
+
+						{currentStep > 1 && (
+							<div className="ml-3.5 max-w-[300px] justify-end text-right">
+								Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
+								<a href="tel:800702222" className="font-medium">
+									800 702 222
+								</a>
+							</div>
+						)}
 					</div>
 				</form>
 			</FormProvider>

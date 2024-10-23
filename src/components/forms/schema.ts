@@ -1,11 +1,13 @@
 import { z } from "zod";
 
 export const FormDataSchema = z.object({
+	step0: z.string().optional(),
 	name: z.string().min(3, "Imię musi zawierać co najmniej 3 znaki"),
 	moodRating: z
 		.number()
 		.min(0, "Ocena nie może być niższa niż 0")
-		.max(10, "Ocena nie może być większa niż 10"),
+		.max(10, "Ocena nie może być większa niż 10")
+		.default(5),
 	meetingType: z
 		.string({ required_error: "Wybierz rodzaj spotkania" })
 		.min(3, { message: "Wybierz rodzaj spotkania" }),

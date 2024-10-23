@@ -18,7 +18,7 @@ const Step7: React.FC = () => {
 	const selectedNeurodiversityDiagnosis = useWatch({
 		control,
 		name: "neurodiversityDiagnosis",
-		defaultValue: "", // Ensure it's an empty string
+		defaultValue: "",
 	});
 
 	const handleRadioChange = async (value: string) => {
