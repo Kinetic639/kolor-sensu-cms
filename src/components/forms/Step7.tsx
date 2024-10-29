@@ -35,11 +35,11 @@ const Step7: React.FC = () => {
 				{[
 					{ label: "Tak, mam diagnozę", value: "1" },
 					{ label: "Nie mam diagnozy, ale podejrzewam u siebie neuroróżnorodność", value: "2" },
+					{ label: "Nie mam pewności, potrzebuję konsultacji", value: "3" },
 					{
 						label: "Nie mam diagnozy i nie podejrzewam neuroróżnorodności",
-						value: "3",
+						value: "4",
 					},
-					{ label: "Nie mam pewności, potrzebuję konsultacji", value: "4" },
 				].map((option) => (
 					<motion.label
 						whileHover={{ scale: 1.03 }}
