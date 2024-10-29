@@ -94,11 +94,11 @@
 		--radius: 0.5rem;
 
 		--blob-1-top: hsl(22.5, 44.4%, 92.9%);
-		--blob-1-center: hsl(22.5, 44.4%, 92.9%);
-		--blob-1-bot: hsla(122, 25%, 52%, 0.67);
+		--blob-1-center: hsl(219, 49%, 22%);
+		--blob-1-bot: hsla(0, 0%, 75%, 0.67);
 
-		--blob-2-top: hsl(212, 35%, 18%);
-		--blob-2-center: hsla(216, 26%, 25%, 0.5);
+		--blob-2-top: hsla(269, 52%, 36%, 0.75);
+		--blob-2-center: hsla(209, 60%, 65%, 0.5);
 		--blob-2-bot: hsl(80, 11%, 50%);
 
 		--blob-3-top: hsl(112, 58%, 24%);

@@ -31,9 +31,9 @@ export default async function BlogList({
 		},
 	);
 	return (
-		<section className="section space-y-8">
+		<section className="section mx-1 max-w-screen-xl space-y-8 rounded-3xl border-2 border-yellow-400 bg-yellow-100 bg-opacity-20 px-4 py-6 md:mx-auto">
 			{intro && (
-				<header className="richtext">
+				<header className="text-center text-xs">
 					<PortableText value={intro} components={customPortableTextComponents} />
 				</header>
 			)}
