@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import CTA from "@/app/ui/CTA";
+import CTA from "@/app/ui/CTA/CTA";
 import {
 	NavigationMenu,
 	NavigationMenuContent,

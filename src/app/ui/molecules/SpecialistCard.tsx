@@ -5,7 +5,7 @@ import Img from "@/app/ui/Img";
 import { cn } from "@/lib/utils";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
-import CTAList from "@/app/ui/CTAList";
+import CTAList from "@/app/ui/CTA/CTAList";
 
 export default function SpecialistCard({ specialist }: { specialist: Sanity.Specialist }) {
 	return (

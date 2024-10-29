@@ -8,7 +8,7 @@ import {
 	FaYoutube,
 } from "react-icons/fa6";
 import { IoIosLink } from "react-icons/io";
-import CTA from "./CTA";
+import CTA from "./CTA/CTA";
 import { cn } from "@/lib/utils";
 
 import { getSite } from "@/lib/sanity/getSite";

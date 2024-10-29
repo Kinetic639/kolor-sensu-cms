@@ -165,6 +165,7 @@ declare global {
 		export type CTA = {
 			link?: Link;
 			style?: string;
+			type?: string;
 		};
 
 		export type Image = SanityImageObject &

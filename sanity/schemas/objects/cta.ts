@@ -12,8 +12,8 @@ export default defineType({
 			type: "link",
 		}),
 		defineField({
-			name: "style",
-			title: "Button Style",
+			name: "type",
+			title: "Button Type",
 			type: "string",
 			options: {
 				list: [
@@ -25,6 +25,20 @@ export default defineType({
 				],
 				layout: "radio",
 			},
+		}),
+		defineField({
+			name: "style",
+			title: "Button Style",
+			type: "string",
+			options: {
+				list: [
+					{ title: "Solid", value: "solid" },
+					{ title: "Gradient", value: "gradient" },
+				],
+				layout: "radio",
+			},
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			hidden: ({ parent }) => parent?.type !== "button", // Only show when 'type' is 'button'
 		}),
 	],
 	preview: {

@@ -2,7 +2,7 @@ import { PortableText } from "@portabletext/react";
 import { stegaClean } from "@sanity/client/stega";
 import css from "./Hero.module.css";
 import { cn } from "@/lib/utils";
-import CTAList from "@/app/ui/CTAList";
+import CTAList from "@/app/ui/CTA/CTAList";
 import Img, { Source } from "@/app/ui/Img";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";

@@ -1,7 +1,7 @@
 import { PortableText, groq } from "next-sanity";
 import { fetchSanity } from "@/lib/sanity/fetch";
 import { linkQuery } from "@/lib/sanity/queries";
-import CTA from "@/app/ui/CTA";
+import CTA from "@/app/ui/CTA/CTA";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 

@@ -40,7 +40,7 @@ export default function CardSection({
 			ref={sectionRef} // Attach ref to the section
 			className={cn(
 				fullscreen && "bg-gradient-to-br from-[#c4d4d9] to-[#688d62]",
-				"w-full px-4 py-12 md:py-16",
+				"w-full px-4 py-12 md:py-16 md:pb-24",
 			)}
 		>
 			<div className={cn("mx-auto max-w-screen-xl px-4")}>
