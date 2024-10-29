@@ -40,7 +40,10 @@ export default function CTA({
 	// Handle all other types of buttons (e.g., solid)
 	if (type === "button" && link) {
 		return (
-			<Link href={link?.internal?.metadata.slug.current || ""} className={cn("", className)}>
+			<Link
+				href={link?.internal?.metadata.slug.current || ""}
+				className={cn("max-md:mx-auto", className)}
+			>
 				<motion.div
 					whileHover={{ scale: 1.05 }} // Add hover effect
 					whileTap={{ scale: 0.95 }} // Tap effect
@@ -48,9 +51,9 @@ export default function CTA({
 				>
 					<Button
 						className={cn(
-							"w-full self-center rounded-full p-7 text-center text-base uppercase transition-all duration-300 ease-in-out",
+							"w-full self-center rounded-full p-7 text-center text-base uppercase transition-all duration-300 ease-in-out max-md:mx-auto",
 							style === "solid"
-								? "bg-foreground text-background hover:bg-background-secondary"
+								? "max-w-sm bg-foreground text-background hover:bg-background-secondary max-md:mx-auto"
 								: "",
 						)}
 					>
