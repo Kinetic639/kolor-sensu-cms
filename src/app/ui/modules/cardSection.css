@@ -1,0 +1,10 @@
+.bg-multi-gradient {
+	background: linear-gradient(
+		135deg,
+		#adebaf,
+		/* Green */ #e0d293 25%,
+		/* Yellow */ #83a7ce 50%,
+		/* Blue */ #a990c9 75%,
+		/* Purple */ #c27fa0 100% /* Pink */
+	);
+}

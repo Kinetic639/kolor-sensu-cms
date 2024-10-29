@@ -1,36 +1,41 @@
 .btn {
-    display: block;
-    height: 60px; /* Increase height */
-    width: 220px; /* Increase width */
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: white;
-    font-size: 16px; /* Increase font size */
-    text-align: center;
-    border-radius: 9999px; /* Makes the button rounded */
+	display: block;
+	height: 60px; /* Increase height */
+	width: 220px; /* Increase width */
+	position: relative;
+	overflow: hidden;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: white;
+	font-size: 16px; /* Increase font size */
+	text-align: center;
+	border-radius: 9999px; /* Makes the button rounded */
 
-    &:after {
-        position: absolute;
-        content: '';
-        display: inline-block;
-        background: linear-gradient(45deg, rgba(169,116,72,1) 0%, rgba(181,155,130,1) 25%, rgba(85,43,8,1) 100%);
-        height: 60px; /* Match new button height */
-        width: 400px; /* Increase width for a smoother effect */
-        z-index: -1;
-        transform: translateX(-280px);
-        transition: transform 400ms ease-in;
-        border-radius: inherit; /* Ensures the gradient follows the rounded shape */
-    }
+	&:after {
+		position: absolute;
+		content: "";
+		display: inline-block;
+		background: linear-gradient(
+			45deg,
+			rgba(169, 116, 72, 1) 0%,
+			rgba(181, 155, 130, 1) 25%,
+			rgba(85, 43, 8, 1) 100%
+		);
+		height: 60px; /* Match new button height */
+		width: 400px; /* Increase width for a smoother effect */
+		z-index: -1;
+		transform: translateX(-280px);
+		transition: transform 400ms ease-in;
+		border-radius: inherit; /* Ensures the gradient follows the rounded shape */
+	}
 
-    &:hover:after {
-        transform: translateX(-200px);
-    }
+	&:hover:after {
+		transform: translateX(-200px);
+	}
 
-    span {
-        position: relative;
-        top: 20px; /* Adjust to center the text with the increased height */
-    }
+	span {
+		position: relative;
+		top: 20px; /* Adjust to center the text with the increased height */
+	}
 }
