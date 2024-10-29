@@ -21,7 +21,7 @@ export const EdgeBlob = () => {
 			<svg
 				viewBox="0 0 500 500"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute left-0 top-0 w-[140%] translate-x-[-35%] translate-y-[-50%] sm:w-[150%] sm:translate-x-[-50%] sm:translate-y-[-60%] lg:w-[120%] lg:translate-x-[-60%] lg:translate-y-[-70%]"
+				className="absolute left-0 top-0 w-[240%] translate-x-[-60%] translate-y-[-70%] sm:w-[150%] sm:translate-x-[-50%] sm:translate-y-[-60%] lg:w-[120%] lg:translate-x-[-60%] lg:translate-y-[-70%]"
 			>
 				<defs>
 					<linearGradient id="one" x1="0%" y1="10%" x2="30%" y2="100%">
