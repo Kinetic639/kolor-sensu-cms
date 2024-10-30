@@ -7,7 +7,7 @@ export default function Category({
 }) {
 	return (
 		<>
-			<span className="text-accent/40">#</span>
+			<span className="text-xs text-foreground">#</span>
 			{label || value?.title}
 		</>
 	);

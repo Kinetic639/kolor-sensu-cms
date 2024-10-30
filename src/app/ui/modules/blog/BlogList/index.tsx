@@ -23,7 +23,18 @@ export default async function BlogList({
 	const posts = await fetchSanity<Sanity.BlogPost[]>(
 		groq`*[_type == 'blog.post']|order(featured desc, publishDate desc)[0...$limit]{
 			...,
-			categories[]->
+			categories[]->,
+			author->{
+firstName,
+lastName,
+      avatar{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      }
+}
 		}`,
 		{
 			params: { limit },
