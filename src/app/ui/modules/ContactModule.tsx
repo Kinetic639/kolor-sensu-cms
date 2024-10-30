@@ -10,7 +10,7 @@ export default function ContactModule({
 	title?: string;
 	phone?: string;
 	email?: string;
-	richDescription?: any;
+	richDescription?: Sanity.BlockContent;
 	image?: {
 		asset: { url: string };
 		alt: string;

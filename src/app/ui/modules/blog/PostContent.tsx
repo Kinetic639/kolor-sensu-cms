@@ -1,6 +1,5 @@
 import Categories from "./Categories";
 import ReadTime from "./ReadTime";
-import css from "./PostContent.module.css";
 import uid from "@/lib/uid";
 import Content from "@/app/ui/modules/RichtextModule/Content";
 import { cn } from "@/lib/utils";

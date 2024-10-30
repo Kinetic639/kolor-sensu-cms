@@ -24,7 +24,7 @@ export function ServiceCard({
 		<div
 			className={cn(
 				"flex flex-col justify-between gap-8 rounded-lg border px-6 py-10 md:p-10",
-				"from-servicecard to-servicecard-dark bg-gradient-to-br", // Updated gradient colors for a soft green tone
+				"bg-gradient-to-br from-servicecard to-servicecard-dark", // Updated gradient colors for a soft green tone
 				"shadow-lg",
 			)}
 		>
