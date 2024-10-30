@@ -85,7 +85,7 @@ export const ContactForm: FC = () => {
 	const messageId = useId();
 
 	return (
-		<div className="flex h-full flex-1 flex-col items-center justify-center gap-6">
+		<div className="flex h-full flex-1 flex-col items-center gap-6 rounded-3xl border-2 border-purple-400 bg-purple-200 bg-opacity-30 p-6">
 			<h4 className="w-full text-center text-[24px] font-bold leading-[48px]">
 				Formularz kontaktowy
 			</h4>

@@ -41,7 +41,7 @@ export const customPortableTextComponents: PortableTextComponents = {
 			</Typography>
 		),
 		h6: ({ children }) => (
-			<Typography as="h6" variant="h6" className="text-center md:text-left">
+			<Typography as="h6" variant="h6" className="text-inherit">
 				{children}
 			</Typography>
 		),
@@ -60,6 +60,12 @@ export const customPortableTextComponents: PortableTextComponents = {
 				{children}
 			</Typography>
 		),
+		// Custom Blockquote Style
+		blockquote: ({ children }) => (
+			<blockquote className="my-4 ml-1 border-l-4 border-gray-300 pl-4 italic text-gray-700">
+				{children}
+			</blockquote>
+		),
 	},
 	marks: {
 		link: ({ children, value }: PortableTextMarkComponentProps<LinkMark>) => {
@@ -72,20 +78,22 @@ export const customPortableTextComponents: PortableTextComponents = {
 		},
 	},
 	list: {
-		bullet: ({ children }) => <ul className="mb-4 ml-6 list-outside list-disc">{children}</ul>,
-		number: ({ children }) => <ol className="mb-4 ml-6 list-outside list-decimal">{children}</ol>,
+		bullet: ({ children }) => (
+			<ul className="ml-6 list-disc gap-2">{children}</ul> // Only apply list-disc here
+		),
+		number: ({ children }) => (
+			<ol className="ml-6 list-decimal">{children}</ol> // Only apply list-decimal here
+		),
 	},
 	listItem: {
 		bullet: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
-			<Typography as="li" variant="body1" className="mb-1">
-				{children}
-				<ul className="ml-6 list-disc">{children}</ul>
+			<Typography as="li" variant="body1">
+				{children} {/* Remove inner ul */}
 			</Typography>
 		),
 		number: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
-			<Typography as="li" variant="body1" className="mb-2">
-				{children}
-				<ol className="ml-6 list-decimal">{children}</ol>
+			<Typography as="li" variant="body1">
+				{children} {/* Remove inner ol */}
 			</Typography>
 		),
 	},
