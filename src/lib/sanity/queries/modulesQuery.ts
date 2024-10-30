@@ -42,13 +42,22 @@ export const modulesQuery = groq`
     description,
     showTitle,
     showDescription,
+        showImage,
+      image{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
     faqNavigation->{
       title,
       items[]{
         question,
         answer
       }
-    }
+    },
+    
   },
   _type == 'testimonial.featured' => { testimonial-> },
   _type == 'testimonial-list' => { testimonials[]-> },

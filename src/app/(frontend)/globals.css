@@ -102,6 +102,9 @@
 		--blob-2-center: hsla(209, 60%, 65%, 0.5);
 		--blob-2-bot: hsl(80, 11%, 50%);
 
+		--service-card-light: #99ccd7;
+		--service-card-dark: #a197c2;
+
 		--blob-3-top: hsl(112, 58%, 24%);
 		--blob-3-bot: hsl(120, 32%, 85%);
 	}

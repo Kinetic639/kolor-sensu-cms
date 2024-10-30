@@ -73,6 +73,10 @@ const config: Config = {
 					DEFAULT: "hsl(var(--muted))",
 					foreground: "hsl(var(--muted-foreground))",
 				},
+				servicecard: {
+					DEFAULT: "var(--service-card-light)",
+					dark: "var(--service-card-dark)",
+				},
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",
