@@ -20,7 +20,7 @@ export default function BlogCarousel({
 	posts: Sanity.BlogPost[];
 	predefinedFilters?: Sanity.BlogCategory[];
 } & React.HTMLAttributes<HTMLUListElement>) {
-	const { selected, reset } = categoryStore();
+	const { selected } = categoryStore();
 	const [api, setApi] = useState<CarouselApi>();
 	const [current, setCurrent] = useState(0);
 

@@ -1,12 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import { ArrowRight, ChevronsRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Categories from "./Categories";
 import processUrl from "@/lib/processUrl";
 import Img from "@/app/ui/Img";
 import Date from "@/app/ui/Date";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
-import { cn } from "@/lib/utils";
 
 export default function PostPreview({ post }: { post: Sanity.BlogPost }) {
 	const authorName = `${post.author?.firstName || ""} ${post.author?.lastName || ""}`.trim();
