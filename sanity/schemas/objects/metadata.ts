@@ -19,7 +19,7 @@ export default defineType({
 		defineField({
 			name: "title",
 			type: "string",
-			validation: (Rule) => Rule.max(60).warning(),
+			validation: (Rule) => Rule.max(70).warning(),
 		}),
 		defineField({
 			name: "description",

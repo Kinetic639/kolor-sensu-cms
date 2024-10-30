@@ -42,6 +42,14 @@ export default defineType({
 			group: "content",
 		}),
 		defineField({
+			name: "author",
+			title: "Author",
+			type: "reference",
+			to: [{ type: "specialist" }],
+			group: "content",
+			description: "Select the author of the blog post from the specialists.",
+		}),
+		defineField({
 			name: "featured",
 			type: "boolean",
 			group: "options",
@@ -64,13 +72,12 @@ export default defineType({
 			featured: "featured",
 			title: "metadata.title",
 			subtitle: "publishDate",
-			media: "metadata.image",
+			author: "author.firstName",
+			media: "author.avatar",
 		},
-		prepare: ({ title, subtitle, media, featured }) => ({
+		prepare: ({ title, subtitle, media, featured, author }) => ({
 			title: [featured && "★", title].filter(Boolean).join(" "),
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			subtitle,
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			subtitle: `${subtitle} • by ${author || "Unknown"}`,
 			media,
 		}),
 	},
