@@ -18,12 +18,12 @@ export default function PostContent({
 	return (
 		<article id={uid(props)}>
 			<header className="section space-y-6 text-center">
-				<h1 className="h1 text-balance">{post.metadata.title}</h1>
 				<div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
 					<Date value={post.publishDate} />
 					<Categories className="flex flex-wrap gap-x-2" categories={post.categories} />
 					<ReadTime value={post.readTime} />
 				</div>
+				<h1 className="h1 text-balance">{post.metadata.title}</h1>
 			</header>
 			<div className={cn("section grid gap-8", showTOC && "lg:grid-cols-[1fr,auto]")}>
 				{showTOC && (
