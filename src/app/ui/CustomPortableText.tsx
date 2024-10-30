@@ -72,20 +72,22 @@ export const customPortableTextComponents: PortableTextComponents = {
 		},
 	},
 	list: {
-		bullet: ({ children }) => <ul className="mb-4 ml-6 list-outside list-disc">{children}</ul>,
-		number: ({ children }) => <ol className="mb-4 ml-6 list-outside list-decimal">{children}</ol>,
+		bullet: ({ children }) => (
+			<ul className="mb-4 ml-6 list-disc">{children}</ul> // Only apply list-disc here
+		),
+		number: ({ children }) => (
+			<ol className="mb-4 ml-6 list-decimal">{children}</ol> // Only apply list-decimal here
+		),
 	},
 	listItem: {
 		bullet: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
 			<Typography as="li" variant="body1" className="mb-1">
-				{children}
-				<ul className="ml-6 list-disc">{children}</ul>
+				{children} {/* Remove inner ul */}
 			</Typography>
 		),
 		number: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
 			<Typography as="li" variant="body1" className="mb-2">
-				{children}
-				<ol className="ml-6 list-decimal">{children}</ol>
+				{children} {/* Remove inner ol */}
 			</Typography>
 		),
 	},

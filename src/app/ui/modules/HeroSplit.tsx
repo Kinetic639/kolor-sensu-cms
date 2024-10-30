@@ -14,6 +14,7 @@ export default function HeroSplit({
 	ctas,
 	image,
 	backgroundType,
+	backgroundImage,
 }: Partial<{
 	pretitle: string;
 	frameStyle: string;
@@ -21,6 +22,7 @@ export default function HeroSplit({
 	ctas: Sanity.CTA[];
 	image: Sanity.Image & { onRight?: boolean; frameStyle?: string };
 	backgroundType: string;
+	backgroundImage: Sanity.Image;
 }>) {
 	const cleanedFrameStyle = image?.frameStyle
 		?.replace(/[\u200B-\u200D\uFEFF]/g, "")
@@ -30,12 +32,25 @@ export default function HeroSplit({
 	return (
 		<section
 			className={cn(
-				"relative border border-red-400",
+				"relative",
 				backgroundType === "solid" && "bg-background",
+				backgroundType === "blob" && "relative",
 			)}
 		>
+			{/* Render Background Image */}
+			{backgroundImage?.asset && (
+				<Img
+					image={backgroundImage}
+					imageWidth={1800}
+					alt={backgroundImage?.alt || "Background Image"}
+					className="inset-0s absolute z-[-999] h-full w-full object-cover"
+				/>
+			)}
+
+			{/* Optional Blob Background */}
 			{backgroundType === "blob" && <EdgeBlob />}
-			<div className="relative mx-auto grid max-w-screen-xl items-stretch gap-6 px-4 py-16 pt-10 md:grid-cols-2 md:gap-x-12 md:pt-16">
+
+			<div className="relative z-10 mx-auto grid max-w-screen-xl items-stretch gap-6 px-4 py-16 pt-10 md:grid-cols-2 md:gap-x-12 md:pt-16">
 				<figure className={cn("max-md:full-bleed", image?.onRight && "md:order-1")}>
 					<MotionDiv
 						initial={{ opacity: 0 }}

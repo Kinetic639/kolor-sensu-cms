@@ -13,6 +13,7 @@ export default defineType({
 		{ name: "background", title: "Background" },
 	],
 	fields: [
+		// Existing fields
 		defineField({
 			name: "pretitle",
 			type: "string",
@@ -47,21 +48,19 @@ export default defineType({
 			group: "background",
 		}),
 		defineField({
+			name: "backgroundImage",
+			title: "Background Image",
+			type: "image",
+			options: { hotspot: true },
+			group: "background",
+		}),
+		defineField({
 			name: "image",
 			type: "image",
-			options: {
-				hotspot: true,
-			},
+			options: { hotspot: true },
 			fields: [
-				defineField({
-					name: "alt",
-					type: "string",
-				}),
-				defineField({
-					name: "onRight",
-					type: "boolean",
-					initialValue: false,
-				}),
+				defineField({ name: "alt", type: "string" }),
+				defineField({ name: "onRight", type: "boolean", initialValue: false }),
 				defineField({
 					name: "frameStyle",
 					title: "Image Frame Style",
@@ -95,8 +94,10 @@ export default defineType({
 			media: "image.asset",
 		},
 		prepare: ({ content, media }) => ({
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			title: getBlockText(content),
 			subtitle: "Hero (split)",
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			media,
 		}),
 	},

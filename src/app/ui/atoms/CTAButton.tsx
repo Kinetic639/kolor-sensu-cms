@@ -1,8 +1,7 @@
 "use client";
-import React, { type FC } from "react";
+import React, { type FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
 import { cn } from "@/lib/utils";
 interface CTAButtonProps {
 	className?: string;
@@ -10,7 +9,18 @@ interface CTAButtonProps {
 }
 
 export const CTAButton: FC<CTAButtonProps> = ({ ctas, className }) => {
-	const isScrolled = usePageScrolled();
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScrolled(window.scrollY > 0);
+		};
+
+		handleScroll(); // Initial check
+		window.addEventListener("scroll", handleScroll);
+
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	if (!ctas || !ctas[0]?.link?.internal?.metadata.slug.current) return null;
 	return (

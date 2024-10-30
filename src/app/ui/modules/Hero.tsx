@@ -48,11 +48,11 @@ export default function Hero({
 
 			{content && (
 				<div
-					className={cn("section mx-auto flex w-full max-w-screen-xl flex-col px-0 py-12 md:px-4")}
+					className={cn("section mx-auto flex w-full max-w-screen-xl flex-col px-0 py-12 md:px-8")}
 				>
 					<div
 						className={cn(
-							"richtext relative isolate mx-auto w-full rounded-md px-4 py-8 md:px-6 [&_:is(h1,h2)]:text-balance",
+							"relative isolate mx-auto w-full rounded-md px-4 py-8 md:px-6 [&_:is(h1,h2)]:text-balance",
 							bgImage?.asset && "text-shadow shadow-xl",
 							!bgImage?.asset && "bg-[#c4d6c2] shadow-lg",
 							hasImage && css.txt,
@@ -69,12 +69,11 @@ export default function Hero({
 						)}
 						style={{ textAlign: stegaClean(textAlign) }}
 					>
-						<Typography as="h1" variant="h1" className="mb-4">
+						<Typography as="h1" variant="h4" className="mb-4">
 							{pretitle}
 						</Typography>
 
 						<PortableText value={content} components={customPortableTextComponents} />
-
 						<CTAList
 							ctas={ctas}
 							className={cn("!mt-4", {
