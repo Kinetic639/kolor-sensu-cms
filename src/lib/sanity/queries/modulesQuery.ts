@@ -157,11 +157,12 @@ export const modulesQuery = groq`
       title,
       description,
       image {
-        asset->{
-          url
-        },
-        alt
+      asset->{
+        _id,
+        url
       },
+      alt
+    },
       link
     }
   }
