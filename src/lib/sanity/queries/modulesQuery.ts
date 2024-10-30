@@ -138,7 +138,16 @@ export const modulesQuery = groq`
   },
   _type == 'contactModule' => {
     title,
-    description
+    phone,
+    email,
+    richDescription,
+    image {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    }
   },
   _type == 'productsModule' => {
     title,

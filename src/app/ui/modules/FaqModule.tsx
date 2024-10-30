@@ -28,8 +28,6 @@ export default function FAQModule({
 	};
 }) {
 	const hasFAQItems = faqNavigation?.items && faqNavigation.items.length > 0;
-	console.log("image", image);
-	console.log("showImage", showImage);
 	return (
 		<section className="mx-auto flex max-w-screen-xl flex-col px-2 py-12">
 			<div className="w-full px-1 md:px-4">
