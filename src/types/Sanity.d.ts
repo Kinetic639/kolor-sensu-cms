@@ -147,6 +147,15 @@ declare global {
 			featured: boolean;
 			hideTableOfContents: boolean;
 			publishDate: string;
+			author: {
+				firstName: string;
+				lastName: string;
+				avatar?: {
+					asset: {
+						url: string;
+					};
+				};
+			};
 		};
 
 		export type BlogCategory = SanityDocument<{
