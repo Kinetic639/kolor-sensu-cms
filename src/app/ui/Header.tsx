@@ -19,24 +19,24 @@ export const Header = async () => {
 		>
 			<div
 				className={cn(
-					"relative mx-auto flex w-full max-w-screen-xl items-center justify-between gap-x-6 py-2",
+					"relative mx-auto flex w-full max-w-screen-xl items-center justify-between gap-x-6 py-2 md:py-1.5",
 				)}
 			>
 				<NavAnimatedBackground />
 				<Link
-					className={cn("h3 md:h2 ml-2.5 inline-block", logo?.image && "max-w-[250px]")}
+					className={cn("h3 md:h2 ml-2.5 inline-block md:ml-2", logo?.image && "max-w-[250px]")}
 					href="/"
 				>
 					{logoImage && (
 						<Img
-							className="inline-block max-h-[2.2em] w-auto"
+							className="inline-block max-h-[2.2em] w-auto md:max-h-[2.6em]"
 							image={logoImage}
 							alt={logo?.name || title}
 						/>
 					)}
 				</Link>
 				{headerMenu && <DesktopNavigation headerMenu={headerMenu} />}
-				<CTAButton ctas={ctas || []} className="mr-4 hidden text-xs md:block" />
+				<CTAButton ctas={ctas || []} className="mr-2 hidden text-xs md:block" />
 				<SideDrawer />
 			</div>
 		</div>

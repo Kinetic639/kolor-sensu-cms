@@ -1,10 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { type FC } from "react";
+import React, { useEffect, useState, type FC } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import processUrl from "@/lib/processUrl";
-import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
 import LinkList from "@/app/ui/LinkList";
 
 interface DesktopNavigationProps {
@@ -27,7 +26,19 @@ const containerVariants = {
 
 export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) => {
 	const path = usePathname();
-	const isScrolled = usePageScrolled();
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	// Update isScrolled based on scroll position when component mounts
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScrolled(window.scrollY > 0);
+		};
+
+		handleScroll(); // Initial check
+		window.addEventListener("scroll", handleScroll);
+
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	return (
 		<motion.nav
@@ -54,7 +65,11 @@ export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) =>
 									})}
 									className={`relative pb-0.5 text-[18px] font-medium capitalize transition-all duration-200 ${
 										isActive ? "text-foreground" : ""
-									} ${isScrolled ? "text-foreground-secondary hover:text-[#2e4654]" : "text-foreground hover:text-foreground-hover"} `}
+									} ${
+										isScrolled
+											? "text-foreground-secondary hover:text-[#2e4654]"
+											: "text-foreground hover:text-foreground-hover"
+									}`}
 								>
 									{isActive && (
 										<motion.span
@@ -62,7 +77,9 @@ export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) =>
 											animate={{ y: 0 }}
 											transition={{ type: "tween" }}
 											layoutId="underline"
-											className={`absolute left-0 top-full h-[2px] w-full ${isScrolled ? "bg-foreground-secondary" : "bg-foreground"}`}
+											className={`absolute left-0 top-full h-[2px] w-full ${
+												isScrolled ? "bg-foreground-secondary" : "bg-foreground"
+											}`}
 										/>
 									)}
 									{link.label}

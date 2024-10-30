@@ -19,7 +19,7 @@ export const CTAButton: FC<CTAButtonProps> = ({ ctas, className }) => {
 				className={cn(
 					"w-full self-center rounded-full bg-foreground px-6 py-6 text-center",
 					isScrolled
-						? "hover:bg-background hover:text-foreground"
+						? "bg-background text-foreground hover:bg-foreground hover:text-background"
 						: "hover:bg-background-secondary hover:text-background",
 				)}
 			>
