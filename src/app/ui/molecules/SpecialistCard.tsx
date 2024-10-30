@@ -27,7 +27,7 @@ export default function SpecialistCard({ specialist }: { specialist: Sanity.Spec
 			</div>
 
 			<div className="flex-1 space-y-8">
-				<div className="rounded-md bg-[#c4d6c2] p-4">
+				<div className="rounded-md bg-[#c4d6c2] p-4 shadow-md">
 					<Typography as="h2" variant="h3" className="mb-1 max-md:text-base max-md:font-bold">
 						<span className="text-base">{specialist.title} </span>
 						{specialist.firstName} {specialist.lastName}

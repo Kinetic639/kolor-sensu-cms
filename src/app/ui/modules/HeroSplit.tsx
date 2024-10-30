@@ -28,7 +28,12 @@ export default function HeroSplit({
 		.toLowerCase();
 
 	return (
-		<section className={cn("relative", backgroundType === "solid" && "bg-background")}>
+		<section
+			className={cn(
+				"relative border border-red-400",
+				backgroundType === "solid" && "bg-background",
+			)}
+		>
 			{backgroundType === "blob" && <EdgeBlob />}
 			<div className="relative mx-auto grid max-w-screen-xl items-stretch gap-6 px-4 py-16 pt-10 md:grid-cols-2 md:gap-x-12 md:pt-16">
 				<figure className={cn("max-md:full-bleed", image?.onRight && "md:order-1")}>
@@ -89,7 +94,7 @@ export default function HeroSplit({
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ delay: 0.4 }}
-						className="text-right"
+						className={cn("text-center", image?.onRight ? "md:text-right" : "md:text-left")}
 					>
 						<PortableText value={content} components={customPortableTextComponents} />
 					</MotionDiv>
