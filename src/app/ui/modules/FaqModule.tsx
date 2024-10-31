@@ -31,14 +31,14 @@ export default function FAQModule({
 	return (
 		<section className="mx-auto flex max-w-screen-xl flex-col px-2 py-12">
 			<div className="w-full px-1 md:px-4">
-				<div className="mb-4 flex flex-col gap-1 text-center">
+				<div className="mb-4 flex flex-col gap-1 text-center md:mb-10">
 					{showTitle && (
 						<Typography as="h2" variant="h3">
 							{title}
 						</Typography>
 					)}
 					{showDescription && (
-						<Typography as="p" variant="body1">
+						<Typography as="p" variant="body1" className="">
 							{description}
 						</Typography>
 					)}

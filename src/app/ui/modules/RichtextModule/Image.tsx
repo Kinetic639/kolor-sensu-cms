@@ -30,7 +30,7 @@ export default function Image({
 						<>
 							{" ("}
 							<a href={value.source} className="image-source link">
-								Source
+								Źródło
 							</a>
 							{")"}
 						</>

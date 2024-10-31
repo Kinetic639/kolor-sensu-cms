@@ -31,6 +31,7 @@ import blogPostContent from "@sanity/schemas/modules/blog-post-content";
 import uid from "@sanity/schemas/objects/uid";
 import product from "@sanity/schemas/documents/product";
 import productsModule from "@sanity/schemas/modules/productsModule";
+import podcastModule from "@sanity/schemas/modules/podcastModule";
 
 // modules
 
@@ -73,4 +74,5 @@ export const schemaTypes = [
 	contactModule,
 	consultationTestModule,
 	productsModule,
+	podcastModule,
 ];

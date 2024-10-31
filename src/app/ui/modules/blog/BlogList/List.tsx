@@ -7,9 +7,11 @@ import PostPreview from "../PostPreview";
 export default function List({
 	posts,
 	predefinedFilters,
+	layout,
 	...props
 }: {
 	posts: Sanity.BlogPost[];
+	layout?: "grid" | "carousel";
 	predefinedFilters?: Sanity.BlogCategory[];
 } & React.HTMLAttributes<HTMLUListElement>) {
 	const { selected, reset } = categoryStore();
@@ -34,10 +36,10 @@ export default function List({
 	}
 
 	return (
-		<ul {...props} className="mx-auto w-full max-w-screen-xl">
+		<ul {...props} className="mx-auto flex w-full max-w-screen-xl flex-col gap-8">
 			{filtered?.map((post) => (
 				<li className="anim-fade" key={post._id}>
-					<PostPreview post={post} />
+					<PostPreview post={post} layout={layout} />
 				</li>
 			))}
 		</ul>
