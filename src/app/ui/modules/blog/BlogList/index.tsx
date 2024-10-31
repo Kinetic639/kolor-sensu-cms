@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import Filtering from "@/app/ui/modules/blog/BlogList/Filtering";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 import BlogCarousel from "@/app/ui/modules/blog/BlogList/BlogCarousel";
-import PodcastModule from "@/app/ui/modules/PodcastModule";
 
 export default async function BlogList({
 	intro,
