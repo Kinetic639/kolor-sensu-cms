@@ -13,16 +13,20 @@ interface ProductsModuleProps {
 export default function ProductsModule({ title, description, products }: ProductsModuleProps) {
 	return (
 		<section className="mx-auto w-full max-w-screen-xl px-1 pt-6 md:px-4 md:pt-10">
-			<div className="flex flex-col pb-4">
-				<Typography as="h5" variant="h5">
-					{title}
-				</Typography>
-				{description && (
-					<Typography as="p" variant="body1">
-						{description}
-					</Typography>
-				)}
-			</div>
+			{title || description ? (
+				<div className="flex flex-col pb-4">
+					{title && (
+						<Typography as="h5" variant="h5">
+							{title}
+						</Typography>
+					)}
+					{description && (
+						<Typography as="p" variant="body1">
+							{description}
+						</Typography>
+					)}
+				</div>
+			) : null}
 			<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{products.map((product) => (
 					<div

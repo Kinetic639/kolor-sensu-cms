@@ -12,7 +12,6 @@ export default defineType({
 			title: "Title",
 			type: "string",
 			description: "The title for the products section.",
-			validation: (Rule) => Rule.required().min(2).max(80), // Title is required with length validation
 		}),
 		defineField({
 			name: "description",
