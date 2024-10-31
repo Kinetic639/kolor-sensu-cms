@@ -5,6 +5,8 @@ import { dashboardTool, projectInfoWidget, projectUsersWidget } from "@sanity/da
 import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { visionTool } from "@sanity/vision";
 import { codeInput } from "@sanity/code-input";
+import { colorInput } from "@sanity/color-input"; // Import the color input plugin
+import { simplerColorInput } from "sanity-plugin-simpler-color-input";
 import { locations } from "./src/presentation";
 import { BASE_URL, projectId, dataset } from "./src/env";
 import { sanitypressGuideWidget } from "./src/sanitypressGuideWidget";
@@ -49,6 +51,12 @@ export default defineConfig({
 		}),
 		visionTool(),
 		codeInput(),
+		colorInput(),
+		simplerColorInput({
+			// Note: These are all optional
+			defaultColorFormat: "hex",
+			enableSearch: true,
+		}),
 	],
 
 	tasks: { enabled: false },

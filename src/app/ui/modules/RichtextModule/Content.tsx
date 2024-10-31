@@ -8,12 +8,7 @@ export default function Content({
 	children,
 }: { value: Sanity.BlockContent } & React.HTMLProps<HTMLDivElement>) {
 	return (
-		<div
-			className={cn(
-				"mx-auto w-full space-y-[1em] border border-red-400 px-4 [&>:first-child]:!mt-0",
-				className,
-			)}
-		>
+		<div className={cn("mx-auto w-full space-y-[1em] px-4 [&>:first-child]:!mt-0", className)}>
 			<PortableText value={value} components={customPortableTextComponents} />
 
 			{children}

@@ -83,28 +83,27 @@ export default function BlogCarousel({
 					</CarouselItem>
 				))}
 			</CarouselContent>
-			{isDesktop && (
-				<>
-					<CarouselPrevious />
-					<CarouselNext />
-				</>
-			)}
+
 			{/* Dot Indicators */}
-			<div className="flex justify-center space-x-5 pt-6">
-				{filtered.map((_, index) => (
-					<button
-						key={index}
-						className={`flex h-6 w-6 items-center justify-center rounded-full ${
-							index === current ? "md:border-3 border-[3px] border-foreground" : "bg-transparent"
-						} relative`}
-						aria-label={`Go to slide ${index + 1}`}
-						onClick={() => goToSlide(index)}
-					>
-						<span
-							className={`block h-3 w-3 rounded-full ${index === current ? "bg-foreground" : "bg-foreground"}`}
-						></span>
-					</button>
-				))}
+			<div className="flex items-center justify-center px-4 pt-6">
+				{isDesktop && <CarouselPrevious />}
+				<div className="mx-12 flex justify-center space-x-5">
+					{filtered.map((_, index) => (
+						<button
+							key={index}
+							className={`flex h-6 w-6 items-center justify-center rounded-full ${
+								index === current ? "md:border-3 border-[3px] border-foreground" : "bg-transparent"
+							} relative`}
+							aria-label={`Go to slide ${index + 1}`}
+							onClick={() => goToSlide(index)}
+						>
+							<span
+								className={`block h-3 w-3 rounded-full ${index === current ? "bg-foreground" : "bg-foreground"}`}
+							></span>
+						</button>
+					))}
+				</div>
+				{isDesktop && <CarouselNext />}
 			</div>
 		</Carousel>
 	);
