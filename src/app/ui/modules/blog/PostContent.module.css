@@ -1,6 +1,5 @@
 .body {
 	@screen md {
-
 		& > * {
 			grid-column: content;
 		}
