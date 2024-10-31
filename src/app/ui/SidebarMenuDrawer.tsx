@@ -59,9 +59,10 @@ export const SidebarMenuDrawer: React.FC<SidebarMenuProps> = ({ headerMenu, ctas
 												base: false,
 												params: link.params,
 											})}
-											className={`relative pb-0.5 text-xl font-medium capitalize transition-all ${
-												isActive ? "text-foreground-hover" : ""
-											} ${isScrolled ? "text-foreground-secondary hover:text-[#2e4654]" : "text-foreground hover:text-foreground-hover"} `}
+											className={cn(
+												`relative pb-0.5 text-xl font-medium capitalize text-foreground transition-all hover:text-foreground-hover`,
+												isActive && "text-foreground-hover",
+											)}
 										>
 											{link.label}
 										</Link>

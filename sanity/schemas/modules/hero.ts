@@ -78,6 +78,21 @@ export default defineType({
 			},
 			group: "image",
 		}),
+		// New color fields for background and text
+		defineField({
+			name: "backgroundColor",
+			title: "Background Color",
+			type: "simplerColor",
+			description: "Select a background color for the hero module.",
+			group: "options",
+		}),
+		defineField({
+			name: "textColor",
+			title: "Text Color",
+			type: "simplerColor",
+			description: "Select a text color for the hero module.",
+			group: "options",
+		}),
 		defineField({
 			...textAlign,
 			fieldset: "alignment",

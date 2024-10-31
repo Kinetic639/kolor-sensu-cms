@@ -39,7 +39,7 @@ const navigationMenuTriggerStyle = cva(
 	{
 		variants: {
 			isScrolled: {
-				true: "text-foreground-secondary hover:text-[#2e4654]",
+				true: "text-foreground hover:text-foreground-hover md:text-foreground-secondary md:hover:text-[#2e4654]",
 				false: "text-foreground hover:text-foreground-hover",
 			},
 		},
