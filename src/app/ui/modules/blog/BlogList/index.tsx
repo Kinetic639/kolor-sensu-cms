@@ -42,7 +42,13 @@ lastName,
 		},
 	);
 	return (
-		<section className="section mx-1 max-w-screen-xl space-y-8 rounded-3xl border-2 border-yellow-400 bg-yellow-100 bg-opacity-20 px-4 py-6 md:mx-auto">
+		<section
+			className={cn(
+				"section mx-1 max-w-screen-xl space-y-8 rounded-3xl px-4 py-6 md:mx-auto",
+				stegaClean(layout) === "carousel" &&
+					"border-2 border-yellow-400 bg-yellow-100 bg-opacity-20",
+			)}
+		>
 			{intro && (
 				<header className="text-center text-xs">
 					<PortableText value={intro} components={customPortableTextComponents} />
@@ -56,7 +62,7 @@ lastName,
 					posts={posts}
 					predefinedFilters={predefinedFilters}
 					className={cn(
-						"gap-x-6 gap-y-12",
+						"gap-x-8 gap-y-12",
 						"carousel max-xl:full-bleed md:overflow-fade-r pb-4 [--size:320px] max-xl:px-4",
 					)}
 				/>
@@ -64,6 +70,7 @@ lastName,
 				<List
 					posts={posts}
 					predefinedFilters={predefinedFilters}
+					layout={stegaClean(layout)}
 					className={cn(
 						"gap-x-6 gap-y-12",
 						stegaClean(layout) === "grid"
