@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import processUrl from "@/lib/processUrl";
 import LinkList from "@/app/ui/LinkList";
+import { cn } from "@/lib/utils";
 
 interface DesktopNavigationProps {
 	headerMenu: Sanity.Navigation;
@@ -63,25 +64,15 @@ export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) =>
 										base: false,
 										params: link.params,
 									})}
-									className={`relative pb-0.5 text-[18px] font-medium transition-all duration-200 ${
-										isActive ? "text-foreground" : ""
-									} ${
+									className={cn(
+										`relative pb-0.5 text-[18px] font-medium transition-all duration-200`,
 										isScrolled
-											? "text-foreground-secondary hover:text-[#2e4654]"
-											: "text-foreground hover:text-foreground-hover"
-									}`}
-								>
-									{isActive && (
-										<motion.span
-											initial={{ y: "-100%" }}
-											animate={{ y: 0 }}
-											transition={{ type: "tween" }}
-											layoutId="underline"
-											className={`absolute left-0 top-full h-[2px] w-full ${
-												isScrolled ? "bg-foreground-secondary" : "bg-foreground"
-											}`}
-										/>
+											? "text-foreground-secondary hover:text-slate-300"
+											: "text-foreground hover:text-foreground-hover",
+										isActive ? "text-foreground-hover" : "",
+										isActive && isScrolled && "text-slate-300",
 									)}
+								>
 									{link.label}
 								</Link>
 							</motion.div>

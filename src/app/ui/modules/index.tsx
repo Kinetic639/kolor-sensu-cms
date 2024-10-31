@@ -12,6 +12,7 @@ import { ConsultationTestModule } from "@/app/ui/modules/ConsultationTestModule/
 import BlogList from "@/app/ui/modules/blog/BlogList";
 import PostContent from "@/app/ui/modules/blog/PostContent";
 import ProductsModule from "@/app/ui/modules/productsModule";
+import PodcastModule from "@/app/ui/modules/PodcastModule";
 
 export default function Modules({
 	modules,
@@ -55,6 +56,8 @@ export default function Modules({
 						return <ConsultationTestModule {...module} key={module._key} />;
 					case "productsModule":
 						return <ProductsModule {...(module as Sanity.ProductsModule)} key={module._key} />;
+					case "podcastModule":
+						return <PodcastModule key={module._key} />;
 					default:
 						return <div key={module._key} />;
 				}

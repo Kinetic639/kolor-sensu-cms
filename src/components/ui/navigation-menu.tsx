@@ -35,29 +35,21 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-	"group inline-flex h-9 w-max items-center justify-center text-[18px] px-2 font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50",
-	{
-		variants: {
-			isScrolled: {
-				true: "text-foreground hover:text-foreground-hover md:text-foreground-secondary md:hover:text-[#2e4654]",
-				false: "text-foreground hover:text-foreground-hover",
-			},
-		},
-	},
+	"group inline-flex h-6 w-max items-center justify-center text-[18px]  font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50",
 );
 
 const NavigationMenuTrigger = React.forwardRef<
 	React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
-	React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger> & { isScrolled: boolean }
->(({ className, children, isScrolled, ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => (
 	<NavigationMenuPrimitive.Trigger
 		ref={ref}
-		className={cn(navigationMenuTriggerStyle({ isScrolled }), className)}
+		className={cn(navigationMenuTriggerStyle(), className)}
 		{...props}
 	>
-		{children}{" "}
+		{children}
 		<ChevronDownIcon
-			className="relative top-[1px] ml-1 h-5 w-5 transition duration-300 group-data-[state=open]:rotate-180"
+			className="relative top-[1px] mb-1 ml-1 h-5 w-5 transition duration-300 group-data-[state=open]:rotate-180"
 			aria-hidden="true"
 		/>
 	</NavigationMenuPrimitive.Trigger>

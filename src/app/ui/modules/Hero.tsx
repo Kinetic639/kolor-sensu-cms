@@ -1,5 +1,6 @@
 import { PortableText } from "@portabletext/react";
 import { stegaClean } from "@sanity/client/stega";
+import React from "react";
 import css from "./Hero.module.css";
 import { cn } from "@/lib/utils";
 import CTAList from "@/app/ui/CTA/CTAList";
@@ -30,8 +31,8 @@ export default function Hero({
 	textColor: { value: string };
 }>) {
 	const hasImage = !!bgImage?.asset;
-	const defaultBackgroundColor = "#c4d6c2"; // Default background color
-	const defaultTextColor = "text-foreground"; // Default text color
+	const defaultBackgroundColor = "#c4d6c2";
+	const defaultTextColor = "text-foreground";
 
 	return (
 		<section
