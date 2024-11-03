@@ -3,13 +3,17 @@ import Navigation from "./Navigation";
 import { getSite } from "@/lib/sanity/getSite";
 
 export default async function Footer() {
-	const { title, copyright } = await getSite();
+	const { title, copyright, footerDescription, footerMenu, social } = await getSite();
 
 	return (
 		<footer className="bg-gray-500 text-center text-foreground-secondary">
 			<div className="section border-b border-canvas/20">
 				<div className="mx-auto flex w-full max-w-screen-xl justify-center gap-6 p-4">
-					<Navigation />
+					<Navigation
+						footerMenu={footerMenu}
+						footerDescription={footerDescription}
+						social={social}
+					/>
 				</div>
 			</div>
 

@@ -33,12 +33,16 @@ export default function Hero({
 	const hasImage = !!bgImage?.asset;
 	const defaultBackgroundColor = "#c4d6c2";
 	const defaultTextColor = "text-foreground";
-
+	console.log(
+		textAlign
+			.replace(/[\u200B-\u200D\uFEFF]/g, "")
+			.trim()
+			.toLowerCase(),
+	);
 	return (
 		<section
 			className={cn(
-				hasImage &&
-					"mx-auto grid w-full max-w-screen-xl overflow-hidden bg-ink text-canvas *:col-span-full *:row-span-full",
+				hasImage && "mx-auto grid w-full max-w-screen-xl overflow-hidden bg-ink md:px-8",
 			)}
 		>
 			{bgImage?.asset && (
@@ -89,11 +93,42 @@ export default function Hero({
 							},
 						)}
 					>
-						<Typography as="h1" variant="h4" className="mb-4">
+						<Typography
+							as="h1"
+							variant="h4"
+							alignment={
+								textAlign
+									.replace(/[\u200B-\u200D\uFEFF]/g, "")
+									.trim()
+									.toLowerCase() as "left" | "center" | "right" | "justify"
+							}
+							className={cn("mb-4")}
+						>
 							{pretitle}
 						</Typography>
 
-						<PortableText value={content} components={customPortableTextComponents} />
+						<PortableText
+							value={content}
+							components={{
+								...customPortableTextComponents,
+								block: {
+									normal: ({ children }) => (
+										<Typography
+											as="p"
+											variant="body1"
+											alignment={
+												textAlign
+													.replace(/[\u200B-\u200D\uFEFF]/g, "")
+													.trim()
+													.toLowerCase() as "left" | "center" | "right" | "justify"
+											}
+										>
+											{children}
+										</Typography>
+									),
+								},
+							}}
+						/>
 						<CTAList
 							ctas={ctas}
 							className={cn("!mt-4", {
