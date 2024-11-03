@@ -115,7 +115,6 @@ export const customPortableTextComponents: PortableTextComponents = {
 					.replace(/[\u200B-\u200D\uFEFF]/g, "")
 					.trim()
 					.toLowerCase() || "#DDEEFF";
-			console.log(value);
 			// Apply styles directly without `cn` utility to avoid re-render issues
 			return (
 				<span className={cn("rounded-lg p-2 shadow-md")} style={{ backgroundColor }}>

@@ -33,12 +33,6 @@ export default function Hero({
 	const hasImage = !!bgImage?.asset;
 	const defaultBackgroundColor = "#c4d6c2";
 	const defaultTextColor = "text-foreground";
-	console.log(
-		textAlign
-			.replace(/[\u200B-\u200D\uFEFF]/g, "")
-			.trim()
-			.toLowerCase(),
-	);
 	return (
 		<section
 			className={cn(
