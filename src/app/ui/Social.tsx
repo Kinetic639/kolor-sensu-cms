@@ -10,12 +10,11 @@ import {
 import { IoIosLink } from "react-icons/io";
 import CTA from "./CTA/CTA";
 import { cn } from "@/lib/utils";
-
-import { getSite } from "@/lib/sanity/getSite";
-
-export default async function Social({ className }: React.HTMLProps<HTMLDivElement>) {
-	const { social } = await getSite();
-
+interface SocialProps {
+	social: Sanity.Navigation;
+	className?: string;
+}
+export default function Social({ social, className }: SocialProps) {
 	if (!social?.items?.length) return null;
 
 	return (
@@ -25,7 +24,7 @@ export default async function Social({ className }: React.HTMLProps<HTMLDivEleme
 					case "link":
 						return (
 							<CTA
-								className="px-2 py-1 text-xl hover:text-foreground hover:!opacity-100 group-has-[a:hover]:opacity-50"
+								className="px-2 py-1 text-2xl hover:text-foreground hover:!opacity-100 group-has-[a:hover]:opacity-50"
 								link={item}
 								key={key}
 							>

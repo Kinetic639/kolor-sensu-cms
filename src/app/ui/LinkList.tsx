@@ -26,7 +26,7 @@ export default function LinkList({ links }: Sanity.LinkList) {
 				<NavigationMenuItem className="relative p-0">
 					<NavigationMenuTrigger
 						className={cn(
-							"relative cursor-default font-[28px]",
+							"cursor-default] relative",
 							isScrolled
 								? "text-foreground-secondary hover:text-[#2e4654]"
 								: "text-foreground hover:text-foreground-hover",
@@ -41,8 +41,24 @@ export default function LinkList({ links }: Sanity.LinkList) {
 							const slug = link.internal?.metadata?.slug?.current;
 							const isActive = slug === "index" ? path === "/" : slug && path === `/${slug}`;
 
-							return (
-								<NavigationMenuLink
+							// Ensure `NavigationMenuLink` is used only for external or button types to avoid nested <a> tags.
+							const linkComponent = (
+								<CTA
+									className={cn(
+										isActive && "cursor-default",
+										"w-full px-2 py-1",
+										link.external?.startsWith("http") && "is-external",
+									)}
+									link={link}
+								/>
+							);
+
+							return link.type === "external" ? (
+								<NavigationMenuLink key={key} className="w-full">
+									{linkComponent}
+								</NavigationMenuLink>
+							) : (
+								<div
 									key={key}
 									className={cn(
 										"flex w-full min-w-28 items-center px-3 py-1 text-base transition-colors duration-200",
@@ -55,15 +71,8 @@ export default function LinkList({ links }: Sanity.LinkList) {
 											"cursor-pointer hover:bg-gray-600 hover:text-slate-300",
 									)}
 								>
-									<CTA
-										className={cn(
-											isActive && "cursor-default",
-											"w-full px-2 py-1",
-											link.external?.startsWith("http") && "is-external",
-										)}
-										link={link}
-									/>
-								</NavigationMenuLink>
+									{linkComponent}
+								</div>
 							);
 						})}
 					</NavigationMenuContent>

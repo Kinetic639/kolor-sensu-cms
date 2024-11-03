@@ -57,7 +57,7 @@ async function getEpisodes(): Promise<Episode[]> {
 const PodcastModule = async () => {
 	const data = await getEpisodes();
 	return (
-		<div>
+		<div className="mx-auto flex max-w-screen-lg flex-col gap-8 py-8">
 			{/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call */}
 			{data.map((item: Episode) => (
 				<iframe

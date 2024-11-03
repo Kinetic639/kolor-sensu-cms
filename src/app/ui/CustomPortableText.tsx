@@ -99,7 +99,6 @@ export const customPortableTextComponents: PortableTextComponents = {
 				</Link>
 			);
 		},
-
 		textColor: ({ children, value }: PortableTextMarkComponentProps<TextColorMark>) => {
 			const color =
 				value?.color?.value

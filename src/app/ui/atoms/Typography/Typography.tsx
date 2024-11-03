@@ -4,6 +4,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+// Define typography variants, including alignment
 const typographyVariants = cva("", {
 	variants: {
 		variant: {
@@ -19,33 +20,43 @@ const typographyVariants = cva("", {
 			button: "text-mobile-small md:text-desktop-small font-bold uppercase",
 		},
 		color: {
-			inherit: "", // Empty string to ensure no color is applied, allowing it to inherit
+			inherit: "",
 			primary: "text-primary",
 			secondary: "text-secondary",
 			error: "text-destructive",
 			warning: "text-warning",
 			info: "text-info",
 			success: "text-success",
-			default: "text-foreground", // This can still be used for default override
+			default: "text-foreground",
+		},
+		alignment: {
+			left: "text-left",
+			center: "text-center",
+			right: "text-right",
+			justify: "text-justify",
 		},
 	},
 	defaultVariants: {
 		variant: "body1",
-		color: "inherit", // Default to inherit text color
+		color: "inherit",
+		alignment: "left", // Default alignment is left
 	},
 });
 
+// Extend TypographyProps to include the alignment prop
 export interface TypographyProps extends VariantProps<typeof typographyVariants> {
 	as?: React.ElementType;
 	className?: string;
 	children: React.ReactNode;
+	alignment?: "left" | "center" | "right" | "justify"; // Define alignment types
 }
 
+// Define the Typography component
 const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-	({ as: Component = "p", variant, color, className, children, ...props }, ref) => {
+	({ as: Component = "p", variant, color, alignment, className, children, ...props }, ref) => {
 		return (
 			<Component
-				className={cn(typographyVariants({ variant, color, className }))}
+				className={cn(typographyVariants({ variant, color, alignment, className }))}
 				ref={ref}
 				{...props}
 			>
