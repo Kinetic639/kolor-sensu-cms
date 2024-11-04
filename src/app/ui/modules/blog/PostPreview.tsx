@@ -16,7 +16,6 @@ export default function PostPreview({
 	layout?: "grid" | "carousel";
 }) {
 	const authorName = `${post.author?.firstName || ""} ${post.author?.lastName || ""}`.trim();
-	console.log(layout);
 	return (
 		<Link
 			className={cn(
