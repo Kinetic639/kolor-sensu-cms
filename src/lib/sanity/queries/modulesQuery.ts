@@ -22,6 +22,7 @@ export const modulesQuery = groq`
   _type == 'hero' => { reputation-> },
   _type == 'hero.saas' => { reputation-> },
   _type == 'hero.split' => { reputation-> },
+  _type == 'hero.modern' => { reputation-> },
   _type == 'logo-list' => { logos[]-> },
   _type == 'pricing-list' => {
     tiers[]->{

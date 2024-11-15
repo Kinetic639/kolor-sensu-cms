@@ -32,6 +32,7 @@ import uid from "@sanity/schemas/objects/uid";
 import product from "@sanity/schemas/documents/product";
 import productsModule from "@sanity/schemas/modules/productsModule";
 import podcastModule from "@sanity/schemas/modules/podcastModule";
+import heroModern from "@sanity/schemas/modules/hero.modern";
 
 // modules
 
@@ -64,6 +65,7 @@ export const schemaTypes = [
 	heroSaas,
 	blogList,
 	blogPostContent,
+	heroModern,
 	HeroSplit,
 	banner,
 	cardSection,

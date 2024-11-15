@@ -13,6 +13,7 @@ import BlogList from "@/app/ui/modules/blog/BlogList";
 import PostContent from "@/app/ui/modules/blog/PostContent";
 import ProductsModule from "@/app/ui/modules/productsModule";
 import PodcastModule from "@/app/ui/modules/PodcastModule";
+import HeroModern from "@/app/ui/modules/HeroModern";
 
 export default function Modules({
 	modules,
@@ -34,6 +35,8 @@ export default function Modules({
 						return <Hero {...module} key={module._key} />;
 					case "hero.split":
 						return <HeroSplit {...module} key={module._key} />;
+					case "hero.modern":
+						return <HeroModern {...module} key={module._key} />;
 					case "hero.saas":
 						return <HeroSaaS {...module} key={module._key} />;
 					case "banner":

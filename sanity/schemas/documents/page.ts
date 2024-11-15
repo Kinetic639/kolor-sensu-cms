@@ -33,6 +33,7 @@ export default defineType({
 				{ type: "hero" },
 				{ type: "hero.saas" },
 				{ type: "hero.split" },
+				{ type: "hero.modern" },
 				{ type: "banner" },
 				{ type: "cardsSection" },
 				{ type: "specialistsModule" },
