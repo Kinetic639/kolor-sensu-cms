@@ -26,7 +26,7 @@ export default function HeroModern({
 		<section
 			className={cn(
 				"relative min-h-[90vh]",
-				backgroundType === "solid" && "bg-background",
+				backgroundType === "solid" && "bg-white",
 				backgroundType === "blob" && "relative",
 			)}
 		>
