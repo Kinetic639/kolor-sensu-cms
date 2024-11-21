@@ -45,6 +45,7 @@ export default defineType({
 				{ type: "productsModule" },
 				{ type: "podcastModule" },
 				{ type: "splitContent" },
+				{ type: "hero.withCard" },
 			],
 			options: {
 				insertMenu: {
