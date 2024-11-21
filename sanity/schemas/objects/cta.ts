@@ -40,6 +40,21 @@ export default defineType({
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			hidden: ({ parent }) => parent?.type !== "button", // Only show when 'type' is 'button'
 		}),
+		defineField({
+			name: "color",
+			title: "Button Color",
+			type: "string",
+			options: {
+				list: [
+					{ title: "Primary", value: "primary" },
+					{ title: "Secondary", value: "secondary" },
+					{ title: "Accent", value: "accent" },
+					{ title: "Neutral", value: "neutral" },
+				],
+			},
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+			hidden: ({ parent }) => !(parent?.type === "button" && parent?.style === "solid"), // Only show when 'type' is 'button' and 'style' is 'solid'
+		}),
 	],
 	preview: {
 		select: {

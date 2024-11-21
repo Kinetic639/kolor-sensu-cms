@@ -44,6 +44,7 @@ export default defineType({
 				{ type: "consultationTestModule" },
 				{ type: "productsModule" },
 				{ type: "podcastModule" },
+				{ type: "splitContent" },
 			],
 			options: {
 				insertMenu: {

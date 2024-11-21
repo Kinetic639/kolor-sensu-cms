@@ -10,6 +10,36 @@ export const modulesQuery = groq`
   },
   _type == 'blog-list' => { predefinedFilters[]-> },
   _type == 'breadcrumbs' => { crumbs[]{ ${linkQuery} } },
+    _type == 'splitContent' => {
+    heading,
+    subheading,
+    items[]{
+      icon {
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      text
+    },
+    image {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    backgroundType,
+    backgroundImage {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    backgroundOverlap,
+  },
   _type == 'creative-module' => {
     modules[]{
       ...,

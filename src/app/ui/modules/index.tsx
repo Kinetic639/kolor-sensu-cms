@@ -14,6 +14,7 @@ import PostContent from "@/app/ui/modules/blog/PostContent";
 import ProductsModule from "@/app/ui/modules/productsModule";
 import PodcastModule from "@/app/ui/modules/PodcastModule";
 import HeroModern from "@/app/ui/modules/HeroModern";
+import SplitContent from "@/app/ui/SplitContent";
 
 export default function Modules({
 	modules,
@@ -61,6 +62,8 @@ export default function Modules({
 						return <ProductsModule {...(module as Sanity.ProductsModule)} key={module._key} />;
 					case "podcastModule":
 						return <PodcastModule key={module._key} />;
+					case "splitContent": // Add new case for SplitContent
+						return <SplitContent {...module} key={module._key} />;
 					default:
 						return <div key={module._key} />;
 				}

@@ -7,14 +7,18 @@ import { Button } from "@/components/ui/button";
 import processUrl from "@/lib/processUrl";
 import "./cta.css";
 
+// Define allowed color keys for type safety
+type ColorOptions = "primary" | "secondary" | "accent" | "neutral";
+
 export default function CTA({
 	link,
 	type,
 	style = "solid",
 	className,
+	color = "primary", // Default color
 	children,
 	...rest
-}: Sanity.CTA & React.HTMLAttributes<HTMLAnchorElement>) {
+}: Sanity.CTA & React.HTMLAttributes<HTMLAnchorElement> & { color?: ColorOptions }) {
 	// Handle button with gradient style
 	if (type === "button" && style === "gradient" && link) {
 		return (
@@ -39,6 +43,13 @@ export default function CTA({
 
 	// Handle all other types of buttons (e.g., solid)
 	if (type === "button" && link) {
+		const colorClasses: { primary: string; secondary: string; accent: string; neutral: string } = {
+			primary: "bg-blue-500  hover:bg-blue-600",
+			secondary: "bg-gray-500  hover:bg-gray-600",
+			accent: "bg-yellow-400  text-foreground hover:bg-yellow-300",
+			neutral: "bg-gray-200 text-black hover:bg-gray-300",
+		};
+
 		return (
 			<Link
 				href={link?.internal?.metadata.slug.current || ""}
@@ -47,14 +58,12 @@ export default function CTA({
 				<motion.div
 					whileHover={{ scale: 1.05 }} // Add hover effect
 					whileTap={{ scale: 0.95 }} // Tap effect
-					className="transition-transform duration-300 ease-in-out"
+					className="transition-transform duration-200 ease-in-out"
 				>
 					<Button
 						className={cn(
-							"w-full self-center rounded-full p-7 text-center text-base uppercase transition-all duration-300 ease-in-out max-md:mx-auto",
-							style === "solid"
-								? "max-w-sm bg-foreground text-background hover:bg-background-secondary max-md:mx-auto"
-								: "",
+							"w-full self-center rounded-full p-7 text-center text-base uppercase transition-all duration-200 ease-in-out max-md:mx-auto",
+							colorClasses[color], // Use selected color
 						)}
 					>
 						{link?.label}
