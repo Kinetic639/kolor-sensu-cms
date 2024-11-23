@@ -28,7 +28,7 @@ const config: Config = {
 				"mobile-h4": ["31.1px", { lineHeight: "1.4", fontWeight: "500" }],
 				"mobile-h5": ["25.92px", { lineHeight: "1.4", fontWeight: "500" }],
 				"mobile-h6": ["21.6px", { lineHeight: "1.4", fontWeight: "500" }],
-				"mobile-p": ["18px", { lineHeight: "1.4", fontWeight: "500" }],
+				"mobile-p": ["16px", { lineHeight: "1.4", fontWeight: "500" }],
 				"mobile-small": ["15px", { lineHeight: "1.4", fontWeight: "500" }],
 			},
 			fontFamily: {
@@ -72,6 +72,10 @@ const config: Config = {
 				muted: {
 					DEFAULT: "hsl(var(--muted))",
 					foreground: "hsl(var(--muted-foreground))",
+				},
+				servicecard: {
+					DEFAULT: "var(--service-card-light)",
+					dark: "var(--service-card-dark)",
 				},
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import CTAList from "@/app/ui/CTAList";
+import CTAList from "@/app/ui/CTA/CTAList";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 
 export default function Banner({

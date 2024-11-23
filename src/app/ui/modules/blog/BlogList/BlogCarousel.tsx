@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { categoryStore } from "../store";
 import PostPreview from "../PostPreview";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import {
+	Carousel,
+	type CarouselApi,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useMediaQuery } from "@/lib/hooks/use-media-query";
 
 export default function BlogCarousel({
 	posts,
@@ -12,10 +20,34 @@ export default function BlogCarousel({
 	posts: Sanity.BlogPost[];
 	predefinedFilters?: Sanity.BlogCategory[];
 } & React.HTMLAttributes<HTMLUListElement>) {
-	const { selected, reset } = categoryStore();
+	const { selected } = categoryStore();
+	const [api, setApi] = useState<CarouselApi>();
+	const [current, setCurrent] = useState(0);
 
-	useEffect(reset, [reset]);
+	useEffect(() => {
+		if (!api) return;
 
+		// Update the current slide index whenever a new slide is selected
+		const handleSelect = () => {
+			setCurrent(api.selectedScrollSnap());
+		};
+
+		api.on("select", handleSelect);
+
+		return () => {
+			api.off("select", handleSelect);
+		};
+	}, [api]);
+
+	const goToSlide = (index: number) => {
+		api?.scrollTo(index);
+		setCurrent(index); // Set the current state immediately when button is clicked
+	};
+
+	const isDesktop = useMediaQuery("(min-width: 768px)");
+	if (isDesktop === undefined) {
+		return null;
+	}
 	const filtered = posts
 		// filter by predefined filters
 		.filter(
@@ -42,14 +74,37 @@ export default function BlogCarousel({
 				loop: true,
 			}}
 			className="mx-auto w-full max-w-screen-xl"
+			setApi={setApi} // Pass setApi to use the API
 		>
 			<CarouselContent>
-				{filtered?.map((post, index) => (
+				{filtered.map((post, index) => (
 					<CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
 						<PostPreview post={post} />
 					</CarouselItem>
 				))}
 			</CarouselContent>
+
+			{/* Dot Indicators */}
+			<div className="flex items-center justify-center px-4 pt-6">
+				{isDesktop && <CarouselPrevious />}
+				<div className="mx-12 flex justify-center space-x-5">
+					{filtered.map((_, index) => (
+						<button
+							key={index}
+							className={`flex h-6 w-6 items-center justify-center rounded-full ${
+								index === current ? "md:border-3 border-[3px] border-foreground" : "bg-transparent"
+							} relative`}
+							aria-label={`Go to slide ${index + 1}`}
+							onClick={() => goToSlide(index)}
+						>
+							<span
+								className={`block h-3 w-3 rounded-full ${index === current ? "bg-foreground" : "bg-foreground"}`}
+							></span>
+						</button>
+					))}
+				</div>
+				{isDesktop && <CarouselNext />}
+			</div>
 		</Carousel>
 	);
 }

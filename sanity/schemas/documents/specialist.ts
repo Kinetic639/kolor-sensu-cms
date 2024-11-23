@@ -69,6 +69,22 @@ export default defineType({
 			],
 		}),
 		defineField({
+			name: "avatar",
+			title: "Avatar",
+			type: "image",
+			options: {
+				hotspot: true,
+			},
+			fields: [
+				{
+					name: "alt",
+					title: "Alt Text",
+					type: "string",
+					description: "Alternative text for screen readers.",
+				},
+			],
+		}),
+		defineField({
 			name: "ctas",
 			title: "Call-to-actions",
 			type: "array",
@@ -79,7 +95,7 @@ export default defineType({
 		select: {
 			title: "firstName",
 			subtitle: "lastName",
-			media: "image",
+			media: "avatar",
 		},
 		prepare(selection) {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

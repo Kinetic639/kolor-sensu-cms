@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { FlipCard } from "@/app/ui/atoms/flip-card";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 import { MotionDiv } from "@/app/ui/motion/MotionDiv";
+import "./cardSection.css";
 
 const containerVariants = {
 	initial: { opacity: 0 },
@@ -38,10 +39,7 @@ export default function CardSection({
 	return (
 		<section
 			ref={sectionRef} // Attach ref to the section
-			className={cn(
-				fullscreen && "bg-gradient-to-br from-[#c4d4d9] to-[#688d62]",
-				"w-full px-4 py-12 md:py-16",
-			)}
+			className={cn(fullscreen && "bg-multi-gradient", "w-full px-4 py-12 md:py-16 md:pb-24")}
 		>
 			<div className={cn("mx-auto max-w-screen-xl px-4")}>
 				<MotionDiv

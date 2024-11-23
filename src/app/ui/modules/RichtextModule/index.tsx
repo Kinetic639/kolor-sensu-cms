@@ -20,12 +20,7 @@ export default function RichtextModule({
 	const tocRight = tableOfContents && stegaClean(tocPosition) === "right";
 
 	return (
-		<section
-			className={cn(
-				"section grid gap-8",
-				tocRight ? "lg:grid-cols-[1fr,auto]" : "lg:grid-cols-[auto,1fr]",
-			)}
-		>
+		<section className={cn("section grid gap-8")}>
 			{tableOfContents && (
 				<aside
 					className={cn(

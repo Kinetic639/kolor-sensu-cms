@@ -147,6 +147,15 @@ declare global {
 			featured: boolean;
 			hideTableOfContents: boolean;
 			publishDate: string;
+			author: {
+				firstName: string;
+				lastName: string;
+				avatar?: {
+					asset: {
+						url: string;
+					};
+				};
+			};
 		};
 
 		export type BlogCategory = SanityDocument<{
@@ -165,6 +174,7 @@ declare global {
 		export type CTA = {
 			link?: Link;
 			style?: string;
+			type?: string;
 		};
 
 		export type Image = SanityImageObject &

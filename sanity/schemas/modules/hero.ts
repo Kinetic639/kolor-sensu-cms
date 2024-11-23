@@ -19,7 +19,23 @@ export default defineType({
 		defineField({
 			name: "content",
 			type: "array",
-			of: [{ type: "block" }],
+			of: [
+				{
+					type: "block",
+					styles: [
+						{ title: "Normal", value: "normal" },
+						{ title: "Heading 1", value: "h1" },
+						{ title: "Heading 2", value: "h2" },
+						{ title: "Heading 3", value: "h3" },
+						{ title: "Heading 4", value: "h4" },
+						{ title: "Heading 5", value: "h5" },
+						{ title: "Heading 6", value: "h6" },
+						{ title: "caption", value: "caption" },
+						{ title: "body2", value: "body2" },
+						{ title: "Quote", value: "blockquote" },
+					],
+				},
+			],
 			group: "content",
 		}),
 		defineField({
@@ -29,12 +45,6 @@ export default defineType({
 			of: [{ type: "cta" }],
 			group: "content",
 		}),
-		// defineField({
-		// 	name: "reputation",
-		// 	type: "reference",
-		// 	to: [{ type: "reputation" }],
-		// 	group: "content",
-		// }),
 		defineField({
 			name: "bgImage",
 			title: "Background image",
@@ -68,6 +78,21 @@ export default defineType({
 			},
 			group: "image",
 		}),
+		// New color fields for background and text
+		defineField({
+			name: "backgroundColor",
+			title: "Background Color",
+			type: "simplerColor",
+			description: "Select a background color for the hero module.",
+			group: "options",
+		}),
+		defineField({
+			name: "textColor",
+			title: "Text Color",
+			type: "simplerColor",
+			description: "Select a text color for the hero module.",
+			group: "options",
+		}),
 		defineField({
 			...textAlign,
 			fieldset: "alignment",
@@ -83,8 +108,10 @@ export default defineType({
 			media: "bgImage",
 		},
 		prepare: ({ content, media }) => ({
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			title: getBlockText(content),
 			subtitle: "Hero",
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			media,
 		}),
 	},

@@ -1,11 +1,18 @@
+"use client";
 import { PortableText } from "@portabletext/react";
-import CTA from "@/app/ui/CTA";
-import { getSite } from "@/lib/sanity/getSite";
-import LinkList from "@/app/ui/LinkList";
+import { usePathname } from "next/navigation";
+import CTA from "@/app/ui/CTA/CTA";
 import Social from "@/app/ui/Social";
+import { cn } from "@/lib/utils";
 
-export default async function Menu() {
-	const { footerMenu, footerDescription } = await getSite();
+type NavigationProps = {
+	footerMenu?: Sanity.Navigation;
+	social?: Sanity.Navigation;
+	footerDescription?: Sanity.BlockContent;
+};
+
+export default function Navigation({ footerMenu, footerDescription, social }: NavigationProps) {
+	const path = usePathname();
 	return (
 		<nav className="flex w-full flex-wrap justify-center gap-x-12 gap-y-6">
 			<div className="flex flex-col flex-wrap gap-x-6 gap-y-2 text-sm">
@@ -24,7 +31,7 @@ export default async function Menu() {
 				</span>
 			</div>
 			{footerDescription && (
-				<div className="flex flex-col flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+				<div className="flex flex-col flex-wrap justify-start gap-x-6 gap-y-2 text-sm">
 					<PortableText value={footerDescription} />
 				</div>
 			)}
@@ -37,7 +44,22 @@ export default async function Menu() {
 						return (
 							<div key={key} className="text-sms flex flex-col gap-2">
 								<span className="text-sm font-bold">{item.link.label}</span>
-								<LinkList {...item} />
+								{item?.links?.map((link, key) => {
+									const slug = link.internal?.metadata?.slug?.current;
+
+									// Determine if the link is active
+									const isActive = slug === "index" ? path === "/" : slug && path === `/${slug}`;
+									return (
+										<CTA
+											className={cn(
+												"hover:link text-sm transition-colors duration-150 hover:text-slate-300 md:px-3",
+												isActive && "text-foreground",
+											)}
+											link={link}
+											key={key}
+										/>
+									);
+								})}
 							</div>
 						);
 
@@ -45,10 +67,12 @@ export default async function Menu() {
 						return null;
 				}
 			})}
-			<div className="text-sms flex flex-col items-center gap-2">
-				<span className="text-sm font-bold">Social Media</span>
-				<Social />
-			</div>
+			{social && (
+				<div className="text-sms flex flex-col items-center gap-2">
+					<span className="text-sm font-bold">Social Media</span>
+					<Social social={social} />
+				</div>
+			)}
 		</nav>
 	);
 }

@@ -1,9 +1,35 @@
 import React from "react";
+import Image from "next/image";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
+
+// Define card data in one place
+const cardData = [
+	{
+		title: "Skuteczność",
+		description:
+			"Dobranie odpowiedniego specjalisty na podstawie twoich potrzeb. Zwiększa szansę na efektywne wsparcie.",
+		imageSrc: "/icons/test-icons/accuracy.png",
+		alt: "Ikona skuteczności",
+	},
+	{
+		title: "Poufność",
+		description:
+			"Gwarantujemy pełną poufność zgodnie z Kodeksem Etyki Psychologicznej, zapewniając najwyższe standardy bezpieczeństwa i zaufania w kontakcie z naszymi specjalistami.",
+		imageSrc: "/icons/test-icons/privacy.png",
+		alt: "Ikona poufności",
+	},
+	{
+		title: "Czas",
+		description:
+			"Test pomoże dopasować specjalistę i jest pierwszym etapem konsultacji, który pomoże zaoszczędzić czas i będzie krokiem ku zmianie.",
+		imageSrc: "/icons/test-icons/clock.png",
+		alt: "Ikona czasu",
+	},
+];
 
 const Step0 = () => {
 	return (
-		<div className="flex flex-col items-center px-4 py-6">
+		<div className="flex flex-col items-center justify-between py-6">
 			<div className="mb-6">
 				<Typography as="p" variant="h5" className="mb-4 text-center">
 					Zrób pierwszy krok do znalezienia Twojego koloru sensu
@@ -14,42 +40,25 @@ const Step0 = () => {
 				</Typography>
 			</div>
 			{/* Card Container */}
-			<div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
-				{/* Card 1 */}
-				<div className="flex flex-col items-center rounded-lg bg-white p-6 text-center shadow-md">
-					<div className="mb-4 h-24 w-24 rounded-full bg-gray-200">Tu będzie grafika</div>
-					<Typography as="h3" variant="h6" className="font-bold">
-						Skuteczność
-					</Typography>
-					<p className="mt-2">
-						Dobranie odpowiedniego specjalisty na podstawie twoich potrzeb. Zwiększa szansę na
-						efektywne wsparcie.
-					</p>
-				</div>
-
-				{/* Card 2 */}
-				<div className="flex flex-col items-center rounded-lg bg-white p-6 text-center shadow-md">
-					<div className="mb-4 h-24 w-24 rounded-full bg-gray-200">Druga grafika</div>
-					<Typography as="h3" variant="h6" className="font-bold">
-						Poufność
-					</Typography>
-					<p className="mt-2">
-						Gwarantujemy pełną poufność zgodnie z Kodeksem Etyki Psychologicznej, zapewniając
-						najwyższe standardy bezpieczeństwa i zaufania w kontakcie z naszymi specjalistami.
-					</p>
-				</div>
-
-				{/* Card 3 */}
-				<div className="flex flex-col items-center rounded-lg bg-white p-6 text-center shadow-md">
-					<div className="mb-4 h-24 w-24 rounded-full bg-gray-200">Trzecia grafika</div>
-					<Typography as="h3" variant="h6" className="font-bold">
-						Czas
-					</Typography>
-					<p className="mt-2">
-						Test pomoże dopasować specjalistę i jest pierwszym etapem konsultacji, który pomoże
-						zaoszczędzić czas i będzie krokiem ku zmianie.
-					</p>
-				</div>
+			<div className="grid w-full max-w-[250px] grid-cols-1 gap-6 md:max-w-4xl md:grid-cols-3">
+				{cardData.map((card, index) => (
+					<div
+						key={index}
+						className="flex flex-col items-center rounded-lg bg-white p-6 text-center shadow-md"
+					>
+						<Image
+							src={card.imageSrc}
+							alt={card.alt}
+							width={96}
+							height={96}
+							className="mb-4 h-28 w-28"
+						/>
+						<Typography as="h3" variant="h6" className="font-bold">
+							{card.title}
+						</Typography>
+						<p className="mt-2">{card.description}</p>
+					</div>
+				))}
 			</div>
 		</div>
 	);

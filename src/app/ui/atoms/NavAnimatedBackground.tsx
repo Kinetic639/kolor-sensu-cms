@@ -1,19 +1,28 @@
 "use client";
 import { motion } from "framer-motion";
-import React from "react";
-import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
+import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "@/lib/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 
 export const NavAnimatedBackground = () => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-	const isScrolled = usePageScrolled();
+	const [isScrolled, setIsScrolled] = useState(false);
+	const isDesktop = useMediaQuery("(min-width: 768px)");
 
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-	const isDesktop: boolean | undefined = useMediaQuery("(min-width: 768px)");
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScrolled(window.scrollY > 0);
+		};
+
+		handleScroll(); // Initial check
+		window.addEventListener("scroll", handleScroll);
+
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
 	if (isDesktop === undefined) {
 		return null;
 	}
+
 	return (
 		<motion.span
 			initial={{
@@ -41,7 +50,7 @@ export const NavAnimatedBackground = () => {
 				borderRadius: { duration: 0.2, delay: !isScrolled ? 0.22 : 0 },
 			}}
 			className={cn(
-				"absolute left-0 top-0 z-[-1] hidden h-full rounded-b-full bg-[#7ea57a] md:block",
+				"absolute left-0 top-0 z-[-1] hidden h-full rounded-b-full bg-gray-500 md:block",
 			)}
 		></motion.span>
 	);

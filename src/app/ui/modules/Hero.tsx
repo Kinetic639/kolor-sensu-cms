@@ -1,8 +1,9 @@
 import { PortableText } from "@portabletext/react";
 import { stegaClean } from "@sanity/client/stega";
+import React from "react";
 import css from "./Hero.module.css";
 import { cn } from "@/lib/utils";
-import CTAList from "@/app/ui/CTAList";
+import CTAList from "@/app/ui/CTA/CTAList";
 import Img, { Source } from "@/app/ui/Img";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
@@ -15,6 +16,8 @@ export default function Hero({
 	bgImageMobile,
 	textAlign = "center",
 	alignItems,
+	backgroundColor,
+	textColor,
 }: Partial<{
 	pretitle: string;
 	content: Sanity.BlockContent;
@@ -24,13 +27,16 @@ export default function Hero({
 	bgImageMobile: Sanity.Image;
 	textAlign: React.CSSProperties["textAlign"];
 	alignItems: React.CSSProperties["alignItems"];
+	backgroundColor: { value: string };
+	textColor: { value: string };
 }>) {
 	const hasImage = !!bgImage?.asset;
+	const defaultBackgroundColor = "#c4d6c2";
+	const defaultTextColor = "text-foreground";
 	return (
 		<section
 			className={cn(
-				hasImage &&
-					"mx-auto grid w-full max-w-screen-xl overflow-hidden bg-ink text-canvas *:col-span-full *:row-span-full",
+				hasImage && "mx-auto grid w-full max-w-screen-xl overflow-hidden bg-ink md:px-8",
 			)}
 		>
 			{bgImage?.asset && (
@@ -51,10 +57,23 @@ export default function Hero({
 					className={cn("section mx-auto flex w-full max-w-screen-xl flex-col px-0 py-12 md:px-4")}
 				>
 					<div
+						style={{
+							backgroundColor:
+								backgroundColor?.value
+									.replace(/[\u200B-\u200D\uFEFF]/g, "")
+									.trim()
+									.toLowerCase() || defaultBackgroundColor,
+							color:
+								textColor?.value
+									.replace(/[\u200B-\u200D\uFEFF]/g, "")
+									.trim()
+									.toLowerCase() || defaultTextColor,
+							textAlign: stegaClean(textAlign),
+						}}
 						className={cn(
-							"richtext relative isolate mx-auto w-full rounded-md px-4 py-8 md:px-6 [&_:is(h1,h2)]:text-balance",
-							bgImage?.asset && "text-shadow",
-							!bgImage?.asset && "bg-[#c4d6c2]",
+							"relative isolate mx-auto w-full rounded-md px-4 py-8 md:px-6 [&_:is(h1,h2)]:text-balance",
+							bgImage?.asset && "text-shadow shadow-xl",
+							!bgImage?.asset && "shadow-lg",
 							hasImage && css.txt,
 							{
 								"mb-8": stegaClean(alignItems) === "start",
@@ -67,14 +86,43 @@ export default function Hero({
 								"ml-auto": stegaClean(textAlign) === "right",
 							},
 						)}
-						style={{ textAlign: stegaClean(textAlign) }}
 					>
-						<Typography as="h1" variant="h1" className="mb-4">
+						<Typography
+							as="h1"
+							variant="h4"
+							alignment={
+								textAlign
+									.replace(/[\u200B-\u200D\uFEFF]/g, "")
+									.trim()
+									.toLowerCase() as "left" | "center" | "right" | "justify"
+							}
+							className={cn("mb-4")}
+						>
 							{pretitle}
 						</Typography>
 
-						<PortableText value={content} components={customPortableTextComponents} />
-
+						<PortableText
+							value={content}
+							components={{
+								...customPortableTextComponents,
+								block: {
+									normal: ({ children }) => (
+										<Typography
+											as="p"
+											variant="body1"
+											alignment={
+												textAlign
+													.replace(/[\u200B-\u200D\uFEFF]/g, "")
+													.trim()
+													.toLowerCase() as "left" | "center" | "right" | "justify"
+											}
+										>
+											{children}
+										</Typography>
+									),
+								},
+							}}
+						/>
 						<CTAList
 							ctas={ctas}
 							className={cn("!mt-4", {

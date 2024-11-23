@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { VscEdit } from "react-icons/vsc";
+import { BiCard, BiFontColor } from "react-icons/bi";
 import imageBlock from "../fragments/image-block";
 
 export default defineType({
@@ -13,14 +14,60 @@ export default defineType({
 			name: "body",
 			type: "array",
 			of: [
-				{ type: "block" },
-				imageBlock,
-				defineArrayMember({
-					type: "code",
-					options: {
-						withFilename: true,
+				{
+					type: "block",
+					styles: [
+						{ title: "Normal", value: "normal" },
+						{ title: "Heading 1", value: "h1" },
+						{ title: "Heading 2", value: "h2" },
+						{ title: "Heading 3", value: "h3" },
+						{ title: "Heading 4", value: "h4" },
+						{ title: "Heading 5", value: "h5" },
+						{ title: "Heading 6", value: "h6" },
+						{ title: "caption", value: "caption" },
+						{ title: "body2", value: "body2" },
+						{ title: "Quote", value: "blockquote" },
+					],
+					marks: {
+						decorators: [{ title: "Indent", value: "indent" }],
+						annotations: [
+							defineArrayMember({
+								name: "link",
+								title: "Link",
+								type: "object",
+								fields: [{ name: "href", type: "url", title: "URL" }],
+							}),
+							defineArrayMember({
+								name: "card",
+								title: "Card",
+								type: "object",
+
+								icon: BiCard,
+								fields: [
+									defineField({
+										name: "color",
+										title: "Card Background Color",
+										type: "simplerColor",
+									}),
+								],
+							}),
+							defineArrayMember({
+								name: "textColor",
+								title: "Text Color",
+								type: "object",
+								icon: BiFontColor,
+								fields: [
+									defineField({
+										name: "color",
+										title: "Text Color",
+										type: "simplerColor",
+									}),
+								],
+							}),
+						],
 					},
-				}),
+				},
+				imageBlock,
 			],
 			group: "content",
 		}),
@@ -40,6 +87,14 @@ export default defineType({
 			type: "date",
 			validation: (Rule) => Rule.required(),
 			group: "content",
+		}),
+		defineField({
+			name: "author",
+			title: "Author",
+			type: "reference",
+			to: [{ type: "specialist" }],
+			group: "content",
+			description: "Select the author of the blog post from the specialists.",
 		}),
 		defineField({
 			name: "featured",
@@ -64,12 +119,12 @@ export default defineType({
 			featured: "featured",
 			title: "metadata.title",
 			subtitle: "publishDate",
+			author: "author.firstName",
 			media: "metadata.image",
 		},
-		prepare: ({ title, subtitle, media, featured }) => ({
+		prepare: ({ title, subtitle, media, featured, author }) => ({
 			title: [featured && "★", title].filter(Boolean).join(" "),
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			subtitle,
+			subtitle: `${subtitle} • by ${author || "Unknown"}`,
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			media,
 		}),

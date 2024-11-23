@@ -115,7 +115,7 @@ const ConsultationTestForm: React.FC = () => {
 	};
 
 	return (
-		<div className="mx-auto flex w-full max-w-screen-lg flex-col gap-10 rounded-2xl bg-[#D8DCCFFF] p-10 shadow-md">
+		<div className="mx-auto flex w-full max-w-screen-lg flex-col gap-10 rounded-2xl bg-[#D8DCCFFF] p-10 px-4 shadow-md">
 			{currentStep !== 0 && <Progress value={progressPercentage} />}
 			<FormProvider {...methods}>
 				<form
@@ -135,64 +135,64 @@ const ConsultationTestForm: React.FC = () => {
 							{createElement(steps[currentStep])}
 						</motion.div>
 					</AnimatePresence>
-					<div
-						className={cn(
-							"mt-10 flex flex-col items-center md:flex-row md:items-start",
-							currentStep > 1 ? "justify-between" : "justify-center",
-						)}
-					>
-						<div className={cn("flex justify-start", currentStep > 1 && "w-1/3")}>
-							{currentStep > 1 ? (
-								<button
-									type="button"
-									onClick={prevStep}
-									className="group relative rounded-full border border-gray-500 bg-transparent px-6 py-3 text-gray-500 transition-colors duration-300 hover:border-[#2e4554] hover:text-[#2e4554] disabled:opacity-50"
-								>
-									<span className="flex items-center space-x-2">
-										<svg
-											className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M15 19l-7-7 7-7"
-											/>
-										</svg>
-										<span>Wstecz</span>
-									</span>
-								</button>
-							) : (
-								<div></div>
+					{moodRating !== 0 && (
+						<div
+							className={cn(
+								"mt-16 flex flex-col items-center md:flex-row md:items-start",
+								currentStep > 1 ? "justify-between" : "justify-center",
 							)}
-						</div>
-
-						<div className={cn("flex justify-center", currentStep > 1 && "w-1/3")}>
-							{currentStep !== steps.length - 1 && (
-								<button
-									type="button"
-									onClick={nextStep}
-									disabled={moodRating === 0}
-									className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
-								>
-									{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
-								</button>
-							)}
-						</div>
-
-						{currentStep > 1 && (
-							<div className="ml-3.5 max-w-[300px] justify-end text-right">
-								Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
-								<a href="tel:800702222" className="font-medium">
-									800 702 222
-								</a>
+						>
+							<div className={cn("flex justify-start", currentStep > 1 && "w-1/3")}>
+								{currentStep > 1 && moodRating !== 0 && (
+									<button
+										type="button"
+										onClick={prevStep}
+										className="group relative rounded-full border border-gray-500 bg-transparent px-6 py-3 text-gray-500 transition-colors duration-300 hover:border-[#2e4554] hover:text-[#2e4554] disabled:opacity-50"
+									>
+										<span className="flex items-center space-x-2">
+											<svg
+												className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewBox="0 0 24 24"
+												stroke="currentColor"
+											>
+												<path
+													strokeLinecap="round"
+													strokeLinejoin="round"
+													strokeWidth="2"
+													d="M15 19l-7-7 7-7"
+												/>
+											</svg>
+											<span>Wstecz</span>
+										</span>
+									</button>
+								)}
 							</div>
-						)}
-					</div>
+
+							<div className={cn("flex justify-center", currentStep > 1 && "w-1/3")}>
+								{currentStep !== steps.length - 1 && moodRating !== 0 && (
+									<button
+										type="button"
+										onClick={nextStep}
+										disabled={moodRating === 0}
+										className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
+									>
+										{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
+									</button>
+								)}
+							</div>
+
+							{currentStep > 1 && (
+								<div className="ml-3.5 max-w-[300px] justify-end text-right">
+									Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
+									<a href="tel:800702222" className="font-medium">
+										800 702 222
+									</a>
+								</div>
+							)}
+						</div>
+					)}
 				</form>
 			</FormProvider>
 		</div>

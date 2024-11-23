@@ -4,13 +4,30 @@ import {
 	type PortableTextMarkComponentProps,
 } from "@portabletext/react";
 import Link from "next/link";
-import Image from "next/image";
 import { type PortableTextListItemBlock } from "@portabletext/types";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
+import Image from "@/app/ui/modules/RichtextModule/Image";
+import { cn } from "@/lib/utils";
 
 interface LinkMark {
 	_type: "link";
 	href: string;
+}
+
+interface CardMark {
+	_type: "card";
+	color?: {
+		label: string;
+		value: string;
+	};
+}
+
+interface TextColorMark {
+	_type: "textColor";
+	color?: {
+		label: string;
+		value: string;
+	};
 }
 
 export const customPortableTextComponents: PortableTextComponents = {
@@ -41,7 +58,7 @@ export const customPortableTextComponents: PortableTextComponents = {
 			</Typography>
 		),
 		h6: ({ children }) => (
-			<Typography as="h6" variant="h6" className="text-center md:text-left">
+			<Typography as="h6" variant="h6" className="text-inherit">
 				{children}
 			</Typography>
 		),
@@ -60,47 +77,72 @@ export const customPortableTextComponents: PortableTextComponents = {
 				{children}
 			</Typography>
 		),
+		blockquote: ({ children }) => (
+			<blockquote className="my-4 ml-1 border-l-4 border-gray-300 pl-4 italic text-gray-700">
+				{children}
+			</blockquote>
+		),
 	},
+
 	marks: {
+		indent: ({ children }) => <span className="ml-8 block">{children}</span>,
 		link: ({ children, value }: PortableTextMarkComponentProps<LinkMark>) => {
 			const href = value?.href || "#";
 			return (
-				<Link href={href} passHref>
-					<a className="text-blue-600 underline">{children}</a>
+				<Link
+					href={href}
+					passHref
+					target="_blank"
+					className="underline hover:text-foreground-hover"
+				>
+					{children}
 				</Link>
 			);
 		},
+		textColor: ({ children, value }: PortableTextMarkComponentProps<TextColorMark>) => {
+			const color =
+				value?.color?.value
+					.replace(/[\u200B-\u200D\uFEFF]/g, "")
+					.trim()
+					.toLowerCase() || "#fff"; // default to black if no color selected
+			return <span style={{ color }}>{children}</span>;
+		},
+
+		card: ({ children, value }: PortableTextMarkComponentProps<CardMark>) => {
+			// Default color if none selected
+			const backgroundColor =
+				value?.color?.value
+					.replace(/[\u200B-\u200D\uFEFF]/g, "")
+					.trim()
+					.toLowerCase() || "#DDEEFF";
+			// Apply styles directly without `cn` utility to avoid re-render issues
+			return (
+				<span className={cn("rounded-lg p-2 shadow-md")} style={{ backgroundColor }}>
+					{children}
+				</span>
+			);
+		},
 	},
+
 	list: {
-		bullet: ({ children }) => <ul className="mb-4 ml-6 list-outside list-disc">{children}</ul>,
-		number: ({ children }) => <ol className="mb-4 ml-6 list-outside list-decimal">{children}</ol>,
+		bullet: ({ children }) => <ul className="ml-6 list-disc gap-2">{children}</ul>,
+		number: ({ children }) => <ol className="ml-6 list-decimal">{children}</ol>,
 	},
+
 	listItem: {
 		bullet: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
-			<Typography as="li" variant="body1" className="mb-1">
+			<Typography as="li" variant="body1">
 				{children}
-				<ul className="ml-6 list-disc">{children}</ul>
 			</Typography>
 		),
 		number: ({ children }: PortableTextComponentProps<PortableTextListItemBlock>) => (
-			<Typography as="li" variant="body1" className="mb-2">
+			<Typography as="li" variant="body1">
 				{children}
-				<ol className="ml-6 list-decimal">{children}</ol>
 			</Typography>
 		),
 	},
+
 	types: {
-		image: ({ value }: PortableTextComponentProps<{ asset: { url: string }; alt: string }>) => (
-			<div className="my-8">
-				<Image
-					src={value.asset.url || ""}
-					alt={value.alt || "Image"}
-					className="w-full rounded-lg"
-					width={1200}
-					height={800}
-					layout="responsive"
-				/>
-			</div>
-		),
+		image: Image,
 	},
 };
