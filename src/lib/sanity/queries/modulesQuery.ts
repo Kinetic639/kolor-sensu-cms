@@ -10,6 +10,34 @@ export const modulesQuery = groq`
   },
   _type == 'blog-list' => { predefinedFilters[]-> },
   _type == 'breadcrumbs' => { crumbs[]{ ${linkQuery} } },
+    _type == 'hero.withCard' => {
+    heading,
+    subheading,
+    button {
+      label,
+      link { ${linkQuery} }
+    },
+    backgroundImage {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    card {
+      title,
+      items[]{
+        icon {
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        text
+      }
+    }
+  },
     _type == 'splitContent' => {
     heading,
     subheading,

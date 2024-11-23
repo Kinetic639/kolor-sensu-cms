@@ -15,6 +15,7 @@ import ProductsModule from "@/app/ui/modules/productsModule";
 import PodcastModule from "@/app/ui/modules/PodcastModule";
 import HeroModern from "@/app/ui/modules/HeroModern";
 import SplitContent from "@/app/ui/SplitContent";
+import HeroWithCard from "@/app/ui/modules/HeroWtihCard";
 
 export default function Modules({
 	modules,
@@ -64,6 +65,8 @@ export default function Modules({
 						return <PodcastModule key={module._key} />;
 					case "splitContent": // Add new case for SplitContent
 						return <SplitContent {...module} key={module._key} />;
+					case "hero.withCard": // Add new case for SplitContent
+						return <HeroWithCard {...module} key={module._key} />;
 					default:
 						return <div key={module._key} />;
 				}

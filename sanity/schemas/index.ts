@@ -34,6 +34,7 @@ import productsModule from "@sanity/schemas/modules/productsModule";
 import podcastModule from "@sanity/schemas/modules/podcastModule";
 import heroModern from "@sanity/schemas/modules/hero.modern";
 import splitContent from "@sanity/schemas/modules/split.content";
+import heroWithCard from "@sanity/schemas/modules/hero.withCard";
 
 // modules
 
@@ -79,4 +80,5 @@ export const schemaTypes = [
 	productsModule,
 	podcastModule,
 	splitContent,
+	heroWithCard,
 ];
