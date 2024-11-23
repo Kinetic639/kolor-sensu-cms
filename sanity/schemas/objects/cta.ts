@@ -18,7 +18,7 @@ export default defineType({
 			options: {
 				list: [
 					{ title: "Action", value: "action" },
-					{ title: "Outline", value: "action-outline" },
+					{ title: "Outline", value: "outline" },
 					{ title: "Ghost", value: "ghost" },
 					{ title: "Link", value: "link" },
 					{ title: "Button", value: "button" },

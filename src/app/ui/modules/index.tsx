@@ -16,6 +16,7 @@ import PodcastModule from "@/app/ui/modules/PodcastModule";
 import HeroModern from "@/app/ui/modules/HeroModern";
 import SplitContent from "@/app/ui/SplitContent";
 import HeroWithCard from "@/app/ui/modules/HeroWtihCard";
+import BannerText from "@/app/ui/modules/BannerText";
 
 export default function Modules({
 	modules,
@@ -67,6 +68,8 @@ export default function Modules({
 						return <SplitContent {...module} key={module._key} />;
 					case "hero.withCard": // Add new case for SplitContent
 						return <HeroWithCard {...module} key={module._key} />;
+					case "bannerText": // Add new case for SplitContent
+						return <BannerText {...module} key={module._key} />;
 					default:
 						return <div key={module._key} />;
 				}

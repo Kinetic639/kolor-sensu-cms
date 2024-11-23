@@ -45,7 +45,7 @@ export default function SplitContent({
 				</div>
 			)}
 
-			<div className="relative mx-auto grid max-w-screen-xl items-stretch gap-8 px-4 py-24 md:grid-cols-5">
+			<div className="relative mx-auto grid max-w-screen-xl items-stretch gap-8 px-4 py-24 pb-44 md:grid-cols-5">
 				{/* Left Section (Image with Stones) */}
 				<div className="flex justify-center md:col-span-2">
 					<motion.div

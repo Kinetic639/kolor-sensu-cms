@@ -31,7 +31,7 @@ export default function HeroWithCard({
 		<section
 			className={cn(
 				"relative py-12",
-				backgroundType === "solid" && "bg-background",
+				backgroundType === "solid" && "bg-white",
 				backgroundType === "blob" && "relative",
 			)}
 		>
@@ -76,7 +76,7 @@ export default function HeroWithCard({
 					)}
 
 					{card && (
-						<motion.div className="absolute -left-20 top-24 w-[260px] max-w-sm rounded-lg bg-white p-3 shadow-xl">
+						<motion.div className="absolute -left-20 top-24 w-[260px] max-w-sm rounded-2xl bg-white p-3 shadow-xl">
 							{card.title && (
 								<Typography
 									as="h3"
