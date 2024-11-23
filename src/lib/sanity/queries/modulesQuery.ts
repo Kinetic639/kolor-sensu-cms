@@ -10,6 +10,7 @@ export const modulesQuery = groq`
   },
   _type == 'blog-list' => { predefinedFilters[]-> },
   _type == 'breadcrumbs' => { crumbs[]{ ${linkQuery} } },
+
     _type == 'hero.withCard' => {
     heading,
     subheading,
