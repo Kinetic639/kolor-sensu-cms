@@ -7,6 +7,14 @@ import Filtering from "@/app/ui/modules/blog/BlogList/Filtering";
 import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
 import BlogCarousel from "@/app/ui/modules/blog/BlogList/BlogCarousel";
 
+type TextItem = {
+	text: string;
+	icon?: {
+		asset: { url: string };
+		alt?: string;
+	};
+};
+
 export default async function BlogList({
 	intro,
 	layout,
@@ -20,7 +28,7 @@ export default async function BlogList({
 	limit: number;
 	displayFilters: boolean;
 	predefinedFilters: Sanity.BlogCategory[];
-	textItems: Array<{ text: string; icon?: { asset: { url: string }; alt?: string } }>;
+	textItems: TextItem[];
 }>) {
 	const posts = await fetchSanity<Sanity.BlogPost[]>(
 		groq`*[_type == 'blog.post']|order(featured desc, publishDate desc)[0...$limit]{
