@@ -39,7 +39,7 @@ export default function CardSection({
 	return (
 		<section
 			ref={sectionRef} // Attach ref to the section
-			className={cn(fullscreen && "bg-multi-gradient", "w-full px-4 py-12 md:py-16 md:pb-24")}
+			className={cn(fullscreen && "bg-multi-gradient", "w-full px-4 py-12 md:pb-24")}
 		>
 			<div className={cn("mx-auto max-w-screen-xl px-4")}>
 				<MotionDiv
@@ -48,11 +48,13 @@ export default function CardSection({
 					initial="initial"
 					animate={isInView ? "animate" : "initial"} // Trigger animation when in view
 				>
-					<MotionDiv variants={childVariants}>
-						<Typography as="h3" variant="h3" className="mb-5">
-							{title}
-						</Typography>
-					</MotionDiv>
+					{title && (
+						<MotionDiv variants={childVariants}>
+							<Typography as="h3" variant="h3" className="mb-5">
+								{title}
+							</Typography>
+						</MotionDiv>
+					)}
 					{subtitle && (
 						<MotionDiv variants={childVariants}>
 							<Typography as="p" variant="body1">

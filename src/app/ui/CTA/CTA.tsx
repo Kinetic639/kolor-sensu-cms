@@ -22,7 +22,6 @@ export default function CTA({
 }: Sanity.CTA & React.HTMLAttributes<HTMLAnchorElement> & { color?: ColorOptions }) {
 	const cleanedType = cleanText(type || "");
 
-	console.log(cleanedType);
 	// Handle button with gradient style
 	if (cleanedType === "button" && style === "gradient" && link) {
 		return (

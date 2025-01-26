@@ -8,7 +8,19 @@ export const modulesQuery = groq`
     ...,
     link{ ${linkQuery} }
   },
-  _type == 'blog-list' => { predefinedFilters[]-> },
+  _type == 'blog-list' => {
+    predefinedFilters[]->,
+    textItems[]{
+      text,
+      icon{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      }
+    }
+  },
   _type == 'breadcrumbs' => { crumbs[]{ ${linkQuery} } },
 
     _type == 'hero.withCard' => {

@@ -13,12 +13,14 @@ export default async function BlogList({
 	limit = 100,
 	displayFilters,
 	predefinedFilters,
+	textItems,
 }: Partial<{
 	intro: Sanity.BlockContent;
 	layout: "grid" | "carousel";
 	limit: number;
 	displayFilters: boolean;
 	predefinedFilters: Sanity.BlogCategory[];
+	textItems: Array<{ text: string; icon?: { asset: { url: string }; alt?: string } }>;
 }>) {
 	const posts = await fetchSanity<Sanity.BlogPost[]>(
 		groq`*[_type == 'blog.post']|order(featured desc, publishDate desc)[0...$limit]{
@@ -44,9 +46,8 @@ lastName,
 	return (
 		<section
 			className={cn(
-				"section mx-1 max-w-screen-xl space-y-8 rounded-3xl px-4 py-6 md:mx-auto",
-				stegaClean(layout) === "carousel" &&
-					"border-2 border-yellow-400 bg-yellow-100 bg-opacity-20",
+				"section mx-1 max-w-screen-xl space-y-8 rounded-3xl py-6 md:mx-auto",
+				stegaClean(layout) === "carousel" && "max-w-none",
 			)}
 		>
 			{intro && (
@@ -59,6 +60,7 @@ lastName,
 
 			{stegaClean(layout) === "carousel" ? (
 				<BlogCarousel
+					textItems={textItems}
 					posts={posts}
 					predefinedFilters={predefinedFilters}
 					className={cn(
