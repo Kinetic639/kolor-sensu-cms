@@ -101,7 +101,7 @@ export default function CTA({
 
 	// Handle other types of CTAs (internal or external links)
 	const props = {
-		className: cn(cleanedType, className) || undefined,
+		className: cn(cleanedType, "flex items-center", className) || undefined,
 		children: children || link?.label || link?.internal?.title || link?.external,
 		...rest,
 	};

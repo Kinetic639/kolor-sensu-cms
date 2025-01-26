@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-type TextItem = { text: string; icon?: { asset: { url: string }; alt?: string } };
+type TextItem = {
+	text: string;
+	icon?: { asset: { url: string }; alt?: string; loading?: "lazy" | "eager" };
+};
 
 const BlogCarouselItems = ({ textItems = [] }: { textItems: TextItem[] }) => {
 	const [randomizedItems, setRandomizedItems] = useState<TextItem[]>([]);
@@ -33,6 +36,7 @@ const BlogCarouselItems = ({ textItems = [] }: { textItems: TextItem[] }) => {
 								width={24}
 								height={24}
 								className="mr-2 h-5 w-5 md:h-6 md:w-6"
+								loading={item.icon.loading || "lazy"}
 							/>
 						)}
 						<span className="text-sm font-medium text-[#64876E] md:text-base">{item.text}</span>
