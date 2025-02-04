@@ -17,7 +17,19 @@ export default function Navigation({ footerMenu }: NavigationProps) {
 			{footerMenu?.items?.map((item, key) => {
 				switch (item._type) {
 					case "link":
-						return <CTA className="hover:link flex md:px-3" link={item} key={key} />;
+						const slug = item.internal?.metadata?.slug?.current;
+						// Determine if the link is active
+						const isActive = slug === "index" ? path === "/" : slug && path === `/${slug}`;
+						return (
+							<CTA
+								className={cn(
+									"text-sm transition-colors duration-150 hover:text-slate-300 hover:text-white md:px-3",
+									isActive && "text-foreground",
+								)}
+								link={item}
+								key={key}
+							/>
+						);
 
 					case "link.list":
 						return (

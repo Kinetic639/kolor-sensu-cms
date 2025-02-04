@@ -90,14 +90,14 @@ export default defineType({
 	],
 	preview: {
 		select: {
+
+			title: "pretitle",
 			content: "content",
 			media: "image.asset",
 		},
-		prepare: ({ content, media }) => ({
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-			title: getBlockText(content),
+		prepare: ({ title, media }) => ({
+			title: title?.[0]?.children?.[0]?.text || "Split Content",
 			subtitle: "Hero (split)",
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			media,
 		}),
 	},

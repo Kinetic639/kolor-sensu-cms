@@ -4,6 +4,13 @@ import { ctaQuery } from "./ctaQuery";
 
 export const modulesQuery = groq`
   ...,
+  _type == 'actionBanner' => {
+    _type,
+    _key,
+    heading,
+    colorVariant,
+    cta { ${ctaQuery} }
+  },
   ctas[]{
     ...,
     link{ ${linkQuery} }
@@ -52,7 +59,7 @@ export const modulesQuery = groq`
     }
   },
     _type == 'splitContent' => {
-    heading,
+    heading[],
     subheading,
     items[]{
       icon {
@@ -94,6 +101,39 @@ export const modulesQuery = groq`
   _type == 'hero.saas' => { reputation-> },
   _type == 'hero.split' => { reputation-> },
   _type == 'hero.modern' => { reputation-> },
+  _type == 'hero.mosaic' => {
+    _type,
+    _key,
+    heading[],
+    subheading,
+    cta { ${ctaQuery} },
+    mosaicImages[]{
+      _key,
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    },
+    backgroundType,
+    backgroundImage{
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    }
+  },
   _type == 'logo-list' => { logos[]-> },
   _type == 'pricing-list' => {
     tiers[]->{

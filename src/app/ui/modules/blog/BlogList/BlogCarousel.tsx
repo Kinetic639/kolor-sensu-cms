@@ -36,6 +36,24 @@ export default function BlogCarousel({
 	const [api, setApi] = useState<CarouselApi>();
 	const [current, setCurrent] = useState(0);
 
+	// Memoize the filtered posts to prevent recalculation on every render
+	const filtered = React.useMemo(
+		() =>
+			posts
+				.filter(
+					(post) =>
+						!predefinedFilters?.length ||
+						post.categories?.some((category) =>
+							predefinedFilters.some((filter) => filter._id === category._id),
+						),
+				)
+				.filter(
+					(post) =>
+						selected === "All" || post.categories?.some((category) => category._id === selected),
+				),
+		[posts, predefinedFilters, selected],
+	);
+
 	useEffect(() => {
 		if (!api) return;
 
@@ -60,20 +78,6 @@ export default function BlogCarousel({
 	if (isDesktop === undefined) {
 		return null;
 	}
-	const filtered = posts
-		// filter by predefined filters
-		.filter(
-			(post) =>
-				!predefinedFilters?.length ||
-				post.categories?.some((category) =>
-					predefinedFilters.some((filter) => filter._id === category._id),
-				),
-		)
-		// filter by selected category
-		.filter(
-			(post) =>
-				selected === "All" || post.categories?.some((category) => category._id === selected),
-		);
 
 	if (!filtered.length) {
 		return <div>No posts found...</div>;
@@ -81,7 +85,7 @@ export default function BlogCarousel({
 
 	return (
 		<section className="relative flex flex-col">
-			{/* First Div with Gradient Background */}
+			{/* Memoized BlogCarouselItems will now only re-render when textItems change */}
 			<BlogCarouselItems textItems={textItems || []} />
 
 			{/* Second Div with Solid Gray Background */}
@@ -96,7 +100,7 @@ export default function BlogCarousel({
 				>
 					{/* Side Description replacing previous/next buttons */}
 					{isDesktop && (
-						<div className="mb-8 max-w-[300px] pr-8">
+						<div className="mb-8 mr-4 w-full max-w-[400px] pr-8">
 							<Typography variant="h2" color="default">
 								Newsy
 							</Typography>
@@ -117,7 +121,7 @@ export default function BlogCarousel({
 					)}
 					<CarouselContent>
 						{filtered.map((post, index) => (
-							<CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+							<CarouselItem key={index} className="md:basis-1/2">
 								<PostPreview post={post} />
 							</CarouselItem>
 						))}

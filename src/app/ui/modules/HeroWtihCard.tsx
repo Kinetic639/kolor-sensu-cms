@@ -81,7 +81,7 @@ export default function HeroWithCard({
 								<Typography
 									as="h3"
 									variant="h5"
-									className="mb-4 text-center font-bold text-purple-700"
+									className="mb-4 text-center !font-medium text-[#636AE8]"
 								>
 									{card.title}
 								</Typography>

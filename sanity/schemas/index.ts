@@ -36,6 +36,8 @@ import heroModern from "@sanity/schemas/modules/hero.modern";
 import splitContent from "@sanity/schemas/modules/split.content";
 import heroWithCard from "@sanity/schemas/modules/hero.withCard";
 import bannerText from "@sanity/schemas/modules/bannerText";
+import actionBanner from "@sanity/schemas/modules/actionBanner";
+import heroMosaic from "@sanity/schemas/modules/hero.mosaic";
 
 // modules
 
@@ -70,6 +72,7 @@ export const schemaTypes = [
 	blogPostContent,
 	heroModern,
 	HeroSplit,
+	heroMosaic,
 	banner,
 	cardSection,
 	specialistModule,
@@ -83,4 +86,5 @@ export const schemaTypes = [
 	splitContent,
 	heroWithCard,
 	bannerText,
+	actionBanner,
 ];

@@ -36,7 +36,7 @@ export default function HeroModern({
 					image={backgroundImage}
 					imageWidth={1800}
 					alt={backgroundImage?.alt || "Background Image"}
-					className="object-fit absolute inset-0 z-[-999] mx-auto h-full w-auto"
+					className="object-fit absolute inset-0 z-[10] mx-auto h-full w-auto opacity-80"
 				/>
 			)}
 
@@ -48,7 +48,7 @@ export default function HeroModern({
 
 				<MotionDiv
 					className={cn(
-						"mx-auto max-w-md flex-shrink flex-col justify-center",
+						"mx-auto max-w-lg flex-shrink flex-col justify-center",
 						// image?.onRight ? "md:text-right" : "md:text-left",
 					)}
 					initial={{ opacity: 0, y: 50 }}
@@ -66,7 +66,7 @@ export default function HeroModern({
 						>
 							<Typography
 								as="h1"
-								variant={"h2"}
+								variant={"h5"}
 								className={cn(
 									"mb-4 text-center text-[48px] font-bold uppercase text-foreground-secondary",
 									// image?.onRight ? "md:text-right" : "md:text-left",
@@ -82,7 +82,11 @@ export default function HeroModern({
 						transition={{ delay: 0.4 }}
 						className={cn("text-center")}
 					>
-						<Typography as="h2" variant="h4" className="text-center text-foreground-secondary">
+						<Typography
+							as="h2"
+							variant="h2"
+							className="text-center font-medium text-foreground-secondary"
+						>
 							{subtitle}
 						</Typography>
 					</MotionDiv>

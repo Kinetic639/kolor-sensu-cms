@@ -16,11 +16,11 @@ function getRandomValues(values: string[], count: number): string {
 
 export const SingleBlob = () => {
 	return (
-		<div className="absolute left-0 top-0 z-[-10] h-full w-full overflow-x-clip">
+		<div className="absolute -left-[300px] top-0 z-[-10] h-full w-full">
 			<svg
 				viewBox="0 0 500 500"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute left-0 top-0 w-[60%] translate-x-[-20%] lg:translate-y-[-30%]"
+				className="absolute left-0 top-0 w-[70%] lg:translate-y-[-30%]"
 			>
 				<defs>
 					<linearGradient id="one" x1="0%" y1="10%" x2="30%" y2="100%">

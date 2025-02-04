@@ -57,7 +57,7 @@ export default function CTA({
 				>
 					<Button
 						className={cn(
-							"w-full min-w-44 self-center rounded-full border border-purple-700 bg-transparent p-7 px-8 text-center text-base lowercase text-purple-700 transition-all duration-200 ease-in-out hover:bg-purple-700 hover:text-white max-md:mx-auto",
+							"w-full min-w-44 self-center rounded-full border border-[#636AE8] bg-transparent p-7 px-8 text-center text-base lowercase text-[#636AE8] transition-all duration-200 ease-in-out hover:bg-[#636AE8] hover:text-white max-md:mx-auto",
 						)}
 					>
 						{link?.label}

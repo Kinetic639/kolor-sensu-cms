@@ -6,7 +6,7 @@ type TextItem = {
 	icon?: { asset: { url: string }; alt?: string; loading?: "lazy" | "eager" };
 };
 
-const BlogCarouselItems = ({ textItems = [] }: { textItems: TextItem[] }) => {
+const BlogCarouselItems = React.memo(({ textItems = [] }: { textItems: TextItem[] }) => {
 	const [randomizedItems, setRandomizedItems] = useState<TextItem[]>([]);
 
 	useEffect(() => {
@@ -17,16 +17,15 @@ const BlogCarouselItems = ({ textItems = [] }: { textItems: TextItem[] }) => {
 	return (
 		<div className="relative flex flex-wrap justify-center gap-8 bg-gradient-to-b from-[#A3B4AAFF] to-gray-200 p-6 py-12 md:gap-14 md:p-12 md:py-24">
 			{randomizedItems.map((item, index) => {
-				// Randomize the vertical offset slightly
-				const randomMargin = Math.random() * (20 - -20) + -20; // Random margin between -15px to 15px
+				const randomMargin = Math.random() * (20 - -20) + -20;
 
 				return (
 					<div
 						key={index}
 						className="flex items-center justify-center rounded-md bg-gray-100 px-3 py-2 shadow-md md:px-4 md:py-3"
 						style={{
-							transform: `translateY(${randomMargin}px)`, // Apply random vertical offset
-							border: "1px solid #D1D5DB", // Light gray border for definition
+							transform: `translateY(${randomMargin}px)`,
+							border: "1px solid #D1D5DB",
 						}}
 					>
 						{item.icon && (
@@ -45,6 +44,8 @@ const BlogCarouselItems = ({ textItems = [] }: { textItems: TextItem[] }) => {
 			})}
 		</div>
 	);
-};
+});
+
+BlogCarouselItems.displayName = "BlogCarouselItems";
 
 export default BlogCarouselItems;

@@ -16,7 +16,20 @@ export default defineType({
 		defineField({
 			name: "heading",
 			title: "Heading",
-			type: "string",
+			type: "array",
+			of: [
+				{
+					type: "block",
+					styles: [{ title: "Normal", value: "normal" }],
+					lists: [],
+					marks: {
+						decorators: [
+							{ title: "Line Break", value: "break" }
+						],
+						annotations: []
+					}
+				}
+			],
 			group: "content",
 		}),
 		defineField({
@@ -102,9 +115,7 @@ export default defineType({
 			media: "image.asset",
 		},
 		prepare: ({ title, subtitle, media }) => ({
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			title: title || "Split Content",
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			title: title?.[0]?.children?.[0]?.text || "Split Content",
 			subtitle: subtitle || "No subheading provided",
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			media,
