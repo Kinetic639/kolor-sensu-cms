@@ -43,14 +43,14 @@ export default function HeroSplit({
 					image={backgroundImage}
 					imageWidth={1800}
 					alt={backgroundImage?.alt || "Background Image"}
-					className="absolute inset-0 z-10 h-full w-full object-cover opacity-50"
+					className="absolute inset-0 z-0 h-full w-full object-cover opacity-50"
 				/>
 			)}
 
 			{/* Optional Blob Background */}
 			{backgroundType === "blob" && <EdgeBlob />}
 
-			<div className="relative z-10 mx-auto grid max-w-screen-xl items-center gap-8 px-4 md:grid-cols-2 md:gap-12 lg:px-8">
+			<div className="relative z-0 mx-auto grid max-w-screen-xl items-center gap-8 px-4 md:grid-cols-2 md:gap-12 lg:px-8">
 				<figure
 					className={cn(
 						"relative w-full",

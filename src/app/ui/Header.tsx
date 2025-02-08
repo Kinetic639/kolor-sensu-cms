@@ -14,7 +14,7 @@ export const Header = async () => {
 	return (
 		<div
 			className={cn(
-				"sticky top-0 z-[999] mx-auto flex w-full justify-center bg-background-secondary bg-red-500 md:bg-transparent",
+				"sticky top-0 z-[999] mx-auto flex w-full justify-center bg-background-secondary md:bg-transparent",
 			)}
 		>
 			<NavAnimatedBackground />

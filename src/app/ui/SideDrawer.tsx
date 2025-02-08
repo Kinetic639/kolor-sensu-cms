@@ -24,7 +24,7 @@ export const SideDrawer = async () => {
 			<SheetTrigger asChild className="min-w-14 text-2xl text-foreground-secondary md:hidden">
 				<RiMenu3Fill />
 			</SheetTrigger>
-			<SheetContent className="min-w-[300px]">
+			<SheetContent className="z-[999] min-w-[300px]">
 				<SheetHeader className="flex-row items-start justify-between">
 					<SheetTitle className="sr-only">sidebar menu</SheetTitle>
 					<SheetDescription className="sr-only">mobile side menu</SheetDescription>
