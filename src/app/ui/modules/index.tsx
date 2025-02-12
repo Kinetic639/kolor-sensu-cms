@@ -68,8 +68,8 @@ export default function Modules({
 					// 	return <ProductsModule {...(module as Sanity.ProductsModule)} key={module._key} />;
 					// case "podcastModule":
 					// 	return <PodcastModule key={module._key} />;
-					// case "splitContent": // Add new case for SplitContent
-					// 	return <SplitContent {...module} key={module._key} />;
+					case "splitContent": // Add new case for SplitContent
+						return <SplitContent {...module} key={module._key} />;
 					// case "hero.withCard": // Add new case for SplitContent
 					// 	return <HeroWithCard {...module} key={module._key} />;
 					// case "bannerText": // Add new case for SplitContent

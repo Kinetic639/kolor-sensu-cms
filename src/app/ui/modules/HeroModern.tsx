@@ -22,7 +22,7 @@ export default function HeroModern({
 	backgroundImage: Sanity.Image;
 }>) {
 	return (
-		<section className="relative w-full">
+		<section className="relative mb-32 w-full">
 			{/* Background Image */}
 			{backgroundImage && (
 				<div className="relative flex h-auto w-full justify-end">

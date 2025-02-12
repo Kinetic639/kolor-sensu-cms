@@ -26,7 +26,7 @@ export default function SplitContent({
 	return (
 		<section
 			className={cn(
-				"relative",
+				"relative border border-violet-600",
 				backgroundType === "solid" && "bg-gray-100",
 				backgroundType === "wavy" && "bg-white",
 			)}
@@ -36,7 +36,7 @@ export default function SplitContent({
 		>
 			{/* Add Background Wave Image */}
 			{backgroundType === "wavy" && backgroundImage?.asset && (
-				<div className="absolute bottom-0 right-0 h-[120%] w-full">
+				<div className="absolute bottom-0 right-0 h-[110%] w-full md:h-[120%]">
 					<Img
 						image={backgroundImage}
 						imageWidth={4360}
@@ -46,9 +46,9 @@ export default function SplitContent({
 				</div>
 			)}
 
-			<div className="relative mx-auto grid max-w-screen-xl items-stretch gap-8 px-4 py-16 pb-28 md:grid-cols-5">
+			<div className="relative mx-auto flex max-w-screen-xl items-stretch gap-8 px-4 py-16 md:pb-28">
 				{/* Left Section (Image with Stones) */}
-				<div className="flex justify-center md:col-span-2">
+				<div className="flex">
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
@@ -59,9 +59,32 @@ export default function SplitContent({
 								image={image}
 								imageWidth={1800}
 								alt={image.alt || "Stones Image"}
-								className="max-w-[500px] md:max-w-[700px]"
+								className="max-w-[60svw] sm:max-w-[60vw] md:max-w-[400px]"
 							/>
 						)}
+						{/* Heading and Subheading */}
+						<div className="mt-4 md:hidden">
+							{heading && (
+								<Typography
+									as="h3"
+									variant={"h1"}
+									className={cn(
+										"text-left text-3xl font-bold leading-normal text-foreground-secondary sm:text-4xl",
+									)}
+								>
+									<PortableText
+										value={heading}
+										components={{
+											block: ({ children }) => <>{children}</>,
+											marks: {
+												break: () => <br />,
+											},
+										}}
+									/>
+								</Typography>
+							)}
+							{subheading && <p className="mt-4 text-xl text-gray-600 sm:text-2xl">{subheading}</p>}
+						</div>
 					</motion.div>
 				</div>
 
@@ -70,10 +93,10 @@ export default function SplitContent({
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.6 }}
-					className="flex flex-col justify-end space-y-12 pb-16 md:col-span-3"
+					className="flex flex-1 flex-col justify-end gap-y-6"
 				>
 					{/* Heading and Subheading */}
-					<div>
+					<div className="hidden md:block">
 						{heading && (
 							<Typography
 								as="h3"
@@ -95,20 +118,22 @@ export default function SplitContent({
 					</div>
 
 					{/* Icons with Text */}
-					<ul className="flex w-fit flex-wrap justify-between gap-6 self-end">
+					<ul className="flex w-full flex-col flex-wrap justify-between max-sm:flex-1 max-sm:gap-y-8 md:flex-row">
 						{items?.map((item, idx) => (
-							<li key={idx} className="flex max-w-28 flex-col items-center">
+							<li key={idx} className="flex max-w-24 flex-col items-center">
 								{/* Icon */}
 								{item.icon?.asset && (
 									<Img
 										image={item.icon}
-										imageWidth={82}
+										imageWidth={64}
 										alt={`Icon for ${item.text}`}
-										className="mb-2 h-20 w-20 object-contain"
+										className="h-16 w-16 object-contain sm:h-20 sm:w-20"
 									/>
 								)}
 								{/* Text */}
-								<p className="text-center text-sm font-medium text-secondary">{item.text}</p>
+								<p className="text-center text-xs font-medium text-secondary sm:text-sm">
+									{item.text}
+								</p>
 							</li>
 						))}
 					</ul>
