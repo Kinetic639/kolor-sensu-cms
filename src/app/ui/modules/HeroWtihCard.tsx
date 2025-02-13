@@ -30,7 +30,7 @@ export default function HeroWithCard({
 	return (
 		<section
 			className={cn(
-				"relative py-12",
+				"relative",
 				backgroundType === "solid" && "bg-white",
 				backgroundType === "blob" && "relative",
 			)}
@@ -48,35 +48,18 @@ export default function HeroWithCard({
 			{/* Optional Blob Background */}
 			{backgroundType === "blob" && <EdgeBlob />}
 
-			<div className="relative z-10 mx-auto grid max-w-screen-xl items-stretch gap-6 px-4 py-16 md:grid-cols-2">
-				<div className="flex max-w-[80%] flex-col gap-8 self-center">
-					{/* Main Content */}
-					{pretitle && (
-						<Typography
-							as="h3"
-							variant="h3"
-							className="mb-4 text-left font-bold text-foreground-hover md:text-left"
-						>
-							{pretitle}
-						</Typography>
-					)}
-					<PortableText value={content} components={customPortableTextComponents} />
-					{ctas && <CTAList ctas={ctas} className="mt-8" />}
-				</div>
-
-				{/* Image Section with Hovering Card */}
-				<div className="relative">
+			<div className="md:pt16 relative z-10 mx-auto grid max-w-screen-xl items-stretch gap-6 py-12 pt-32 md:grid-cols-2 md:px-4 md:py-16">
+				<div className="relative order-1 px-4 pb-[400px] md:order-2 md:pb-0">
 					{image?.asset && (
 						<Img
 							image={image}
 							imageWidth={1200}
 							alt={image?.alt || "Main Image"}
-							className="rounded-lg shadow-lg"
+							className="absolute left-[90px] rounded-lg md:relative md:left-0"
 						/>
 					)}
-
 					{card && (
-						<motion.div className="absolute -left-20 top-24 w-[260px] max-w-sm rounded-2xl bg-white p-3 shadow-xl">
+						<motion.div className="absolute -top-[70px] left-[140px] w-[220px] max-w-sm -translate-x-1/2 transform rounded-2xl bg-white p-3 shadow-xl md:-left-20 md:top-24 md:w-[260px] md:-translate-x-1/2 md:transform-none">
 							{card.title && (
 								<Typography
 									as="h3"
@@ -102,15 +85,30 @@ export default function HeroWithCard({
 												image={item.icon}
 												imageWidth={32}
 												alt={`Icon for ${item.text}`}
-												className="h-8 w-8"
+												className="h-6 w-6 md:h-8 md:w-8"
 											/>
 										)}
-										<span className="text-sm">{item.text}</span>
+										<span className="text-sm md:text-base">{item.text}</span>
 									</li>
 								))}
 							</ul>
 						</motion.div>
 					)}
+				</div>
+
+				<div className="order-2 flex flex-col gap-8 self-center px-4 md:order-1 md:max-w-[80%]">
+					{/* Main Content */}
+					{pretitle && (
+						<Typography
+							as="h3"
+							variant="h3"
+							className="text-left text-2xl font-bold text-foreground-hover md:text-3xl"
+						>
+							{pretitle}
+						</Typography>
+					)}
+					<PortableText value={content} components={customPortableTextComponents} />
+					{ctas && <CTAList ctas={ctas} className="mt-8" />}
 				</div>
 			</div>
 		</section>

@@ -165,7 +165,7 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 				role="group"
 				aria-roledescription="slide"
 				className={cn(
-					"min-w-0 shrink-0 grow-0 basis-full",
+					"flex h-full min-w-0 shrink-0 grow-0 basis-full flex-col self-stretch",
 					orientation === "horizontal" ? "pl-4" : "pt-4",
 					className,
 				)}
@@ -186,7 +186,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
 				variant={variant}
 				size={size}
 				className={cn(
-					"transition-colors-all h-11 w-11 cursor-pointer bg-white rounded-full border-foreground  text-foreground opacity-80 duration-150 hover:border-foreground hover:bg-foreground hover:text-white hover:opacity-100 disabled:opacity-30",
+					"transition-colors-all h-11 w-11 cursor-pointer rounded-full border-foreground bg-white text-foreground opacity-80 duration-150 hover:border-foreground hover:bg-foreground hover:text-white hover:opacity-100 disabled:opacity-30",
 					"transition-colors duration-200",
 					orientation === "horizontal" ? "" : "rotate-90",
 					className,
@@ -213,7 +213,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
 				variant={variant}
 				size={size}
 				className={cn(
-					"disabled:text-red transition-colors-all bg-white h-11 w-11 cursor-pointer rounded-full border-foreground  text-foreground opacity-80 duration-150 hover:border-foreground hover:bg-foreground hover:text-white hover:opacity-100 disabled:opacity-30",
+					"disabled:text-red transition-colors-all h-11 w-11 cursor-pointer rounded-full border-foreground bg-white text-foreground opacity-80 duration-150 hover:border-foreground hover:bg-foreground hover:text-white hover:opacity-100 disabled:opacity-30",
 					orientation === "horizontal" ? "" : "rotate-90",
 					className,
 				)}

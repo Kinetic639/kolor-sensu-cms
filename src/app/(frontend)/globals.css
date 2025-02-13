@@ -265,8 +265,3 @@
 		transform: translateX(-100%); /* End completely off-screen to the left */
 	}
 }
-
-.animate-slide-infinite {
-	display: flex;
-	animation: slide-infinite linear infinite;
-}

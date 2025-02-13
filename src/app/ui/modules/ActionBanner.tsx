@@ -3,21 +3,19 @@ import { cn } from "@/lib/utils";
 import CTA from "@/app/ui/CTA/CTA";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 
-type ActionBannerProps = {
-	heading: string;
-	cta: Sanity.CTA;
-	colorVariant?: "darkBlue" | "light" | "green";
-};
-
 export default function ActionBanner({
 	heading,
 	cta,
 	colorVariant = "darkBlue",
-}: ActionBannerProps) {
+}: Partial<{
+	heading: string;
+	cta: Sanity.CTA;
+	colorVariant?: "darkBlue" | "light" | "green";
+}>) {
 	return (
 		<div
 			className={cn(
-				"relative mx-auto my-6 w-full max-w-screen-xl overflow-hidden bg-[#2D4148] px-4 py-8 text-center text-white md:my-12 md:px-16 md:py-16 lg:rounded-[40px]",
+				"relative mx-auto my-6 w-full max-w-screen-xl overflow-hidden bg-[#2D4148] px-4 py-12 text-center text-white md:my-24 md:px-16 md:py-16 lg:rounded-[40px]",
 				colorVariant === "light" && "bg-gray-100 text-foreground",
 				colorVariant === "green" && "bg-emerald-600",
 			)}

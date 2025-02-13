@@ -19,7 +19,7 @@ export default function PostPreview({
 	return (
 		<Link
 			className={cn(
-				"group cursor-pointer space-y-2 bg-white rounded-xl",
+				"group h-full cursor-pointer space-y-2 self-stretch rounded-xl bg-white",
 				layout === "grid"
 					? "p-2 transition-shadow duration-150 hover:bg-[#F5EEEAFF] hover:shadow-lg md:flex md:gap-4"
 					: "block",
@@ -28,7 +28,7 @@ export default function PostPreview({
 		>
 			<figure
 				className={cn(
-					"relative overflow-hidden bg-ink/5 rounded-t-lg",
+					"relative overflow-hidden rounded-t-lg bg-ink/5",
 					layout === "grid" ? "h-full md:w-1/3" : "aspect-w-16 aspect-h-9",
 				)}
 			>
@@ -46,8 +46,13 @@ export default function PostPreview({
 				)}
 			</figure>
 
-			<div className={cn("flex flex-1 flex-col p-4", layout === "grid" ? "my-0 mt-0" : "")}>
-				<div className="flex flex-1 flex-col transition-colors duration-100">
+			<div
+				className={cn(
+					"flex h-full min-h-[350px] flex-1 flex-col p-4",
+					layout === "grid" ? "my-0 mt-0" : "",
+				)}
+			>
+				<div className="flex h-full flex-1 flex-col transition-colors duration-100">
 					<div className="flex flex-wrap gap-x-4 pb-1 pt-1 text-xs transition-colors duration-100">
 						<Date value={post.publishDate} />
 					</div>
@@ -65,7 +70,7 @@ export default function PostPreview({
 						as="h5"
 						variant="body2"
 						className={cn(
-							"text-sm transition-colors duration-100",
+							"flex-1 text-sm transition-colors duration-100",
 							layout !== "grid" && "min-h-24",
 							layout === "grid" && "pb-6 md:min-h-0", // Adjusted height for grid layout
 						)}

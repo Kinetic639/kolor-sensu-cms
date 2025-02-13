@@ -18,7 +18,6 @@ import HeroModern from "@/app/ui/modules/HeroModern";
 import SplitContent from "@/app/ui/SplitContent";
 import HeroWithCard from "@/app/ui/modules/HeroWtihCard";
 import BannerText from "@/app/ui/modules/BannerText";
-import HeroMosaic from "@/app/ui/modules/HeroMosaic";
 
 export default function Modules({
 	modules,
@@ -34,22 +33,20 @@ export default function Modules({
 				switch (module._type) {
 					// case "blog-post-content":
 					// 	return <PostContent {...module} post={post} key={module._key} />;
-					// case "blog-list":
-					// 	return <BlogList {...module} key={module._key} />;
+					case "blog-list":
+						return <BlogList {...module} key={module._key} />;
 					// case "hero":
 					// 	return <Hero {...module} key={module._key} />;
 					// case "hero.split":
 					// 	return <HeroSplit {...module} key={module._key} />;
-					// case "hero.mosaic":
-					// 	return <HeroMosaic {...module} key={module._key} />;
 					case "hero.modern":
 						return <HeroModern {...module} key={module._key} />;
 					// case "hero.saas":
 					// 	return <HeroSaaS {...module} key={module._key} />;
 					// case "banner":
 					// 	return <Banner {...module} key={module._key} />;
-					// case "cardsSection":
-					// 	return <CardSection {...module} key={module._key} />;
+					case "cardsSection":
+						return <CardSection {...module} key={module._key} />;
 					// case "specialistsModule":
 					// 	return (
 					// 		<SpecialistsSection {...(module as Sanity.SpecialistsModule)} key={module._key} />
@@ -70,12 +67,12 @@ export default function Modules({
 					// 	return <PodcastModule key={module._key} />;
 					case "splitContent": // Add new case for SplitContent
 						return <SplitContent {...module} key={module._key} />;
-					// case "hero.withCard": // Add new case for SplitContent
-					// 	return <HeroWithCard {...module} key={module._key} />;
-					// case "bannerText": // Add new case for SplitContent
-					// 	return <BannerText {...module} key={module._key} />;
-					// case "actionBanner": // Add new case for SplitContent
-					// 	return <ActionBanner {...module} key={module._key} />;
+					case "hero.withCard": // Add new case for SplitContent
+						return <HeroWithCard {...module} key={module._key} />;
+					case "bannerText": // Add new case for SplitContent
+						return <BannerText {...module} key={module._key} />;
+					case "actionBanner": // Add new case for SplitContent
+						return <ActionBanner {...module} key={module._key} />;
 
 					default:
 						return <div key={module._key} />;

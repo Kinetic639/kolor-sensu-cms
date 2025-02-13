@@ -26,7 +26,7 @@ export default function SplitContent({
 	return (
 		<section
 			className={cn(
-				"relative border border-violet-600",
+				"relative",
 				backgroundType === "solid" && "bg-gray-100",
 				backgroundType === "wavy" && "bg-white",
 			)}

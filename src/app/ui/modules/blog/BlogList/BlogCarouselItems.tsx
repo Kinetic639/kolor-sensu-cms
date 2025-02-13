@@ -15,7 +15,7 @@ const BlogCarouselItems = React.memo(({ textItems = [] }: { textItems: TextItem[
 	}, [textItems]);
 
 	return (
-		<div className="relative flex flex-wrap justify-center gap-8 bg-gradient-to-b from-[#A3B4AAFF] to-gray-200 p-6 py-12 md:gap-14 md:p-12 md:py-24">
+		<div className="relative hidden flex-wrap justify-center gap-8 bg-gradient-to-b from-[#A3B4AAFF] to-gray-200 p-6 py-12 md:flex md:gap-14 md:p-12 md:py-24">
 			{randomizedItems.map((item, index) => {
 				const randomMargin = Math.random() * (20 - -20) + -20;
 

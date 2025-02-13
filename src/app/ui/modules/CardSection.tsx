@@ -39,7 +39,7 @@ export default function CardSection({
 	return (
 		<section
 			ref={sectionRef} // Attach ref to the section
-			className={cn(fullscreen && "bg-multi-gradient", "w-full px-4 py-12 md:pb-24")}
+			className={cn(fullscreen && "bg-multi-gradient", "w-full px-4")}
 		>
 			<div className={cn("mx-auto max-w-screen-xl px-4")}>
 				<MotionDiv
