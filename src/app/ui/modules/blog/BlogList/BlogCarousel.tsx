@@ -72,7 +72,7 @@ export default function BlogCarousel({
 						align: "start",
 						loop: true,
 					}}
-					className="mx-auto flex w-full max-w-screen-xl flex-col md:flex-row"
+					className="mx-auto flex w-full max-w-screen-xl flex-col py-4 md:flex-row"
 				>
 					{/* Side Description replacing previous/next buttons */}
 

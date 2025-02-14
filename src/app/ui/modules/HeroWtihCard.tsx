@@ -30,7 +30,7 @@ export default function HeroWithCard({
 	return (
 		<section
 			className={cn(
-				"relative",
+				"relative pb-8",
 				backgroundType === "solid" && "bg-white",
 				backgroundType === "blob" && "relative",
 			)}
@@ -61,13 +61,9 @@ export default function HeroWithCard({
 					{card && (
 						<motion.div className="absolute -top-[70px] left-[140px] w-[220px] max-w-sm -translate-x-1/2 transform rounded-2xl bg-white p-3 shadow-xl md:-left-20 md:top-24 md:w-[260px] md:-translate-x-1/2 md:transform-none">
 							{card.title && (
-								<Typography
-									as="h3"
-									variant="h5"
-									className="mb-4 text-center !font-medium text-[#636AE8]"
-								>
+								<h3 className="mb-3 text-center text-lg font-semibold text-[#636AE8]">
 									{card.title}
-								</Typography>
+								</h3>
 							)}
 							<ul className="flex flex-col gap-4">
 								{card.items?.map((item, idx) => (
