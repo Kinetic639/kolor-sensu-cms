@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "@/lib/hooks/use-media-query";
 import { cn } from "@/lib/utils";

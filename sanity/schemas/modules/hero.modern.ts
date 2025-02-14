@@ -48,7 +48,14 @@ export default defineType({
 		}),
 		defineField({
 			name: "backgroundImage",
-			title: "Background Image",
+			title: "Background Image (Desktop)",
+			type: "image",
+			options: { hotspot: true },
+			group: "background",
+		}),
+		defineField({
+			name: "backgroundImageMobile",
+			title: "Background Image (Mobile)",
 			type: "image",
 			options: { hotspot: true },
 			group: "background",
