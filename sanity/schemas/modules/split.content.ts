@@ -23,12 +23,10 @@ export default defineType({
 					styles: [{ title: "Normal", value: "normal" }],
 					lists: [],
 					marks: {
-						decorators: [
-							{ title: "Line Break", value: "break" }
-						],
-						annotations: []
-					}
-				}
+						decorators: [{ title: "Line Break", value: "break" }],
+						annotations: [],
+					},
+				},
 			],
 			group: "content",
 		}),
@@ -96,6 +94,13 @@ export default defineType({
 		defineField({
 			name: "backgroundImage",
 			title: "Background Image",
+			type: "image",
+			options: { hotspot: true },
+			group: "background",
+		}),
+		defineField({
+			name: "backgroundImageMobile",
+			title: "Background Image Mobile",
 			type: "image",
 			options: { hotspot: true },
 			group: "background",

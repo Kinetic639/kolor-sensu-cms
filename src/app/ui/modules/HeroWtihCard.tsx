@@ -30,7 +30,7 @@ export default function HeroWithCard({
 	return (
 		<section
 			className={cn(
-				"relative pb-8",
+				"relative overflow-hidden pb-8",
 				backgroundType === "solid" && "bg-white",
 				backgroundType === "blob" && "relative",
 			)}
@@ -48,7 +48,7 @@ export default function HeroWithCard({
 			{/* Optional Blob Background */}
 			{backgroundType === "blob" && <EdgeBlob />}
 
-			<div className="md:pt16 relative z-10 mx-auto grid max-w-screen-xl items-stretch gap-6 py-12 pt-32 md:grid-cols-2 md:px-4 md:py-16">
+			<div className="md:pt16 relative z-10 mx-auto grid max-w-screen-xl items-stretch gap-6 overflow-hidden py-12 pt-32 md:grid-cols-2 md:px-4 md:py-16">
 				<div className="relative order-1 px-4 pb-[400px] md:order-2 md:pb-0">
 					{image?.asset && (
 						<Img

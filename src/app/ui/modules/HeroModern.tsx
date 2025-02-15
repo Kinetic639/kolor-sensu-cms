@@ -11,6 +11,7 @@ export default function HeroModern({
 	image,
 	backgroundType,
 	backgroundImage,
+	backgroundImageMobile,
 }: Partial<{
 	title: string;
 	subtitle: string;
@@ -20,16 +21,24 @@ export default function HeroModern({
 	image: Sanity.Image & { onRight?: boolean; frameStyle?: string };
 	backgroundType: string;
 	backgroundImage: Sanity.Image;
+	backgroundImageMobile: Sanity.Image;
 }>) {
 	return (
-		<section className="relative mb-32 w-full">
+		<section className="relative w-full md:mb-32">
 			{/* Background Image */}
 			{backgroundImage && (
 				<div className="relative flex h-auto w-full justify-end">
-					<div className="relative max-sm:pt-[30vh] md:w-[80%]">
+					<div className="relative hidden md:block md:w-[80%]">
 						<Img
 							image={backgroundImage}
 							alt="Background"
+							className="h-auto w-full object-contain"
+						/>
+					</div>
+					<div className="relative block w-full md:hidden">
+						<Img
+							image={backgroundImageMobile}
+							alt="Background Mobile"
 							className="h-auto w-full object-contain"
 						/>
 					</div>

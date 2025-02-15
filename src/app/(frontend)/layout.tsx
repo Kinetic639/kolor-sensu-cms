@@ -52,7 +52,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 						<AppWrapper>
 							<Announcement />
 							<Header />
-							<main id="main-content" tabIndex={-1} className="flex-1 overflow-hidden pb-12">
+							<main
+								id="main-content"
+								tabIndex={-1}
+								className="flex-1 overflow-hidden pb-12 md:overflow-visible"
+							>
 								{children}
 							</main>
 							<Footer />

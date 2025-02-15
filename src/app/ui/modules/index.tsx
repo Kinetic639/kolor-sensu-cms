@@ -31,40 +31,40 @@ export default function Modules({
 		<>
 			{modules?.map((module) => {
 				switch (module._type) {
-					// case "blog-post-content":
-					// 	return <PostContent {...module} post={post} key={module._key} />;
+					case "blog-post-content":
+						return <PostContent {...module} post={post} key={module._key} />;
 					case "blog-list":
 						return <BlogList {...module} key={module._key} />;
-					// case "hero":
-					// 	return <Hero {...module} key={module._key} />;
-					// case "hero.split":
-					// 	return <HeroSplit {...module} key={module._key} />;
+					case "hero":
+						return <Hero {...module} key={module._key} />;
+					case "hero.split":
+						return <HeroSplit {...module} key={module._key} />;
 					case "hero.modern":
 						return <HeroModern {...module} key={module._key} />;
-					// case "hero.saas":
-					// 	return <HeroSaaS {...module} key={module._key} />;
-					// case "banner":
-					// 	return <Banner {...module} key={module._key} />;
+					case "hero.saas":
+						return <HeroSaaS {...module} key={module._key} />;
+					case "banner":
+						return <Banner {...module} key={module._key} />;
 					case "cardsSection":
 						return <CardSection {...module} key={module._key} />;
-					// case "specialistsModule":
-					// 	return (
-					// 		<SpecialistsSection {...(module as Sanity.SpecialistsModule)} key={module._key} />
-					// 	);
-					// case "galleryModule":
-					// 	return <GalleryModule {...(module as Sanity.GalleryModule)} key={module._key} />;
-					// case "faqModule":
-					// 	return <FAQModule {...module} key={module._key} />;
-					// case "servicesModule":
-					// 	return <ServicesModule {...(module as Sanity.ServicesModule)} key={module._key} />;
-					// case "contactModule":
-					// 	return <ContactModule {...module} key={module._key} />;
-					// case "consultationTestModule":
-					// 	return <ConsultationTestModule {...module} key={module._key} />;
-					// case "productsModule":
-					// 	return <ProductsModule {...(module as Sanity.ProductsModule)} key={module._key} />;
-					// case "podcastModule":
-					// 	return <PodcastModule key={module._key} />;
+					case "specialistsModule":
+						return (
+							<SpecialistsSection {...(module as Sanity.SpecialistsModule)} key={module._key} />
+						);
+					case "galleryModule":
+						return <GalleryModule {...(module as Sanity.GalleryModule)} key={module._key} />;
+					case "faqModule":
+						return <FAQModule {...module} key={module._key} />;
+					case "servicesModule":
+						return <ServicesModule {...(module as Sanity.ServicesModule)} key={module._key} />;
+					case "contactModule":
+						return <ContactModule {...module} key={module._key} />;
+					case "consultationTestModule":
+						return <ConsultationTestModule {...module} key={module._key} />;
+					case "productsModule":
+						return <ProductsModule {...(module as Sanity.ProductsModule)} key={module._key} />;
+					case "podcastModule":
+						return <PodcastModule key={module._key} />;
 					case "splitContent": // Add new case for SplitContent
 						return <SplitContent {...module} key={module._key} />;
 					case "hero.withCard": // Add new case for SplitContent

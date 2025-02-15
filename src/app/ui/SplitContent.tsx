@@ -14,6 +14,7 @@ export default function SplitContent({
 	backgroundType = "wavy",
 	backgroundImage,
 	backgroundOverlap = false,
+	backgroundImageMobile,
 }: Partial<{
 	heading: any[];
 	subheading: string;
@@ -22,6 +23,7 @@ export default function SplitContent({
 	backgroundType: string;
 	backgroundImage: Sanity.Image;
 	backgroundOverlap: boolean;
+	backgroundImageMobile: Sanity.Image;
 }>) {
 	return (
 		<section
@@ -36,17 +38,29 @@ export default function SplitContent({
 		>
 			{/* Add Background Wave Image */}
 			{backgroundType === "wavy" && backgroundImage?.asset && (
-				<div className="absolute bottom-0 right-0 h-[110%] w-full md:h-[120%]">
-					<Img
-						image={backgroundImage}
-						imageWidth={4360}
-						alt=""
-						className="absolute right-0 top-0 h-full w-full"
-					/>
+				<div className="absolute left-0 top-0 h-full w-full md:bottom-0 md:h-auto">
+					{
+						<>
+							<div className="absolute bottom-0 left-1/2 hidden h-[120%] w-[100%] -translate-x-1/2 items-end md:flex">
+								<Img
+									image={backgroundImage}
+									alt="Background"
+									className="h-full w-full object-cover object-top md:block"
+								/>
+							</div>
+							<div className="h-full md:hidden">
+								<Img
+									image={backgroundImageMobile}
+									alt="Background"
+									className="h-full w-full object-cover object-top md:block"
+								/>
+							</div>
+						</>
+					}
 				</div>
 			)}
 
-			<div className="relative mx-auto flex max-w-screen-xl items-stretch gap-8 px-4 py-16 md:pb-28">
+			<div className="relative mx-auto flex max-w-screen-xl items-stretch gap-8 px-4 py-16 pb-28">
 				{/* Left Section (Image with Stones) */}
 				<div className="flex">
 					<motion.div
@@ -59,7 +73,7 @@ export default function SplitContent({
 								image={image}
 								imageWidth={1800}
 								alt={image.alt || "Stones Image"}
-								className="max-w-[60svw] sm:max-w-[60vw] md:max-w-[400px]"
+								className="max-w-[55vw] sm:max-w-[60vw] md:max-w-[400px]"
 							/>
 						)}
 						{/* Heading and Subheading */}
@@ -69,7 +83,7 @@ export default function SplitContent({
 									as="h3"
 									variant={"h1"}
 									className={cn(
-										"text-left text-3xl font-bold leading-normal text-foreground-secondary sm:text-4xl",
+										"text-left text-3xl font-bold text-foreground-secondary sm:text-4xl",
 									)}
 								>
 									<PortableText
