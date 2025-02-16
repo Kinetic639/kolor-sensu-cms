@@ -14,15 +14,15 @@ export const Header = async () => {
 	return (
 		<div
 			className={cn(
-				"sticky top-0 z-50 mx-auto flex w-full justify-center bg-background-secondary md:bg-transparent",
+				"sticky top-0 z-[999] mx-auto flex w-full justify-center bg-background-secondary md:bg-transparent",
 			)}
 		>
+			<NavAnimatedBackground />
 			<div
 				className={cn(
 					"relative mx-auto flex w-full max-w-screen-xl items-center justify-between gap-x-6 py-2 md:py-1.5",
 				)}
 			>
-				<NavAnimatedBackground />
 				<Link
 					className={cn("h3 md:h2 ml-2.5 inline-block md:ml-2", logo?.image && "max-w-[250px]")}
 					href="/"

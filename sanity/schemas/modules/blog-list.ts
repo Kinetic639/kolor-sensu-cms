@@ -7,7 +7,11 @@ export default defineType({
 	title: "Blog list",
 	icon: VscEdit,
 	type: "object",
-	groups: [{ name: "content", default: true }, { name: "filtering" }, { name: "options" }],
+	groups: [
+		{ name: "content", title: "Content", default: true },
+		{ name: "filtering", title: "Filtering" },
+		{ name: "options", title: "Options" },
+	],
 	fields: [
 		defineField({
 			name: "intro",
@@ -50,6 +54,42 @@ export default defineType({
 			],
 			description: "Filter posts by category",
 			group: "filtering",
+		}),
+		defineField({
+			name: "textItems",
+			title: "Texts with Icons",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					title: "Text with Icon",
+					fields: [
+						defineField({
+							name: "text",
+							type: "string",
+							title: "Text",
+							description: "Text to display",
+							validation: (Rule) => Rule.required(),
+						}),
+						defineField({
+							name: "icon",
+							type: "image",
+							title: "Icon",
+							description: "Icon to display next to the text",
+							options: {
+								hotspot: true,
+							},
+						}),
+					],
+					preview: {
+						select: {
+							title: "text",
+							media: "icon",
+						},
+					},
+				},
+			],
+			group: "content",
 		}),
 	],
 	preview: {

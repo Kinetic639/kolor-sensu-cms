@@ -10,7 +10,11 @@ export default function CTAList({
 
 	return (
 		<div
-			className={cn("flex flex-wrap items-center gap-[.5em]", onRight && "justify-end", className)}
+			className={cn(
+				"flex flex-wrap items-center gap-[.5em]",
+				onRight && "justify-center",
+				className,
+			)}
 		>
 			{ctas?.map((cta, key) => <CTA {...cta} key={key} />)}
 		</div>

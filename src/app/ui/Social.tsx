@@ -24,7 +24,7 @@ export default function Social({ social, className }: SocialProps) {
 					case "link":
 						return (
 							<CTA
-								className="px-2 py-1 text-2xl hover:text-foreground hover:!opacity-100 group-has-[a:hover]:opacity-50"
+								className="px-2 py-1 text-xl hover:text-foreground hover:!opacity-100 group-has-[a:hover]:opacity-50"
 								link={item}
 								key={key}
 							>

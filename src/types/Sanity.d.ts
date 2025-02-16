@@ -75,6 +75,11 @@ declare global {
 			shortDescription: string;
 			fullDescription: BlockContent;
 			image?: Image;
+			socials?: {
+				type: string;
+				url: string;
+			}[];
+			showSocials?: boolean;
 		}>;
 
 		export type Card = {

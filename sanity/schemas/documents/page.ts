@@ -33,6 +33,8 @@ export default defineType({
 				{ type: "hero" },
 				{ type: "hero.saas" },
 				{ type: "hero.split" },
+				{ type: "hero.mosaic" },
+				{ type: "hero.modern" },
 				{ type: "banner" },
 				{ type: "cardsSection" },
 				{ type: "specialistsModule" },
@@ -43,6 +45,10 @@ export default defineType({
 				{ type: "consultationTestModule" },
 				{ type: "productsModule" },
 				{ type: "podcastModule" },
+				{ type: "splitContent" },
+				{ type: "bannerText" },
+				{ type: "hero.withCard" },
+				{ type: "actionBanner" },
 			],
 			options: {
 				insertMenu: {
@@ -51,7 +57,7 @@ export default defineType({
 						{
 							name: "Hero Sections",
 							title: "Hero",
-							of: ["hero", "hero.saas", "hero.split"],
+							of: ["hero", "hero.saas", "hero.split", "hero.mosaic"],
 						},
 						{
 							name: "Content Sections",

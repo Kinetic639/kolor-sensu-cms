@@ -39,20 +39,31 @@ export default function CardSection({
 	return (
 		<section
 			ref={sectionRef} // Attach ref to the section
-			className={cn(fullscreen && "bg-multi-gradient", "w-full px-4 py-12 md:py-16 md:pb-24")}
+			className={cn(fullscreen && "bg-multi-gradient", "w-full px-4")}
 		>
-			<div className={cn("mx-auto max-w-screen-xl px-4")}>
+			<div className="relative w-full overflow-hidden bg-gray-800 text-white">
+				<div className="animate-scroll absolute right-0 top-0 whitespace-nowrap">
+					<span className="px-4">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur laborum odio nemo
+						dignissimos in doloremque quo quidem, molestias temporibus illo tempore iste. Quidem
+						assumenda rerum, corrupti laboriosam nobis qui facilis.
+					</span>
+				</div>
+			</div>
+			<div className={cn("mx-auto max-w-screen-xl px-4 pb-12")}>
 				<MotionDiv
 					className="mb-16 text-center"
 					variants={containerVariants}
 					initial="initial"
 					animate={isInView ? "animate" : "initial"} // Trigger animation when in view
 				>
-					<MotionDiv variants={childVariants}>
-						<Typography as="h3" variant="h3" className="mb-5">
-							{title}
-						</Typography>
-					</MotionDiv>
+					{title && (
+						<MotionDiv variants={childVariants}>
+							<Typography as="h3" variant="h3" className="mb-5">
+								{title}
+							</Typography>
+						</MotionDiv>
+					)}
 					{subtitle && (
 						<MotionDiv variants={childVariants}>
 							<Typography as="p" variant="body1">

@@ -25,7 +25,7 @@ const ImageBlobFrame: React.FC<ImageBlobFrameProps> = ({ image }) => {
 	const { src } = useNextSanityImage(client, image);
 
 	return (
-		<div className="relative mx-auto aspect-square min-h-[300px] w-full max-w-[450px] flex-1 flex-col items-stretch overflow-hidden">
+		<div className="relative mx-auto aspect-square min-h-[400px] w-full max-w-[650px] flex-1 flex-col items-stretch overflow-hidden">
 			<div
 				className="absolute inset-0 h-full w-full"
 				style={{

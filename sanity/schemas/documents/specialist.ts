@@ -90,6 +90,49 @@ export default defineType({
 			type: "array",
 			of: [{ type: "cta" }],
 		}),
+		defineField({
+			name: "socials",
+			title: "Social Media Links",
+			type: "array",
+			of: [
+				defineField({
+					name: "social",
+					title: "Social Media",
+					type: "object",
+					fields: [
+						defineField({
+							name: "type",
+							title: "Type",
+							type: "string",
+							options: {
+								list: [
+									{ title: "Facebook", value: "facebook" },
+									{ title: "Instagram", value: "instagram" },
+									{ title: "TikTok", value: "tiktok" },
+									{ title: "LinkedIn", value: "linkedin" },
+								],
+							},
+						}),
+						defineField({
+							name: "url",
+							title: "URL",
+							type: "url",
+							validation: (Rule) =>
+								Rule.uri({
+									allowRelative: false,
+									scheme: ["http", "https"],
+								}),
+						}),
+					],
+				}),
+			],
+		}),
+		defineField({
+			name: "showSocials",
+			title: "Show Social Media Links",
+			type: "boolean",
+			initialValue: true,
+		}),
 	],
 	preview: {
 		select: {

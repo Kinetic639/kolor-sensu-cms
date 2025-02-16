@@ -21,7 +21,7 @@ export default function ContactModule({
 			<div className="flex flex-1 flex-col items-center justify-between gap-12 p-4 text-center">
 				{/* Contact Info */}
 				{(phone || email) && (
-					<div className="space-y-2 text-2xl text-purple-900">
+					<div className="space-y-2 text-2xl text-[#1C68A7]">
 						{phone && (
 							<div className="flex flex-col md:flex-row">
 								<span className="mr-1 text-lg md:text-2xl">Telefon: </span>

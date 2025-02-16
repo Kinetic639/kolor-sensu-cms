@@ -32,7 +32,7 @@ export default function HeroSplit({
 	return (
 		<section
 			className={cn(
-				"relative",
+				"relative min-h-[60vh] w-full py-8 md:py-16",
 				backgroundType === "solid" && "bg-background",
 				backgroundType === "blob" && "relative",
 			)}
@@ -43,19 +43,25 @@ export default function HeroSplit({
 					image={backgroundImage}
 					imageWidth={1800}
 					alt={backgroundImage?.alt || "Background Image"}
-					className="inset-0s absolute z-[-999] h-full w-full object-cover"
+					className="absolute inset-0 z-0 h-full w-full object-cover opacity-50"
 				/>
 			)}
 
 			{/* Optional Blob Background */}
 			{backgroundType === "blob" && <EdgeBlob />}
 
-			<div className="relative z-10 mx-auto grid max-w-screen-xl items-stretch gap-6 px-4 py-16 pt-10 md:grid-cols-2 md:gap-x-12 md:pt-16">
-				<figure className={cn("max-md:full-bleed", image?.onRight && "md:order-1")}>
+			<div className="relative z-0 mx-auto grid max-w-screen-xl items-center gap-8 px-4 md:grid-cols-2 md:gap-12 lg:px-8">
+				<figure
+					className={cn(
+						"relative w-full",
+						image?.onRight && "md:order-1",
+						"max-md:mx-auto max-md:max-w-[80%]",
+					)}
+				>
 					<MotionDiv
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ duration: 0.6, ease: "easeIn" }}
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.5, ease: "easeOut" }}
 					>
 						{cleanedFrameStyle === "blob" ? (
 							<ImageBlobFrame image={image} />
@@ -65,10 +71,9 @@ export default function HeroSplit({
 								imageWidth={1200}
 								alt={image?.alt || "Hero Image"}
 								className={cn(
-									"mb-6 md:mb-0",
-									cleanedFrameStyle === "blob" && "blob-frame",
+									"z-10 w-full",
 									cleanedFrameStyle === "circle" && "circle-frame",
-									cleanedFrameStyle === "rectangle" && "rectangle-frame",
+									cleanedFrameStyle === "rectangle" && "rectangle-frame rounded-lg shadow-lg",
 								)}
 							/>
 						)}
@@ -77,51 +82,26 @@ export default function HeroSplit({
 
 				<MotionDiv
 					className={cn(
-						"mx-auto flex w-full max-w-lg flex-col justify-center",
-						image?.onRight ? "md:text-right" : "md:text-left",
+						"flex flex-col gap-6",
+						"text-center md:text-left",
+						image?.onRight && "md:text-right",
+						"max-md:px-4",
 					)}
-					initial={{ opacity: 0, y: 50 }}
-					animate={{
-						opacity: 1,
-						y: 0,
-						transition: { duration: 1, ease: "easeOut", staggerChildren: 0.2 },
-					}}
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6, ease: "easeOut" }}
 				>
 					{pretitle && (
-						<MotionDiv
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							transition={{ delay: 0.2 }}
-						>
-							<Typography
-								as="h1"
-								variant={image?.onRight ? "h3" : "h1"}
-								className={cn(
-									"mb-4 text-center font-bold",
-									image?.onRight ? "md:text-right" : "md:text-left",
-								)}
-							>
-								{pretitle}
-							</Typography>
-						</MotionDiv>
+						<Typography as="h1" variant={image?.onRight ? "h3" : "h1"} className="font-bold">
+							{pretitle}
+						</Typography>
 					)}
-					<MotionDiv
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ delay: 0.4 }}
-						className={cn("text-center", image?.onRight ? "md:text-right" : "md:text-left")}
-					>
-						<PortableText value={content} components={customPortableTextComponents} />
-					</MotionDiv>
 
-					<MotionDiv
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ delay: 0.6 }}
-						className="w-full"
-					>
-						<CTAList onRight={image?.onRight} ctas={ctas} className="mt-8 w-full" />
-					</MotionDiv>
+					<div className="prose dark:prose-invert max-w-none">
+						<PortableText value={content} components={customPortableTextComponents} />
+					</div>
+
+					<CTAList onRight={image?.onRight} ctas={ctas} className="mt-4 w-full md:mt-6" />
 				</MotionDiv>
 			</div>
 		</section>

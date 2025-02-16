@@ -170,7 +170,7 @@
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply text-foreground;
 	}
 }
 
@@ -203,6 +203,7 @@
 	border-radius: 8px 0 0 0;
 	border-width: 28px 28px 0 0;
 	border-style: solid;
+	background: #a3b4aa;
 	z-index: 1;
 	border-color: hsl(202.1, 29.2%, 25.5%);
 }
@@ -254,5 +255,13 @@
 			flex: 0 0 min(300px, 80vw);
 			scroll-snap-align: center;
 		}
+	}
+}
+@keyframes slide-infinite {
+	0% {
+		transform: translateX(100%); /* Start completely off-screen to the right */
+	}
+	100% {
+		transform: translateX(-100%); /* End completely off-screen to the left */
 	}
 }
