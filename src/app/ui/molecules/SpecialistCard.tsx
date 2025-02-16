@@ -1,11 +1,6 @@
 "use client";
 
 import { PortableText } from "@portabletext/react";
-import Img from "@/app/ui/Img";
-import { cn } from "@/lib/utils";
-import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
-import { Typography } from "@/app/ui/atoms/Typography/Typography";
-import CTAList from "@/app/ui/CTA/CTAList";
 import {
 	FaFacebookF,
 	FaInstagram,
@@ -14,7 +9,12 @@ import {
 	FaXTwitter,
 	FaYoutube,
 } from "react-icons/fa6";
-import { IconType } from "react-icons";
+import { type IconType } from "react-icons";
+import Img from "@/app/ui/Img";
+import { cn } from "@/lib/utils";
+import { customPortableTextComponents } from "@/app/ui/CustomPortableText";
+import { Typography } from "@/app/ui/atoms/Typography/Typography";
+import CTAList from "@/app/ui/CTA/CTAList";
 
 export default function SpecialistCard({ specialist }: { specialist: Sanity.Specialist }) {
 	// Mapping social media types to corresponding icons

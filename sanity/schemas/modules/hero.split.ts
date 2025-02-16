@@ -90,7 +90,6 @@ export default defineType({
 	],
 	preview: {
 		select: {
-
 			title: "pretitle",
 			content: "content",
 			media: "image.asset",

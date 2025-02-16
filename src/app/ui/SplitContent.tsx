@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { PortableText, type PortableTextBlock } from "@portabletext/react";
 import Img from "@/app/ui/Img";
 import { cn } from "@/lib/utils";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
