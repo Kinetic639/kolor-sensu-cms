@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import Image from "next/image";
 
 type TextItem = {
@@ -6,7 +6,7 @@ type TextItem = {
 	icon?: { asset: { url: string }; alt?: string; loading?: "lazy" | "eager" };
 };
 
-const BlogCarouselItems = React.memo(({ textItems = [] }: { textItems: TextItem[] }) => {
+const BlogCarouselItems = memo(({ textItems = [] }: { textItems: TextItem[] }) => {
 	const [randomizedItems, setRandomizedItems] = useState<TextItem[]>([]);
 
 	useEffect(() => {

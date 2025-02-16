@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { categoryStore } from "../store";
 import PostPreview from "../PostPreview";
 import {
@@ -34,7 +34,7 @@ export default function BlogCarousel({
 	const { selected } = categoryStore();
 
 	// Memoize the filtered posts to prevent recalculation on every render
-	const filtered = React.useMemo(
+	const filtered = useMemo(
 		() =>
 			posts
 				.filter(

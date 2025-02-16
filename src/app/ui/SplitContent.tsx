@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
 import Img from "@/app/ui/Img";
 import { cn } from "@/lib/utils";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
@@ -16,7 +16,7 @@ export default function SplitContent({
 	backgroundOverlap = false,
 	backgroundImageMobile,
 }: Partial<{
-	heading: any[];
+	heading: PortableTextBlock[];
 	subheading: string;
 	items: { icon: Sanity.Image; text: string }[];
 	image: Sanity.Image & { alt?: string };

@@ -162,7 +162,7 @@ export const modulesQuery = groq`
         _id,
         url
       },
-      alt
+        alt
     },
     faqNavigations[]{
       _key,
@@ -241,7 +241,12 @@ export const modulesQuery = groq`
           url
         },
         alt
-      }
+      },
+      socials[]{
+        type,
+        url
+      },
+      showSocials
     }
   },
   _type == 'servicesModule' => {
