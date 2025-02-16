@@ -30,7 +30,7 @@ export const modulesQuery = groq`
   },
   _type == 'breadcrumbs' => { crumbs[]{ ${linkQuery} } },
 
-    _type == 'hero.withCard' => {
+  _type == 'hero.withCard' => {
     heading,
     subheading,
     button {
@@ -58,7 +58,7 @@ export const modulesQuery = groq`
       }
     }
   },
-    _type == 'splitContent' => {
+  _type == 'splitContent' => {
     heading[],
     subheading,
     items[]{
@@ -150,26 +150,35 @@ export const modulesQuery = groq`
     ),
   },
   _type == 'faqModule' => {
+    _id,
+    _key,
     title,
     description,
     showTitle,
     showDescription,
-        showImage,
-      image{
-        asset->{
-          _id,
-          url
-        },
-        alt
+    showImage,
+    image{
+      asset->{
+        _id,
+        url
       },
-    faqNavigation->{
-      title,
-      items[]{
-        question,
-        answer
+      alt
+    },
+    faqNavigations[]{
+      _key,
+      showTitle,
+      navigation->{
+        _id,
+        title,
+        items[]{
+          _key,
+          question,
+          answer
+        }
       }
     },
-    
+    footerText,
+    footerHeading
   },
   _type == 'testimonial.featured' => { testimonial-> },
   _type == 'testimonial-list' => { testimonials[]-> },

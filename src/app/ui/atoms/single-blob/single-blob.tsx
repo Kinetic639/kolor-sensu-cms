@@ -16,7 +16,7 @@ function getRandomValues(values: string[], count: number): string {
 
 export const SingleBlob = () => {
 	return (
-		<div className="absolute left-0 top-0 z-[10] h-full w-full">
+		<div className="absolute left-0 top-0 z-[10] h-full w-full overflow-x-hidden overflow-y-visible">
 			<svg
 				viewBox="0 0 500 500"
 				xmlns="http://www.w3.org/2000/svg"
