@@ -203,6 +203,7 @@
 	border-radius: 8px 0 0 0;
 	border-width: 28px 28px 0 0;
 	border-style: solid;
+	background: #a3b4aa;
 	z-index: 1;
 	border-color: hsl(202.1, 29.2%, 25.5%);
 }
@@ -263,9 +264,4 @@
 	100% {
 		transform: translateX(-100%); /* End completely off-screen to the left */
 	}
-}
-
-.animate-slide-infinite {
-	display: flex;
-	animation: slide-infinite linear infinite;
 }

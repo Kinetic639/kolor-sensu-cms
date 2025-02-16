@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import CTAList from "@/app/ui/CTA/CTAList";
 import Img from "@/app/ui/Img";
-import { Typography } from "@/app/ui/atoms/Typography/Typography";
 import { MotionDiv } from "@/app/ui/motion/MotionDiv";
 import { SingleBlob } from "@/app/ui/atoms/single-blob/single-blob";
 
@@ -12,6 +11,7 @@ export default function HeroModern({
 	image,
 	backgroundType,
 	backgroundImage,
+	backgroundImageMobile,
 }: Partial<{
 	title: string;
 	subtitle: string;
@@ -21,36 +21,36 @@ export default function HeroModern({
 	image: Sanity.Image & { onRight?: boolean; frameStyle?: string };
 	backgroundType: string;
 	backgroundImage: Sanity.Image;
+	backgroundImageMobile: Sanity.Image;
 }>) {
 	return (
-		<section
-			className={cn(
-				"relative min-h-[90vh]",
-				backgroundType === "solid" && "bg-white",
-				backgroundType === "blob" && "relative",
-			)}
-		>
-			{/* Render Background Image */}
-			{backgroundImage?.asset && (
-				<Img
-					image={backgroundImage}
-					imageWidth={1800}
-					alt={backgroundImage?.alt || "Background Image"}
-					className="object-fit absolute inset-0 z-[-999] mx-auto h-full w-auto"
-				/>
+		<section className="relative w-full md:mb-32">
+			{/* Background Image */}
+			{backgroundImage && (
+				<div className="relative flex h-auto w-full justify-end">
+					<div className="relative hidden md:block md:w-[80%]">
+						<Img
+							image={backgroundImage}
+							alt="Background"
+							className="h-auto w-full object-contain"
+						/>
+					</div>
+					<div className="relative block w-full md:hidden">
+						<Img
+							image={backgroundImageMobile}
+							alt="Background Mobile"
+							className="h-auto w-full object-contain"
+						/>
+					</div>
+				</div>
 			)}
 
-			{/* Optional Blob Background */}
 			{backgroundType === "blob" && <SingleBlob />}
 
-			<div className="relative z-10 mx-auto flex min-h-[80vh] max-w-screen-xl flex-1 items-center py-20">
-				<div className={cn("max-md:full-bleed flex-1", image?.onRight && "md:order-1")}></div>
-
+			{/* Content Container */}
+			<div className="absolute inset-0 z-10 mx-auto flex h-full w-full max-w-screen-xl items-center justify-center px-4 py-6 lg:justify-start">
 				<MotionDiv
-					className={cn(
-						"mx-auto max-w-md flex-shrink flex-col justify-center",
-						// image?.onRight ? "md:text-right" : "md:text-left",
-					)}
+					className={cn("w-full max-w-lg flex-shrink flex-col justify-center gap-4 px-4 lg:px-0")}
 					initial={{ opacity: 0, y: 50 }}
 					animate={{
 						opacity: 1,
@@ -63,28 +63,26 @@ export default function HeroModern({
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							transition={{ delay: 0.2 }}
+							className=""
 						>
-							<Typography
-								as="h1"
-								variant={"h2"}
+							<h1
 								className={cn(
-									"mb-4 text-center text-[48px] font-bold uppercase text-foreground-secondary",
-									// image?.onRight ? "md:text-right" : "md:text-left",
+									"mb-3 text-center text-lg font-medium uppercase text-foreground-secondary lg:text-xl",
 								)}
 							>
 								{title}
-							</Typography>
+							</h1>
 						</MotionDiv>
 					)}
 					<MotionDiv
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ delay: 0.4 }}
-						className={cn("text-center")}
+						className={cn("my-4 text-center")}
 					>
-						<Typography as="h2" variant="h4" className="text-center text-foreground-secondary">
+						<h2 className="text-center text-2xl font-medium leading-relaxed text-foreground-secondary sm:text-3xl lg:text-5xl">
 							{subtitle}
-						</Typography>
+						</h2>
 					</MotionDiv>
 
 					<MotionDiv
@@ -93,7 +91,11 @@ export default function HeroModern({
 						transition={{ delay: 0.6 }}
 						className="w-full"
 					>
-						<CTAList onRight={image?.onRight} ctas={ctas} className="mt-8 w-full" />
+						<CTAList
+							onRight={image?.onRight}
+							ctas={ctas}
+							className="mt-6 w-full text-center lg:text-left"
+						/>
 					</MotionDiv>
 				</MotionDiv>
 			</div>

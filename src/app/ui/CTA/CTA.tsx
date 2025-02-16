@@ -22,7 +22,6 @@ export default function CTA({
 }: Sanity.CTA & React.HTMLAttributes<HTMLAnchorElement> & { color?: ColorOptions }) {
 	const cleanedType = cleanText(type || "");
 
-	console.log(cleanedType);
 	// Handle button with gradient style
 	if (cleanedType === "button" && style === "gradient" && link) {
 		return (
@@ -58,7 +57,7 @@ export default function CTA({
 				>
 					<Button
 						className={cn(
-							"w-full min-w-44 self-center rounded-full border border-purple-700 bg-transparent p-7 px-8 text-center text-base lowercase text-purple-700 transition-all duration-200 ease-in-out hover:bg-purple-700 hover:text-white max-md:mx-auto",
+							"w-full min-w-44 self-center rounded-full border border-[#636AE8] bg-transparent p-7 px-8 text-center text-base lowercase text-[#636AE8] transition-all duration-200 ease-in-out hover:bg-[#636AE8] hover:text-white max-md:mx-auto",
 						)}
 					>
 						{link?.label}
@@ -102,7 +101,7 @@ export default function CTA({
 
 	// Handle other types of CTAs (internal or external links)
 	const props = {
-		className: cn(cleanedType, className) || undefined,
+		className: cn(cleanedType, "flex items-center", className) || undefined,
 		children: children || link?.label || link?.internal?.title || link?.external,
 		...rest,
 	};

@@ -17,13 +17,11 @@ export default defineType({
 			name: "title",
 			type: "string",
 			title: "Section Title",
-			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: "subtitle",
 			type: "string",
 			title: "Section Subtitle",
-			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
 			name: "fullscreen",

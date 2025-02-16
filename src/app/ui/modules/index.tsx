@@ -1,6 +1,7 @@
 import Hero from "./Hero";
 import HeroSplit from "./HeroSplit";
 import HeroSaaS from "./HeroSaaS";
+import ActionBanner from "./ActionBanner";
 import SpecialistsSection from "@/app/ui/modules/SpecialistsSection";
 import Banner from "@/app/ui/Banner";
 import CardSection from "@/app/ui/modules/CardSection";
@@ -70,6 +71,9 @@ export default function Modules({
 						return <HeroWithCard {...module} key={module._key} />;
 					case "bannerText": // Add new case for SplitContent
 						return <BannerText {...module} key={module._key} />;
+					case "actionBanner": // Add new case for SplitContent
+						return <ActionBanner {...module} key={module._key} />;
+
 					default:
 						return <div key={module._key} />;
 				}
