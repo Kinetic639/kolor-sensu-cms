@@ -81,12 +81,7 @@ lastName,
 					posts={posts}
 					predefinedFilters={predefinedFilters}
 					layout={stegaClean(layout)}
-					className={cn(
-						"gap-x-6 gap-y-12",
-						stegaClean(layout) === "grid"
-							? "grid md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]"
-							: "carousel max-xl:full-bleed md:overflow-fade-r pb-4 [--size:320px] max-xl:px-4",
-					)}
+					className={cn("gap-x-6 gap-y-12")}
 				/>
 			)}
 		</section>

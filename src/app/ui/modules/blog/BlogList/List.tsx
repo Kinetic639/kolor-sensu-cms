@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { categoryStore } from "../store";
 import PostPreview from "../PostPreview";
+import { cn } from "@/lib/utils";
 
 export default function List({
 	posts,
@@ -36,7 +37,10 @@ export default function List({
 	}
 
 	return (
-		<ul {...props} className="mx-auto flex w-full max-w-screen-xl flex-col gap-8">
+		<ul
+			{...props}
+			className={cn("mx-auto flex w-full flex-col gap-8", layout === "grid" && "px-2 md:px-8")}
+		>
 			{filtered?.map((post) => (
 				<li className="anim-fade" key={post._id}>
 					<PostPreview post={post} layout={layout} />
