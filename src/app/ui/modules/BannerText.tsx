@@ -1,12 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { cn } from "@/lib/utils";
 import CTAList from "@/app/ui/CTA/CTAList";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
 
 export default function BannerText({
 	title,
-	texts,
+	texts = [],
 	ctas,
 	displayType = "switch",
 }: Partial<{
@@ -16,20 +17,33 @@ export default function BannerText({
 	displayType: "switch" | "slide";
 }>) {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const controls = useAnimation();
 
 	const cleanedDisplayType = displayType
 		.replace(/[\u200B-\u200D\uFEFF]/g, "")
 		.trim()
 		.toLowerCase();
 
+	// Handle text switching logic (for "switch" mode)
 	useEffect(() => {
-		if (cleanedDisplayType === "switch" && texts && texts.length > 1) {
+		if (cleanedDisplayType === "switch" && texts.length > 1) {
 			const interval = setInterval(() => {
 				setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
 			}, 3000); // Change text every 3 seconds
 			return () => clearInterval(interval);
 		}
 	}, [cleanedDisplayType, texts]);
+
+	// Framer Motion animation for smooth sliding text (for "slide" mode)
+	const slideAnimation = {
+		initial: { x: "60%" }, // Start off-screen to the right
+		animate: { x: "-100%" }, // Move fully across the screen
+		transition: {
+			ease: "linear",
+			duration: 30, // Adjust speed based on text length
+			repeat: Infinity, // Loop animation infinitely
+		},
+	};
 
 	return (
 		<section
@@ -45,7 +59,7 @@ export default function BannerText({
 				)}
 
 				{/* Text Rendering Based on Display Type */}
-				{texts && cleanedDisplayType === "switch" && (
+				{texts.length > 0 && cleanedDisplayType === "switch" && (
 					<Typography
 						key={currentIndex}
 						variant="body1"
@@ -54,24 +68,20 @@ export default function BannerText({
 						{texts[currentIndex]}
 					</Typography>
 				)}
-				{texts && cleanedDisplayType === "slide" && (
-					<div className="relative flex h-[30px] overflow-hidden">
-						<div
-							className="animate-slide-infinite flex"
-							style={{
-								animationDuration: `${texts.length * 3}s`, // Adjust speed based on number of texts
-							}}
-						>
+
+				{texts.length > 0 && cleanedDisplayType === "slide" && (
+					<div className="relative flex w-full overflow-hidden">
+						<motion.div {...slideAnimation} className="flex whitespace-nowrap">
 							{texts.map((text, index) => (
 								<Typography
 									key={index}
 									variant="body1"
-									className={cn("whitespace-nowrap px-4 text-foreground-secondary")}
+									className={cn("px-8 text-foreground-secondary")}
 								>
 									{text}
 								</Typography>
 							))}
-						</div>
+						</motion.div>
 					</div>
 				)}
 
