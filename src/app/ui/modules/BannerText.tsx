@@ -36,11 +36,11 @@ export default function BannerText({
 
 	// Framer Motion animation for smooth sliding text (for "slide" mode)
 	const slideAnimation = {
-		initial: { x: "60%" }, // Start off-screen to the right
+		initial: { x: "100%" }, // Start off-screen to the right
 		animate: { x: "-100%" }, // Move fully across the screen
 		transition: {
 			ease: "linear",
-			duration: 30, // Adjust speed based on text length
+			duration: 25, // Adjust speed based on text length
 			repeat: Infinity, // Loop animation infinitely
 		},
 	};
@@ -73,13 +73,25 @@ export default function BannerText({
 					<div className="relative flex w-full overflow-hidden">
 						<motion.div {...slideAnimation} className="flex whitespace-nowrap">
 							{texts.map((text, index) => (
-								<Typography
-									key={index}
-									variant="body1"
-									className={cn("px-8 text-foreground-secondary")}
-								>
-									{text}
-								</Typography>
+								<>
+									<Typography
+										key={index}
+										variant="body1"
+										className="px-8 text-foreground-secondary"
+									>
+										{text}
+									</Typography>
+									{/* Separator (Dot) - Only render between texts, not at the end */}
+									{index !== texts.length - 1 && (
+										<Typography
+											key={index}
+											variant="body1"
+											className="px-12 text-foreground-secondary"
+										>
+											•
+										</Typography>
+									)}
+								</>
 							))}
 						</motion.div>
 					</div>
