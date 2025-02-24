@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import CTAList from "@/app/ui/CTA/CTAList";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
@@ -17,7 +17,6 @@ export default function BannerText({
 	displayType: "switch" | "slide";
 }>) {
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const controls = useAnimation();
 
 	const cleanedDisplayType = displayType
 		.replace(/[\u200B-\u200D\uFEFF]/g, "")

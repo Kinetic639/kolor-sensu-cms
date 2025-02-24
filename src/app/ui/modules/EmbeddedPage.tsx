@@ -2,13 +2,15 @@
 import { useEffect, useState } from "react";
 
 interface EmbeddedPageProps {
-	externalUrl: string;
+	externalUrl?: string;
 }
 
 export default function EmbeddedPage({ externalUrl }: EmbeddedPageProps) {
 	const [content, setContent] = useState<string | null>(null);
 
 	useEffect(() => {
+		if (!externalUrl) return; // ✅ Prevent fetch if externalUrl is undefined
+
 		fetch(externalUrl)
 			.then((res) => res.text())
 			.then((html) => {
@@ -44,10 +46,14 @@ export default function EmbeddedPage({ externalUrl }: EmbeddedPageProps) {
 
 	return (
 		<div className="mx-auto min-h-screen w-full max-w-screen-lg">
-			{content ? (
-				<div dangerouslySetInnerHTML={{ __html: content }} />
+			{externalUrl ? (
+				content ? (
+					<div dangerouslySetInnerHTML={{ __html: content }} />
+				) : (
+					<p className="text-center text-gray-500">Loading...</p>
+				)
 			) : (
-				<p className="text-center text-gray-500">Loading...</p>
+				<p className="text-center text-red-500">Invalid or missing URL</p>
 			)}
 		</div>
 	);

@@ -9,7 +9,6 @@ import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
 import { SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import LinkList from "@/app/ui/LinkList";
 
 interface SidebarMenuProps {
 	className?: string;
