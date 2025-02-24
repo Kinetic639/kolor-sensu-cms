@@ -1,24 +1,34 @@
 import { PortableText } from "@portabletext/react";
 import Navigation from "./Navigation";
 import { getSite } from "@/lib/sanity/getSite";
+import Social from "@/app/ui/Social";
+import Img from "@/app/ui/Img";
 
 export default async function Footer() {
-	const { title, copyright, footerDescription, footerMenu, social } = await getSite();
-
+	const { title, copyright, footerDescription, footerMenu, social, logo } = await getSite();
+	const logoImage = logo?.image?.dark || logo?.image?.default;
 	return (
-		<footer className="bg-gray-500 text-center text-foreground-secondary">
-			<div className="section border-b border-canvas/20">
-				<div className="mx-auto flex w-full max-w-screen-xl justify-center gap-6 p-4">
-					<Navigation
-						footerMenu={footerMenu}
-						footerDescription={footerDescription}
-						social={social}
+		<footer className="bg-[rgb(185,201,190)] text-center text-foreground">
+			<div className="mx-auto flex max-w-screen-xl justify-between px-4 py-6 max-md:flex-col max-md:items-center max-md:gap-y-4">
+				{logo && (
+					<Img
+						className="h-auto w-full max-w-[60px] object-contain"
+						image={logoImage}
+						alt={logoImage?.alt || ""}
 					/>
-				</div>
+				)}
+				<Navigation
+					logo={logoImage}
+					footerMenu={footerMenu}
+					footerDescription={footerDescription}
+				/>
 			</div>
-
-			<div className="flex flex-wrap justify-center gap-x-6 gap-y-2 p-4 text-sm">
-				&copy; {new Date().getFullYear()} {copyright ? <PortableText value={copyright} /> : title}
+			<div className="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-white/60 p-4 text-sm max-sm:flex-col-reverse max-sm:gap-y-4">
+				{copyright ? <PortableText value={copyright} /> : title}{" "}
+				<span className="flex items-center gap-x-2">
+					&copy; {new Date().getFullYear()} {"Kolor Sensu "}
+					{social && <Social social={social} />}
+				</span>
 			</div>
 		</footer>
 	);

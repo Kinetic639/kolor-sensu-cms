@@ -46,7 +46,7 @@ export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) =>
 			initial="hidden"
 			animate="visible"
 			variants={containerVariants}
-			className="hidden w-full flex-1 flex-grow items-center gap-x-4 px-6 md:flex"
+			className="hidden w-full flex-1 flex-grow items-center justify-end gap-x-4 px-6 md:flex"
 		>
 			{headerMenu?.items?.map((link, index) => {
 				switch (link._type) {
@@ -79,7 +79,7 @@ export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) =>
 						);
 
 					case "link.list":
-						return <LinkList {...link} key={index} />;
+						return <LinkList links={link.links ?? []} link={link.link} key={index} />;
 
 					default:
 						return null;

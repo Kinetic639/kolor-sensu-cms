@@ -9,7 +9,6 @@ import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
 import { SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import LinkList from "@/app/ui/LinkList";
 
 interface SidebarMenuProps {
 	className?: string;
@@ -71,7 +70,29 @@ export const SidebarMenuDrawer: React.FC<SidebarMenuProps> = ({ headerMenu, ctas
 							);
 
 						case "link.list":
-							return <LinkList {...link} key={index} />;
+							// Only render the top-level link (e.g., "Newsy"), not its sub-links
+							if (link.link) {
+								const topSlug = link.link.internal?.metadata?.slug?.current;
+								const isActive =
+									topSlug === "index" ? path === "/" : topSlug && path === `/${topSlug}`;
+
+								return (
+									<motion.div key={index} variants={linkVariants}>
+										<SheetClose asChild>
+											<Link
+												href={topSlug ? `/${topSlug}` : "#"}
+												className={cn(
+													"relative pb-0.5 text-xl font-medium capitalize text-foreground transition-all hover:text-foreground-hover",
+													isActive && "text-foreground-hover",
+												)}
+											>
+												{link.link.label}
+											</Link>
+										</SheetClose>
+									</motion.div>
+								);
+							}
+							return null;
 
 						default:
 							return null;

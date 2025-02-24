@@ -1,6 +1,7 @@
 import Hero from "./Hero";
 import HeroSplit from "./HeroSplit";
 import HeroSaaS from "./HeroSaaS";
+import ActionBanner from "./ActionBanner";
 import SpecialistsSection from "@/app/ui/modules/SpecialistsSection";
 import Banner from "@/app/ui/Banner";
 import CardSection from "@/app/ui/modules/CardSection";
@@ -13,6 +14,11 @@ import BlogList from "@/app/ui/modules/blog/BlogList";
 import PostContent from "@/app/ui/modules/blog/PostContent";
 import ProductsModule from "@/app/ui/modules/productsModule";
 import PodcastModule from "@/app/ui/modules/PodcastModule";
+import HeroModern from "@/app/ui/modules/HeroModern";
+import SplitContent from "@/app/ui/SplitContent";
+import HeroWithCard from "@/app/ui/modules/HeroWtihCard";
+import BannerText from "@/app/ui/modules/BannerText";
+import EmbeddedPage from "@/app/ui/modules/EmbeddedPage";
 
 export default function Modules({
 	modules,
@@ -34,6 +40,8 @@ export default function Modules({
 						return <Hero {...module} key={module._key} />;
 					case "hero.split":
 						return <HeroSplit {...module} key={module._key} />;
+					case "hero.modern":
+						return <HeroModern {...module} key={module._key} />;
 					case "hero.saas":
 						return <HeroSaaS {...module} key={module._key} />;
 					case "banner":
@@ -58,6 +66,16 @@ export default function Modules({
 						return <ProductsModule {...(module as Sanity.ProductsModule)} key={module._key} />;
 					case "podcastModule":
 						return <PodcastModule key={module._key} />;
+					case "splitContent": // Add new case for SplitContent
+						return <SplitContent {...module} key={module._key} />;
+					case "hero.withCard": // Add new case for SplitContent
+						return <HeroWithCard {...module} key={module._key} />;
+					case "bannerText": // Add new case for SplitContent
+						return <BannerText {...module} key={module._key} />;
+					case "actionBanner": // Add new case for SplitContent
+						return <ActionBanner {...module} key={module._key} />;
+					case "embeddedPage":
+						return <EmbeddedPage {...module} key={module._key} />;
 					default:
 						return <div key={module._key} />;
 				}

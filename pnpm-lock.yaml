@@ -1304,6 +1304,12 @@ packages:
         integrity: sha512-qnY+b7j1UNcTS31Eenuc/5YJB6gQOzkUoNmJQc0rznwqSRpeaWWpjkWy2C/MPTcePpsKJEM26hXrOXl1+nceXg==,
       }
 
+  "@codemirror/commands@6.8.0":
+    resolution:
+      {
+        integrity: sha512-q8VPEFaEP4ikSlt6ZxjB3zW72+7osfAYW9i8Zu943uqbKuz6utc1+F170hyLUCUltXORjQXRyYQNfkckzA/bPQ==,
+      }
+
   "@codemirror/lang-css@6.2.1":
     resolution:
       {
@@ -4980,10 +4986,10 @@ packages:
         integrity: sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==,
       }
 
-  caniuse-lite@1.0.30001651:
+  caniuse-lite@1.0.30001699:
     resolution:
       {
-        integrity: sha512-9Cf+Xv1jJNe1xPZLGuUXLNkE1BoDkqRqYyFJ9TDYSqhduqA4hu4oR9HluGoWYQC/aj8WHjsGVV+bwkh0+tegRg==,
+        integrity: sha512-b+uH5BakXZ9Do9iK+CkDmctUSEqZl+SP056vc5usa0PL+ev5OHw003rZXcnjNDv3L8P5j6rwT6C0BPKSikW08w==,
       }
 
   chalk@2.4.2:
@@ -11749,6 +11755,13 @@ snapshots:
       "@codemirror/view": 6.32.0
       "@lezer/common": 1.2.1
 
+  "@codemirror/commands@6.8.0":
+    dependencies:
+      "@codemirror/language": 6.10.2
+      "@codemirror/state": 6.4.1
+      "@codemirror/view": 6.32.0
+      "@lezer/common": 1.2.1
+
   "@codemirror/lang-css@6.2.1(@codemirror/view@6.32.0)":
     dependencies:
       "@codemirror/autocomplete": 6.18.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
@@ -14285,7 +14298,7 @@ snapshots:
   autoprefixer@10.4.20(postcss@8.4.41):
     dependencies:
       browserslist: 4.23.3
-      caniuse-lite: 1.0.30001651
+      caniuse-lite: 1.0.30001699
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
@@ -14390,7 +14403,7 @@ snapshots:
 
   browserslist@4.23.3:
     dependencies:
-      caniuse-lite: 1.0.30001651
+      caniuse-lite: 1.0.30001699
       electron-to-chromium: 1.5.13
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.3)
@@ -14448,7 +14461,7 @@ snapshots:
 
   camelize@1.0.1: {}
 
-  caniuse-lite@1.0.30001651: {}
+  caniuse-lite@1.0.30001699: {}
 
   chalk@2.4.2:
     dependencies:
@@ -14518,7 +14531,7 @@ snapshots:
   codemirror@6.0.1(@lezer/common@1.2.1):
     dependencies:
       "@codemirror/autocomplete": 6.18.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.2.1)
-      "@codemirror/commands": 6.6.0
+      "@codemirror/commands": 6.8.0
       "@codemirror/language": 6.10.2
       "@codemirror/lint": 6.8.1
       "@codemirror/search": 6.5.6
@@ -16429,7 +16442,7 @@ snapshots:
       "@next/env": 14.2.7
       "@swc/helpers": 0.5.5
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001651
+      caniuse-lite: 1.0.30001699
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.3.1

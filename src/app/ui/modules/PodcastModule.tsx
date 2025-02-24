@@ -71,7 +71,6 @@ const PodcastModule = async () => {
 					style={{ margin: "0 auto" }}
 				></iframe>
 			))}
-			<div className="min-h-[200px]"></div>
 		</div>
 	);
 };

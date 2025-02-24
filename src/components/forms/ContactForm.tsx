@@ -87,8 +87,8 @@ export const ContactForm: FC = () => {
 	const messageId = useId();
 
 	return (
-		<div className="flex h-full flex-1 flex-col items-center gap-6 rounded-3xl border border-purple-400 bg-purple-100 bg-opacity-60 p-8 shadow-lg md:p-12">
-			<h4 className="w-full text-center text-xl font-semibold text-purple-900 md:text-2xl">
+		<div className="flex h-full flex-1 flex-col items-center gap-6 rounded-3xl border border-[#1C68A7] bg-[#cdd7f7] bg-opacity-60 p-8 shadow-lg md:p-12">
+			<h4 className="w-full text-center text-xl font-semibold text-[#1C68A7] md:text-2xl">
 				Formularz kontaktowy
 			</h4>
 
@@ -129,14 +129,14 @@ export const ContactForm: FC = () => {
 						},
 					].map(({ id, label, name, type, placeholder }) => (
 						<div key={id}>
-							<label htmlFor={id} className="block text-sm font-medium text-purple-900">
+							<label htmlFor={id} className="block text-sm font-medium text-[#1C68A7]">
 								{label}
 							</label>
 							<input
 								id={id}
 								type={type}
 								placeholder={placeholder}
-								className="my-1 w-full rounded-lg border border-purple-300 p-3 text-purple-900 placeholder-purple-300 focus:border-purple-600 focus:bg-purple-50 focus:outline-purple-700 focus:ring-1 focus:ring-purple-500"
+								className="my-1 w-full rounded-lg border border-[#b0d9fa] p-3 text-[#1C68A7] placeholder-[#b0d9fa] focus:border-sky-600 focus:bg-[#f6fbff] focus:outline-sky-700 focus:ring-1 focus:ring-sky-500"
 								{...register(name as keyof FormValues, {
 									required: `${label} jest wymagane`,
 									pattern:
@@ -157,14 +157,14 @@ export const ContactForm: FC = () => {
 
 					{/* Message */}
 					<div>
-						<label htmlFor={messageId} className="block text-sm font-medium text-purple-900">
+						<label htmlFor={messageId} className="block text-sm font-medium text-[#1C68A7]">
 							Wiadomość
 						</label>
 						<textarea
 							id={messageId}
 							rows={4}
 							placeholder="Twoja wiadomość"
-							className="mt-1 w-full rounded-lg border border-purple-300 p-3 text-purple-900 placeholder-purple-300 focus:border-purple-600 focus:bg-purple-50 focus:outline-purple-700 focus:ring-1 focus:ring-purple-500"
+							className="mt-1 w-full rounded-lg border border-[#b0d9fa] p-3 text-[#1C68A7] placeholder-[#b0d9fa] focus:border-sky-600 focus:bg-[#f6fbff] focus:outline-sky-700 focus:ring-1 focus:ring-sky-500"
 							{...register("message")}
 						/>
 					</div>
@@ -174,10 +174,10 @@ export const ContactForm: FC = () => {
 						<input
 							type="checkbox"
 							id="consent"
-							className="h-5 w-5 rounded border-purple-300 text-purple-900 focus:ring-0"
+							className="h-5 w-5 rounded border-[#b0d9fa] text-[#1C68A7] focus:ring-0"
 							{...register("consent", { required: "Musisz zaakceptować zgodę na kontakt" })}
 						/>
-						<label htmlFor="consent" className="text-sm text-purple-900">
+						<label htmlFor="consent" className="text-sm text-[#1C68A7]">
 							Zgadzam się na przetwarzanie moich danych osobowych w celu kontaktu
 						</label>
 					</div>
@@ -188,7 +188,7 @@ export const ContactForm: FC = () => {
 						<Button
 							type="submit"
 							disabled={isLoading}
-							className="w-full rounded-full bg-purple-700 py-6 text-base hover:bg-purple-700"
+							className="w-full rounded-full bg-[#1C68A7] py-6 text-base hover:bg-[#225783]"
 						>
 							{isLoading ? "Wysyłanie..." : "Wyślij"}
 						</Button>
@@ -196,7 +196,7 @@ export const ContactForm: FC = () => {
 							type="button"
 							variant="secondary"
 							onClick={onCancel}
-							className="w-full rounded-full border border-purple-400 py-6 text-base text-purple-900 transition-colors duration-150 hover:bg-purple-200"
+							className="w-full rounded-full border border-[#1C68A7] py-6 text-base text-[#1C68A7] transition-colors duration-150 hover:bg-[#afd4f2]"
 						>
 							Wyczyść
 						</Button>
@@ -206,7 +206,7 @@ export const ContactForm: FC = () => {
 
 			{/* Success & Error Messages */}
 			{isSubmitSuccessful && isSuccess && (
-				<div className="flex flex-col items-center gap-4 text-center text-purple-900">
+				<div className="flex flex-col items-center gap-4 text-center text-[#1C68A7]">
 					<div className="text-green-500">
 						<svg
 							width="60"
@@ -219,17 +219,17 @@ export const ContactForm: FC = () => {
 						</svg>
 					</div>
 					<h3 className="text-xl font-semibold text-green-600">Dziękujemy!</h3>
-					<p className="text-purple-900">
+					<p className="text-[#1C68A7]">
 						Twoja wiadomość została wysłana. Odezwiemy się jak najszybciej.
 					</p>
-					<Button onClick={handleNewQuestion} className="w-full bg-purple-600 hover:bg-purple-700">
+					<Button onClick={handleNewQuestion} className="w-full bg-sky-600 hover:bg-sky-700">
 						Zadaj kolejne pytanie
 					</Button>
 				</div>
 			)}
 
 			{isSubmitSuccessful && !isSuccess && (
-				<div className="flex flex-col items-center gap-4 text-center text-purple-900">
+				<div className="flex flex-col items-center gap-4 text-center text-[#1C68A7]">
 					<div className="text-red-500">
 						<svg
 							width="60"
@@ -242,8 +242,8 @@ export const ContactForm: FC = () => {
 						</svg>
 					</div>
 					<h3 className="text-xl font-semibold text-red-500">Coś poszło nie tak...</h3>
-					<p className="text-purple-900">Wystąpił błąd podczas wysyłania. Spróbuj ponownie.</p>
-					<Button onClick={handleRetry} className="w-full bg-purple-600 hover:bg-purple-700">
+					<p className="text-[#1C68A7]">Wystąpił błąd podczas wysyłania. Spróbuj ponownie.</p>
+					<Button onClick={handleRetry} className="w-full bg-sky-600 hover:bg-sky-700">
 						Spróbuj ponownie
 					</Button>
 				</div>

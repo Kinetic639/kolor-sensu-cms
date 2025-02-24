@@ -32,6 +32,13 @@ import uid from "@sanity/schemas/objects/uid";
 import product from "@sanity/schemas/documents/product";
 import productsModule from "@sanity/schemas/modules/productsModule";
 import podcastModule from "@sanity/schemas/modules/podcastModule";
+import heroModern from "@sanity/schemas/modules/hero.modern";
+import splitContent from "@sanity/schemas/modules/split.content";
+import heroWithCard from "@sanity/schemas/modules/hero.withCard";
+import bannerText from "@sanity/schemas/modules/bannerText";
+import actionBanner from "@sanity/schemas/modules/actionBanner";
+import heroMosaic from "@sanity/schemas/modules/hero.mosaic";
+import embeddedPage from "@sanity/schemas/modules/embeddedPage";
 
 // modules
 
@@ -64,7 +71,9 @@ export const schemaTypes = [
 	heroSaas,
 	blogList,
 	blogPostContent,
+	heroModern,
 	HeroSplit,
+	heroMosaic,
 	banner,
 	cardSection,
 	specialistModule,
@@ -75,4 +84,9 @@ export const schemaTypes = [
 	consultationTestModule,
 	productsModule,
 	podcastModule,
+	splitContent,
+	heroWithCard,
+	bannerText,
+	actionBanner,
+	embeddedPage,
 ];

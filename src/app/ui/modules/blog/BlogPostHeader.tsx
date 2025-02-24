@@ -9,7 +9,6 @@ import { BlogBreadcrumb } from "@/app/ui/modules/blog/BlogBreadcrumb";
 export default function BlogPostHeader({ post }: { post: Sanity.BlogPost }) {
 	const authorName = `${post.author?.firstName || ""} ${post.author?.lastName || ""}`.trim();
 	const hasImage = Boolean(post.metadata?.image);
-	console.log("author", authorName);
 	return (
 		<header className="mx-auto mb-10 max-w-screen-xl px-4 pb-10 pt-6 md:pt-10">
 			<BlogBreadcrumb title={post.metadata.title} />

@@ -4,12 +4,98 @@ import { ctaQuery } from "./ctaQuery";
 
 export const modulesQuery = groq`
   ...,
+    _type == 'embeddedPage' => {
+    _type,
+    _key,
+    embedType,
+    externalUrl,
+    rawHtml,
+    height
+  },
+  _type == 'actionBanner' => {
+    _type,
+    _key,
+    heading,
+    colorVariant,
+    cta { ${ctaQuery} }
+  },
   ctas[]{
     ...,
     link{ ${linkQuery} }
   },
-  _type == 'blog-list' => { predefinedFilters[]-> },
+  _type == 'blog-list' => {
+    predefinedFilters[]->,
+    textItems[]{
+      text,
+      icon{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      }
+    }
+  },
   _type == 'breadcrumbs' => { crumbs[]{ ${linkQuery} } },
+
+  _type == 'hero.withCard' => {
+    heading,
+    subheading,
+    button {
+      label,
+      link { ${linkQuery} }
+    },
+    backgroundImage {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    card {
+      title,
+      items[]{
+        icon {
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        text
+      }
+    }
+  },
+  _type == 'splitContent' => {
+    heading[],
+    subheading,
+    items[]{
+      icon {
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      text
+    },
+    image {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    backgroundType,
+    backgroundImage {
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    backgroundOverlap,
+  },
   _type == 'creative-module' => {
     modules[]{
       ...,
@@ -22,6 +108,40 @@ export const modulesQuery = groq`
   _type == 'hero' => { reputation-> },
   _type == 'hero.saas' => { reputation-> },
   _type == 'hero.split' => { reputation-> },
+  _type == 'hero.modern' => { reputation-> },
+  _type == 'hero.mosaic' => {
+    _type,
+    _key,
+    heading[],
+    subheading,
+    cta { ${ctaQuery} },
+    mosaicImages[]{
+      _key,
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    },
+    backgroundType,
+    backgroundImage{
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    }
+  },
   _type == 'logo-list' => { logos[]-> },
   _type == 'pricing-list' => {
     tiers[]->{
@@ -38,26 +158,35 @@ export const modulesQuery = groq`
     ),
   },
   _type == 'faqModule' => {
+    _id,
+    _key,
     title,
     description,
     showTitle,
     showDescription,
-        showImage,
-      image{
-        asset->{
-          _id,
-          url
-        },
-        alt
+    showImage,
+    image{
+      asset->{
+        _id,
+        url
       },
-    faqNavigation->{
-      title,
-      items[]{
-        question,
-        answer
+        alt
+    },
+    faqNavigations[]{
+      _key,
+      showTitle,
+      navigation->{
+        _id,
+        title,
+        items[]{
+          _key,
+          question,
+          answer
+        }
       }
     },
-    
+    footerText,
+    footerHeading
   },
   _type == 'testimonial.featured' => { testimonial-> },
   _type == 'testimonial-list' => { testimonials[]-> },
@@ -120,7 +249,12 @@ export const modulesQuery = groq`
           url
         },
         alt
-      }
+      },
+      socials[]{
+        type,
+        url
+      },
+      showSocials
     }
   },
   _type == 'servicesModule' => {

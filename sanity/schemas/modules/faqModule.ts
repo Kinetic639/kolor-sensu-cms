@@ -11,7 +11,7 @@ export default defineType({
 			name: "title",
 			title: "Title",
 			type: "string",
-			validation: (Rule) => Rule.required(),
+			validation: (Rule) => Rule.required().min(3).max(100),
 		}),
 		defineField({
 			name: "showTitle",
@@ -24,7 +24,7 @@ export default defineType({
 			title: "Description",
 			type: "text",
 			rows: 4,
-			validation: (Rule) => Rule.required(),
+			validation: (Rule) => Rule.required().min(10).max(500),
 		}),
 		defineField({
 			name: "showDescription",
@@ -33,11 +33,31 @@ export default defineType({
 			initialValue: true,
 		}),
 		defineField({
-			name: "faqNavigation",
-			title: "Select FAQ Navigation",
-			type: "reference",
-			to: [{ type: "faqNavigation" }],
-			validation: (Rule) => Rule.required(),
+			name: "faqNavigations",
+			title: "Select FAQ Navigations",
+			type: "array",
+			of: [
+				defineField({
+					name: "faqNavigation",
+					title: "FAQ Navigation",
+					type: "object",
+					fields: [
+						defineField({
+							name: "navigation",
+							title: "Navigation",
+							type: "reference",
+							to: [{ type: "faqNavigation" }],
+							validation: (Rule) => Rule.required(),
+						}),
+						defineField({
+							name: "showTitle",
+							title: "Show Title",
+							type: "boolean",
+							initialValue: true,
+						}),
+					],
+				}),
+			],
 		}),
 		defineField({
 			name: "image",
@@ -52,6 +72,7 @@ export default defineType({
 					title: "Alt Text",
 					type: "string",
 					description: "Alternative text for screen readers.",
+					validation: (Rule) => Rule.required().min(3).max(150),
 				}),
 			],
 		}),
@@ -61,6 +82,18 @@ export default defineType({
 			type: "boolean",
 			initialValue: true,
 		}),
+		defineField({
+			name: "footerHeading",
+			title: "Footer Heading",
+			type: "string",
+			description: "Optional heading to display at the end of the FAQ section.",
+		}),
+		defineField({
+			name: "footerText",
+			title: "Footer Text",
+			type: "text",
+			description: "Optional text to display at the end of the FAQ section.",
+		}),
 	],
 	preview: {
 		select: {
@@ -68,32 +101,44 @@ export default defineType({
 			showTitle: "showTitle",
 			showDescription: "showDescription",
 			description: "description",
-			faqNavigationTitle: "faqNavigation.title",
+			faqNavigations: "faqNavigations",
 			image: "image",
 			showImage: "showImage",
+			footerHeading: "footerHeading",
+			footerText: "footerText",
 		},
 		prepare({
 			title,
 			showTitle,
 			showDescription,
 			description,
-			faqNavigationTitle,
+			faqNavigations = [],
 			image,
 			showImage,
+			footerHeading,
+			footerText,
 		}) {
 			const subtitleText =
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
 				showDescription && description ? `${description.slice(0, 50)}...` : "No description";
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const titleText = showTitle ? title : "Title hidden";
 			const imageText = showImage && image ? "Image displayed" : "No image";
 
+			const faqNavigationTitles = faqNavigations.length
+				? faqNavigations
+						.filter(
+							(nav: { showTitle: boolean; navigation: { title: string } }) =>
+								nav?.showTitle && nav?.navigation?.title,
+						)
+						.map(
+							(nav: { showTitle: boolean; navigation: { title: string } }) => nav.navigation.title,
+						)
+						.join(", ")
+				: "No FAQ Navigation Selected";
+
 			return {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				title: titleText,
-				subtitle: `FAQ: ${faqNavigationTitle || "No FAQ Navigation Selected"} - ${subtitleText} - ${imageText}`,
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-				media: image,
+				subtitle: `FAQ: ${faqNavigationTitles} - ${subtitleText} - ${imageText}`,
+				media: image || VscSymbolClass, // Default icon if no image is provided
 			};
 		},
 	},
