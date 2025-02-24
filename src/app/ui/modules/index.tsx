@@ -18,6 +18,7 @@ import HeroModern from "@/app/ui/modules/HeroModern";
 import SplitContent from "@/app/ui/SplitContent";
 import HeroWithCard from "@/app/ui/modules/HeroWtihCard";
 import BannerText from "@/app/ui/modules/BannerText";
+import EmbeddedPage from "@/app/ui/modules/EmbeddedPage";
 
 export default function Modules({
 	modules,
@@ -73,7 +74,8 @@ export default function Modules({
 						return <BannerText {...module} key={module._key} />;
 					case "actionBanner": // Add new case for SplitContent
 						return <ActionBanner {...module} key={module._key} />;
-
+					case "embeddedPage":
+						return <EmbeddedPage {...module} key={module._key} />;
 					default:
 						return <div key={module._key} />;
 				}

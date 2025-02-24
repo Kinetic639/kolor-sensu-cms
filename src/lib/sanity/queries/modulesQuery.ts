@@ -4,6 +4,14 @@ import { ctaQuery } from "./ctaQuery";
 
 export const modulesQuery = groq`
   ...,
+    _type == 'embeddedPage' => {
+    _type,
+    _key,
+    embedType,
+    externalUrl,
+    rawHtml,
+    height
+  },
   _type == 'actionBanner' => {
     _type,
     _key,

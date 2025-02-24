@@ -79,7 +79,7 @@ export const DesktopNavigation: FC<DesktopNavigationProps> = ({ headerMenu }) =>
 						);
 
 					case "link.list":
-						return <LinkList {...link} key={index} />;
+						return <LinkList links={link.links ?? []} link={link.link} key={index} />;
 
 					default:
 						return null;

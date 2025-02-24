@@ -73,25 +73,21 @@ export default function BannerText({
 					<div className="relative flex w-full overflow-hidden">
 						<motion.div {...slideAnimation} className="flex whitespace-nowrap">
 							{texts.map((text, index) => (
-								<>
-									<Typography
-										key={index}
-										variant="body1"
-										className="px-8 text-foreground-secondary"
-									>
+								<div key={`text-${index}`} className="flex items-center">
+									<Typography variant="body1" className="px-8 text-foreground-secondary">
 										{text}
 									</Typography>
 									{/* Separator (Dot) - Only render between texts, not at the end */}
 									{index !== texts.length - 1 && (
 										<Typography
-											key={index}
+											key={`dot-${index}`} // Unique key for separator
 											variant="body1"
 											className="px-12 text-foreground-secondary"
 										>
 											•
 										</Typography>
 									)}
-								</>
+								</div>
 							))}
 						</motion.div>
 					</div>

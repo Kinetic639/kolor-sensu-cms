@@ -38,6 +38,7 @@ import heroWithCard from "@sanity/schemas/modules/hero.withCard";
 import bannerText from "@sanity/schemas/modules/bannerText";
 import actionBanner from "@sanity/schemas/modules/actionBanner";
 import heroMosaic from "@sanity/schemas/modules/hero.mosaic";
+import embeddedPage from "@sanity/schemas/modules/embeddedPage";
 
 // modules
 
@@ -87,4 +88,5 @@ export const schemaTypes = [
 	heroWithCard,
 	bannerText,
 	actionBanner,
+	embeddedPage,
 ];

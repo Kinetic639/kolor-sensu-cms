@@ -49,6 +49,7 @@ export default defineType({
 				{ type: "bannerText" },
 				{ type: "hero.withCard" },
 				{ type: "actionBanner" },
+				{ type: "embeddedPage" },
 			],
 			options: {
 				insertMenu: {

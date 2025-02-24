@@ -29,15 +29,17 @@ export const SideDrawer = async () => {
 					<SheetTitle className="sr-only">sidebar menu</SheetTitle>
 					<SheetDescription className="sr-only">mobile side menu</SheetDescription>
 					<div>
-						<Link className={cn("h2 inline-block", logo?.image && "max-w-[250px]")} href="/">
-							{logoImage && (
-								<Img
-									className="inline-block max-h-[2em] w-auto"
-									image={logoImage}
-									alt={logo?.name || ""}
-								/>
-							)}
-						</Link>
+						<SheetClose asChild>
+							<Link className={cn("h2 inline-block", logo?.image && "max-w-[250px]")} href="/">
+								{logoImage && (
+									<Img
+										className="inline-block max-h-[2em] w-auto"
+										image={logoImage}
+										alt={logo?.name || ""}
+									/>
+								)}
+							</Link>
+						</SheetClose>
 					</div>
 					<SheetClose>
 						<Cross2Icon className="h-6 w-6" />
