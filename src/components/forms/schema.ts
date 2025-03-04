@@ -32,6 +32,10 @@ export const FormDataSchema = z.object({
 	agreement: z.boolean().refine((value) => value, {
 		message: "Musisz zaakceptować warunki",
 	}),
+	phone: z
+		.string()
+		.min(1, "Numer telefonu jest wymagany")
+		.regex(/^[0-9+\s]*$/, "Nieprawidłowy numer telefonu"),
 });
 
 export type FormData = z.infer<typeof FormDataSchema>;

@@ -18,8 +18,6 @@ const Step4: React.FC = () => {
 		setValue("emotionalDifficulties", options, { shouldValidate: true });
 	};
 
-	console.log(errors, selectedDifficulties);
-
 	return (
 		<div>
 			<Typography as="p" variant="h4" className="mb-5 text-center">

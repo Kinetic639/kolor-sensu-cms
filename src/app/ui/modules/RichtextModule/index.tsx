@@ -20,7 +20,7 @@ export default function RichtextModule({
 	const tocRight = tableOfContents && stegaClean(tocPosition) === "right";
 
 	return (
-		<section className={cn("section grid gap-8")}>
+		<section className={cn("section grid gap-8 py-8")}>
 			{tableOfContents && (
 				<aside
 					className={cn(
@@ -31,7 +31,6 @@ export default function RichtextModule({
 					<TableOfContents headings={headings} />
 				</aside>
 			)}
-
 			{content && <Content value={content} className="max-w-screen-lg" />}
 		</section>
 	);

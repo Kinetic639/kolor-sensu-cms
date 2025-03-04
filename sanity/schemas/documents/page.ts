@@ -50,6 +50,7 @@ export default defineType({
 				{ type: "hero.withCard" },
 				{ type: "actionBanner" },
 				{ type: "embeddedPage" },
+				{ type: "richtextModule" },
 			],
 			options: {
 				insertMenu: {
