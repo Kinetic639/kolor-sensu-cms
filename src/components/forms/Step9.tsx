@@ -70,7 +70,7 @@ const Step9: React.FC = () => {
 			{errors.agreement && <p className="mt-2 text-sm text-red-600">{errors.agreement.message}</p>}
 
 			{/* Submit Button */}
-			<div className="mt-6 w-full max-w-md">
+			<div className="mt-8 w-full max-w-[200px]">
 				<button
 					type="submit"
 					disabled={isSubmitDisabled}

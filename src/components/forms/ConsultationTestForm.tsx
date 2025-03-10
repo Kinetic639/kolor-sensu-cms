@@ -164,8 +164,9 @@ const ConsultationTestForm: React.FC = () => {
 						{moodRating !== 0 && (
 							<div
 								className={cn(
-									"mt-16 flex flex-col-reverse items-center gap-4 md:flex-row md:items-start",
+									"flex flex-col-reverse items-center gap-4 md:flex-row md:items-start",
 									currentStep > 1 ? "justify-between" : "justify-center",
+									currentStep === 9 ? "mt-4" : "mt-8",
 								)}
 							>
 								{currentStep > 1 && moodRating !== 0 && (
@@ -199,10 +200,22 @@ const ConsultationTestForm: React.FC = () => {
 										type="button"
 										onClick={nextStep}
 										disabled={moodRating === 0}
-										className="w-full max-w-[200px] rounded-full border border-transparent bg-[#2e4554] px-6 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
+										className={cn(
+											"w-full rounded-full border border-transparent bg-[#2e4554] px-6 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30",
+											currentStep === 0 ? "max-w-[250px]" : "max-w-[200px]",
+										)}
 									>
 										{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
 									</button>
+								)}
+
+								{currentStep > 1 && (
+									<div className="order-first mt-5 w-full text-center md:order-none md:mt-0 md:max-w-[300px] md:text-right">
+										Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
+										<a href="tel:800702222" className="font-medium">
+											800 702 222
+										</a>
+									</div>
 								)}
 							</div>
 						)}

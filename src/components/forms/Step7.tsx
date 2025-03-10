@@ -58,8 +58,8 @@ const Step7: React.FC = () => {
 							onChange={(e) => handleRadioChange(e.target.value)}
 							className="hidden"
 						/>
-						<span>{option.label}</span>
-						<span className="">&rarr;</span>
+						<span className="pl-2 md:pl-0">{option.label}</span>
+						<span className="ml-2">&rarr;</span>
 					</motion.label>
 				))}
 			</div>

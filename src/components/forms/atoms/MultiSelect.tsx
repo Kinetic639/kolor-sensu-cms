@@ -38,7 +38,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 						whileTap={{ scale: 0.95 }}
 						key={option}
 						className={clsx(
-							"cursor-pointer rounded-full border px-6 py-4 text-center transition-all duration-300",
+							"w-full cursor-pointer rounded-full border px-6 py-4 text-center transition-all duration-300 sm:w-auto",
 							layout === "vertical" ? "text-left" : "text-center",
 							selectedOptions.includes(option)
 								? "bg-[#2e4554] text-white"
