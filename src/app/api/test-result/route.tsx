@@ -4,12 +4,18 @@ import { smtpEmail, transporter } from "@/lib/nodemailer";
 import { ConsultationEmail } from "@/components/email/ConsultationEmail";
 
 interface ConsultationEmailProps {
-	firstName: string;
-	lastName: string;
+	name: string;
+	moodRating: number;
+	meetingType: string;
+	emotionalDifficulties: string[];
+	lifeSupportAreas: string[];
+	helpfulSupport: string[];
+	neurodiversityDiagnosis: string;
+	neurodiversityNeeds?: string[];
 	email: string;
-	phone?: string;
+	phone: string;
 	message?: string;
-	consent: boolean;
+	agreement: boolean;
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
