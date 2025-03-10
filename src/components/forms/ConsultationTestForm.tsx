@@ -17,6 +17,8 @@ import { Progress } from "@/components/ui/progress";
 import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
 import Step0 from "@/components/forms/Step0";
 import { cn } from "@/lib/utils";
+import { AnimatedLottie } from "@/components/AnimatedLottie/AnimatedLottie";
+import { emailSent } from "@/components/animations";
 
 const steps = [Step0, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9]; // Adding Step9
 
@@ -223,15 +225,10 @@ const ConsultationTestForm: React.FC = () => {
 				) : (
 					<div className="flex flex-col items-center gap-4 text-center text-[#1C68A7]">
 						<div className="text-green-500">
-							<svg
-								width="60"
-								height="60"
-								fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-							>
-								<path d="M9 16.2l-4.2-4.2L3 13.8l6 6 12-12-1.8-1.8L9 16.2z" />
-							</svg>
+							<AnimatedLottie
+								className="mx-auto mb-10 mt-6 flex h-fit max-h-28 items-center pt-2"
+								animationData={emailSent}
+							/>
 						</div>
 						<h3 className="text-xl font-semibold text-green-600">Dziękujemy!</h3>
 						<p className="text-[#1C68A7]">
