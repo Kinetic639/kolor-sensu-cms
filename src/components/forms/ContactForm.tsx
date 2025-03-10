@@ -2,6 +2,8 @@
 import React, { type FC, useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { AnimatedLottie } from "@/components/AnimatedLottie/AnimatedLottie";
+import { emailSent } from "@/components/animations";
 
 export interface FormValues {
 	id?: number;
@@ -207,22 +209,12 @@ export const ContactForm: FC = () => {
 			{/* Success & Error Messages */}
 			{isSubmitSuccessful && isSuccess && (
 				<div className="flex flex-col items-center gap-4 text-center text-[#1C68A7]">
-					<div className="text-green-500">
-						<svg
-							width="60"
-							height="60"
-							fill="currentColor"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 24 24"
-						>
-							<path d="M9 16.2l-4.2-4.2L3 13.8l6 6 12-12-1.8-1.8L9 16.2z" />
-						</svg>
-					</div>
+					<AnimatedLottie className="aspect-square" animationData={emailSent} />
 					<h3 className="text-xl font-semibold text-green-600">Dziękujemy!</h3>
 					<p className="text-[#1C68A7]">
 						Twoja wiadomość została wysłana. Odezwiemy się jak najszybciej.
 					</p>
-					<Button onClick={handleNewQuestion} className="w-full bg-sky-600 hover:bg-sky-700">
+					<Button onClick={handleNewQuestion} className="mt-4 w-full bg-sky-600 hover:bg-sky-700">
 						Zadaj kolejne pytanie
 					</Button>
 				</div>

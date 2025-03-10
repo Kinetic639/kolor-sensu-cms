@@ -17,6 +17,8 @@ import { Progress } from "@/components/ui/progress";
 import { usePageScrolled } from "@/lib/hooks/usePageScrolled";
 import Step0 from "@/components/forms/Step0";
 import { cn } from "@/lib/utils";
+import { AnimatedLottie } from "@/components/AnimatedLottie/AnimatedLottie";
+import { emailSent } from "@/components/animations";
 
 const steps = [Step0, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9]; // Adding Step9
 
@@ -164,65 +166,69 @@ const ConsultationTestForm: React.FC = () => {
 						{moodRating !== 0 && (
 							<div
 								className={cn(
-									"mt-16 flex flex-col items-center md:flex-row md:items-start",
+									"flex flex-col-reverse items-center gap-4 md:flex-row md:items-start",
 									currentStep > 1 ? "justify-between" : "justify-center",
+									currentStep === 9 ? "mt-4" : "mt-8",
 								)}
 							>
-								<div className={cn("flex justify-start", currentStep > 1 && "w-1/3")}>
-									{currentStep > 1 && moodRating !== 0 && (
-										<button
-											type="button"
-											onClick={prevStep}
-											className="group relative rounded-full border border-gray-500 bg-transparent px-6 py-3 text-gray-500 transition-colors duration-300 hover:border-[#2e4554] hover:text-[#2e4554] disabled:opacity-50"
-										>
-											<span className="flex items-center space-x-2">
-												<svg
-													className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
-													xmlns="http://www.w3.org/2000/svg"
-													fill="none"
-													viewBox="0 0 24 24"
-													stroke="currentColor"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														strokeWidth="2"
-														d="M15 19l-7-7 7-7"
-													/>
-												</svg>
-												<span>Wstecz</span>
-											</span>
-										</button>
-									)}
-								</div>
+								{currentStep > 1 && moodRating !== 0 && (
+									<button
+										type="button"
+										onClick={prevStep}
+										className="group relative w-full max-w-[200px] rounded-full border border-gray-500 bg-transparent px-6 py-3 text-gray-500 transition-colors duration-300 hover:border-[#2e4554] hover:text-[#2e4554] disabled:opacity-50"
+									>
+										<span className="flex items-center justify-center space-x-2">
+											<svg
+												className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewBox="0 0 24 24"
+												stroke="currentColor"
+											>
+												<path
+													strokeLinecap="round"
+													strokeLinejoin="round"
+													strokeWidth="2"
+													d="M15 19l-7-7 7-7"
+												/>
+											</svg>
+											<span>Wstecz</span>
+										</span>
+									</button>
+								)}
 
-								<div className={cn("flex justify-center", currentStep > 1 && "w-1/3")}>
-									{currentStep !== steps.length - 1 && moodRating !== 0 && (
-										<button
-											type="button"
-											onClick={nextStep}
-											disabled={moodRating === 0}
-											className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
-										>
-											{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
-										</button>
-									)}
-								</div>
+								{currentStep !== steps.length - 1 && moodRating !== 0 && (
+									<button
+										type="button"
+										onClick={nextStep}
+										disabled={moodRating === 0}
+										className={cn(
+											"w-full rounded-full border border-transparent bg-[#2e4554] px-6 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30",
+											currentStep === 0 ? "max-w-[250px]" : "max-w-[200px]",
+										)}
+									>
+										{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
+									</button>
+								)}
+
+								{currentStep > 1 && (
+									<div className="order-first mt-5 w-full text-center md:order-none md:mt-0 md:max-w-[300px] md:text-right">
+										Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
+										<a href="tel:800702222" className="font-medium">
+											800 702 222
+										</a>
+									</div>
+								)}
 							</div>
 						)}
 					</form>
 				) : (
 					<div className="flex flex-col items-center gap-4 text-center text-[#1C68A7]">
 						<div className="text-green-500">
-							<svg
-								width="60"
-								height="60"
-								fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-							>
-								<path d="M9 16.2l-4.2-4.2L3 13.8l6 6 12-12-1.8-1.8L9 16.2z" />
-							</svg>
+							<AnimatedLottie
+								className="mx-auto mb-10 mt-6 flex h-fit max-h-28 items-center pt-2"
+								animationData={emailSent}
+							/>
 						</div>
 						<h3 className="text-xl font-semibold text-green-600">Dziękujemy!</h3>
 						<p className="text-[#1C68A7]">
