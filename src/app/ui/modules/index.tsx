@@ -19,6 +19,7 @@ import SplitContent from "@/app/ui/SplitContent";
 import HeroWithCard from "@/app/ui/modules/HeroWtihCard";
 import BannerText from "@/app/ui/modules/BannerText";
 import EmbeddedPage from "@/app/ui/modules/EmbeddedPage";
+import RichtextModule from "@/app/ui/modules/RichtextModule";
 
 export default function Modules({
 	modules,
@@ -76,6 +77,8 @@ export default function Modules({
 						return <ActionBanner {...module} key={module._key} />;
 					case "embeddedPage":
 						return <EmbeddedPage {...module} key={module._key} />;
+					case "richtextModule":
+						return <RichtextModule {...module} key={module._key} />;
 					default:
 						return <div key={module._key} />;
 				}

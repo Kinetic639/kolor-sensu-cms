@@ -12,6 +12,13 @@ export const modulesQuery = groq`
     rawHtml,
     height
   },
+  _type == 'richtextModule' => {
+    _type,
+    _key,
+    content,
+    tableOfContents,
+    tocPosition
+  },
   _type == 'actionBanner' => {
     _type,
     _key,

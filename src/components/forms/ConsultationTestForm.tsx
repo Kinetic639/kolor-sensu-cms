@@ -30,7 +30,9 @@ type FieldNames =
 	| "helpfulSupport"
 	| "neurodiversityDiagnosis"
 	| "neurodiversityNeeds"
-	| "email";
+	| "email"
+	| "agreement"
+	| "phone";
 
 const stepFields: FieldNames[][] = [
 	["step0"],
@@ -43,11 +45,14 @@ const stepFields: FieldNames[][] = [
 	["neurodiversityDiagnosis"],
 	["neurodiversityNeeds"],
 	["email"],
+	["agreement"],
+	["phone"],
 ];
 
 const ConsultationTestForm: React.FC = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [skippedStep8, setSkippedStep8] = useState(false);
+	const [isSuccess, setIsSuccess] = useState(false);
 	const isPageScrolled = usePageScrolled();
 	const methods = useForm<FormData>({
 		resolver: zodResolver(FormDataSchema),
@@ -60,7 +65,7 @@ const ConsultationTestForm: React.FC = () => {
 		control: methods.control,
 		name: "moodRating",
 	});
-	const progressPercentage = (currentStep / steps.length) * 100;
+	const progressPercentage = ((currentStep + 1) / steps.length) * 100;
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
@@ -103,8 +108,28 @@ const ConsultationTestForm: React.FC = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 
-	const onSubmit = (data: FormData) => {
-		console.log("Final Form Data:", data);
+	const onSubmit = async (data: FormData) => {
+		try {
+			const response = await fetch("/api/test-result", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			});
+
+			if (response.ok) {
+				setIsSuccess(true);
+				console.log("Email sent successfully");
+			} else {
+				setIsSuccess(false);
+				console.error("Failed to send email");
+			}
+		} catch (error) {
+			setIsSuccess(false);
+			console.error("Error sending email:", error);
+		} finally {
+		}
 	};
 
 	const handleKeyDown = async (e: React.KeyboardEvent<HTMLFormElement>) => {
@@ -116,84 +141,95 @@ const ConsultationTestForm: React.FC = () => {
 
 	return (
 		<div className="mx-auto flex w-full max-w-screen-lg flex-col gap-10 rounded-2xl bg-[#D8DCCFFF] p-10 px-4 shadow-md">
-			{currentStep !== 0 && <Progress value={progressPercentage} />}
+			{currentStep !== 0 && !isSuccess && <Progress value={progressPercentage} />}
 			<FormProvider {...methods}>
-				<form
-					onSubmit={methods.handleSubmit(onSubmit)}
-					onKeyDown={handleKeyDown}
-					className="flex flex-col items-stretch"
-				>
-					<AnimatePresence mode="wait">
-						<motion.div
-							className="flex-1"
-							key={currentStep}
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -20 }}
-							transition={{ duration: 0.5 }}
-						>
-							{createElement(steps[currentStep])}
-						</motion.div>
-					</AnimatePresence>
-					{moodRating !== 0 && (
-						<div
-							className={cn(
-								"mt-16 flex flex-col items-center md:flex-row md:items-start",
-								currentStep > 1 ? "justify-between" : "justify-center",
-							)}
-						>
-							<div className={cn("flex justify-start", currentStep > 1 && "w-1/3")}>
-								{currentStep > 1 && moodRating !== 0 && (
-									<button
-										type="button"
-										onClick={prevStep}
-										className="group relative rounded-full border border-gray-500 bg-transparent px-6 py-3 text-gray-500 transition-colors duration-300 hover:border-[#2e4554] hover:text-[#2e4554] disabled:opacity-50"
-									>
-										<span className="flex items-center space-x-2">
-											<svg
-												className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth="2"
-													d="M15 19l-7-7 7-7"
-												/>
-											</svg>
-											<span>Wstecz</span>
-										</span>
-									</button>
+				{!isSuccess ? (
+					<form
+						onSubmit={methods.handleSubmit(onSubmit)}
+						onKeyDown={handleKeyDown}
+						className="flex flex-col items-stretch"
+					>
+						<AnimatePresence mode="wait">
+							<motion.div
+								className="flex-1"
+								key={currentStep}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -20 }}
+								transition={{ duration: 0.5 }}
+							>
+								{createElement(steps[currentStep])}
+							</motion.div>
+						</AnimatePresence>
+						{moodRating !== 0 && (
+							<div
+								className={cn(
+									"mt-16 flex flex-col items-center md:flex-row md:items-start",
+									currentStep > 1 ? "justify-between" : "justify-center",
 								)}
-							</div>
-
-							<div className={cn("flex justify-center", currentStep > 1 && "w-1/3")}>
-								{currentStep !== steps.length - 1 && moodRating !== 0 && (
-									<button
-										type="button"
-										onClick={nextStep}
-										disabled={moodRating === 0}
-										className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
-									>
-										{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
-									</button>
-								)}
-							</div>
-
-							{currentStep > 1 && (
-								<div className="ml-3.5 max-w-[300px] justify-end text-right">
-									Linia wsparcia dla osób w stanie kryzysu psychicznego:{" "}
-									<a href="tel:800702222" className="font-medium">
-										800 702 222
-									</a>
+							>
+								<div className={cn("flex justify-start", currentStep > 1 && "w-1/3")}>
+									{currentStep > 1 && moodRating !== 0 && (
+										<button
+											type="button"
+											onClick={prevStep}
+											className="group relative rounded-full border border-gray-500 bg-transparent px-6 py-3 text-gray-500 transition-colors duration-300 hover:border-[#2e4554] hover:text-[#2e4554] disabled:opacity-50"
+										>
+											<span className="flex items-center space-x-2">
+												<svg
+													className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
+													xmlns="http://www.w3.org/2000/svg"
+													fill="none"
+													viewBox="0 0 24 24"
+													stroke="currentColor"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="2"
+														d="M15 19l-7-7 7-7"
+													/>
+												</svg>
+												<span>Wstecz</span>
+											</span>
+										</button>
+									)}
 								</div>
-							)}
+
+								<div className={cn("flex justify-center", currentStep > 1 && "w-1/3")}>
+									{currentStep !== steps.length - 1 && moodRating !== 0 && (
+										<button
+											type="button"
+											onClick={nextStep}
+											disabled={moodRating === 0}
+											className="rounded-full border border-transparent bg-[#2e4554] px-10 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30"
+										>
+											{currentStep === 0 ? "Rozpocznij test (8 min)" : "Kontynuuj"}
+										</button>
+									)}
+								</div>
+							</div>
+						)}
+					</form>
+				) : (
+					<div className="flex flex-col items-center gap-4 text-center text-[#1C68A7]">
+						<div className="text-green-500">
+							<svg
+								width="60"
+								height="60"
+								fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+							>
+								<path d="M9 16.2l-4.2-4.2L3 13.8l6 6 12-12-1.8-1.8L9 16.2z" />
+							</svg>
 						</div>
-					)}
-				</form>
+						<h3 className="text-xl font-semibold text-green-600">Dziękujemy!</h3>
+						<p className="text-[#1C68A7]">
+							Twoja wiadomość została wysłana. Odezwiemy się jak najszybciej.
+						</p>
+					</div>
+				)}
 			</FormProvider>
 		</div>
 	);

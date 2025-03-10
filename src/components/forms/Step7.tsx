@@ -34,10 +34,10 @@ const Step7: React.FC = () => {
 			<div className="mx-auto my-10 flex max-w-screen-md flex-col space-y-6">
 				{[
 					{ label: "Tak, mam diagnozę", value: "1" },
-					{ label: "Nie mam diagnozy, ale podejrzewam u siebie neuroróżnorodność", value: "2" },
+					{ label: "Nie mam diagnozy, ale podejrzewam u siebie neuroatypowość", value: "2" },
 					{ label: "Nie mam pewności, potrzebuję konsultacji", value: "3" },
 					{
-						label: "Nie mam diagnozy i nie podejrzewam neuroróżnorodności",
+						label: "Nie mam diagnozy i nie podejrzewam neuroatypowośco",
 						value: "4",
 					},
 				].map((option) => (
@@ -59,6 +59,7 @@ const Step7: React.FC = () => {
 							className="hidden"
 						/>
 						<span>{option.label}</span>
+						<span className="">&rarr;</span>
 					</motion.label>
 				))}
 			</div>
