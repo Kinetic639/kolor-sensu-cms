@@ -55,7 +55,7 @@ export default function HeroWithCard({
 							image={image}
 							imageWidth={1200}
 							alt={image?.alt || "Main Image"}
-							className="absolute left-[90px] rounded-lg md:relative md:left-0"
+							className="absolute left-[90px] top-0 rounded-lg md:relative md:left-0 md:top-auto"
 						/>
 					)}
 					{card && (
@@ -92,7 +92,7 @@ export default function HeroWithCard({
 					)}
 				</div>
 
-				<div className="order-2 flex flex-col gap-8 self-center px-4 md:order-1 md:max-w-[80%]">
+				<div className="order-2 flex flex-col gap-8 self-center px-4 pt-16 md:order-1 md:max-w-[80%] md:pt-4">
 					{/* Main Content */}
 					{pretitle && (
 						<Typography

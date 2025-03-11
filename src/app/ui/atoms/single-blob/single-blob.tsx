@@ -20,7 +20,7 @@ export const SingleBlob = () => {
 			<svg
 				viewBox="0 0 500 500"
 				xmlns="http://www.w3.org/2000/svg"
-				className="absolute bottom-[30%] right-[68%] scale-[2.5] max-sm:bottom-[60%] max-sm:right-[40%] max-sm:scale-[4]"
+				className="absolute bottom-[30%] right-[68%] scale-[2.5] max-sm:bottom-[60%] max-sm:right-[40%] max-sm:scale-[3]"
 			>
 				<defs>
 					<linearGradient id="one" x1="0%" y1="10%" x2="30%" y2="100%">
