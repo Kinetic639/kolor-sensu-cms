@@ -68,9 +68,9 @@ export const FlipCard = ({ title, image, frontText, hoverText }: FlipCardContent
 				animate={isFlipped ? "back" : "front"}
 				transition={{ duration: 0.3, ease: "easeInOut" }}
 				style={{ transformStyle: "preserve-3d" }}
-				onClick={!isDesktop ? handleToggleFlip : undefined}
-				onMouseEnter={handleEnter}
-				onMouseLeave={handleLeave}
+				onClick={handleToggleFlip}
+				onMouseEnter={isDesktop ? handleEnter : undefined}
+				onMouseLeave={isDesktop ? handleLeave : undefined}
 			>
 				<motion.div
 					className="flip-card-front absolute left-0 top-0 h-[100%] w-full"

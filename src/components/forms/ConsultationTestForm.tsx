@@ -3,6 +3,7 @@ import React, { useState, createElement, useEffect } from "react";
 import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { FormDataSchema, type FormData } from "./schema";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -19,6 +20,7 @@ import Step0 from "@/components/forms/Step0";
 import { cn } from "@/lib/utils";
 import { AnimatedLottie } from "@/components/AnimatedLottie/AnimatedLottie";
 import { emailSent } from "@/components/animations";
+import { Typography } from "@/app/ui/atoms/Typography/Typography";
 
 const steps = [Step0, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9]; // Adding Step9
 
@@ -223,17 +225,33 @@ const ConsultationTestForm: React.FC = () => {
 						)}
 					</form>
 				) : (
-					<div className="flex flex-col items-center gap-4 text-center text-[#1C68A7]">
-						<div className="text-green-500">
+					<div className="flex flex-col items-center gap-6 pb-6 text-center text-gray-800">
+						<div className="text-blue-500">
 							<AnimatedLottie
-								className="mx-auto mb-10 mt-6 flex h-fit max-h-28 items-center pt-2"
+								className="mx-auto mb-8 mt-6 flex h-fit max-h-32 min-h-[300px] items-center"
 								animationData={emailSent}
 							/>
 						</div>
-						<h3 className="text-xl font-semibold text-green-600">Dziękujemy!</h3>
-						<p className="text-[#1C68A7]">
-							Twoja wiadomość została wysłana. Odezwiemy się jak najszybciej.
-						</p>
+						<h3 className="text-2xl font-bold text-foreground">Test został przesłany!</h3>
+						<Typography variant="body1" as="p" className="max-w-lg text-center text-foreground">
+							Otrzymaliśmy Twoje odpowiedzi i są już w rękach naszego specjalisty. Wkrótce
+							skontaktujemy się z Tobą, aby omówić wyniki i zaproponować najlepszą ścieżkę dalszej
+							konsultacji.
+						</Typography>
+						<div className="mt-8 flex flex-col gap-4">
+							<Link href={"/"} className={cn("max-md:mx-auto")}>
+								<button
+									type="button"
+									onClick={nextStep}
+									disabled={moodRating === 0}
+									className={cn(
+										"w-full rounded-full border border-transparent bg-[#2e4554] px-8 py-3 text-white transition-all duration-150 hover:bg-background-secondary disabled:bg-gray-600 disabled:opacity-30",
+									)}
+								>
+									Strona Główna
+								</button>
+							</Link>
+						</div>
 					</div>
 				)}
 			</FormProvider>

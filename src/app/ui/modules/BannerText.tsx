@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import Marquee from "react-fast-marquee";
 import { cn } from "@/lib/utils";
 import CTAList from "@/app/ui/CTA/CTAList";
 import { Typography } from "@/app/ui/atoms/Typography/Typography";
@@ -17,6 +17,7 @@ export default function BannerText({
 	displayType: "switch" | "slide";
 }>) {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const containerRef = useRef<HTMLDivElement>(null);
 
 	const cleanedDisplayType = displayType
 		.replace(/[\u200B-\u200D\uFEFF]/g, "")
@@ -32,17 +33,6 @@ export default function BannerText({
 			return () => clearInterval(interval);
 		}
 	}, [cleanedDisplayType, texts]);
-
-	// Framer Motion animation for smooth sliding text (for "slide" mode)
-	const slideAnimation = {
-		initial: { x: "100%" }, // Start off-screen to the right
-		animate: { x: "-100%" }, // Move fully across the screen
-		transition: {
-			ease: "linear",
-			duration: 25, // Adjust speed based on text length
-			repeat: Infinity, // Loop animation infinitely
-		},
-	};
 
 	return (
 		<section
@@ -69,26 +59,23 @@ export default function BannerText({
 				)}
 
 				{texts.length > 0 && cleanedDisplayType === "slide" && (
-					<div className="relative flex w-full overflow-hidden">
-						<motion.div {...slideAnimation} className="flex whitespace-nowrap">
+					<div className="relative flex w-full overflow-hidden" ref={containerRef}>
+						<Marquee>
 							{texts.map((text, index) => (
 								<div key={`text-${index}`} className="flex items-center">
 									<Typography variant="body1" className="px-8 text-foreground-secondary">
 										{text}
 									</Typography>
-									{/* Separator (Dot) - Only render between texts, not at the end */}
-									{index !== texts.length - 1 && (
-										<Typography
-											key={`dot-${index}`} // Unique key for separator
-											variant="body1"
-											className="px-12 text-foreground-secondary"
-										>
-											•
-										</Typography>
-									)}
+									<Typography
+										key={`dot-${index}`}
+										variant="body1"
+										className="px-6 text-foreground-secondary md:px-12"
+									>
+										•
+									</Typography>
 								</div>
 							))}
-						</motion.div>
+						</Marquee>
 					</div>
 				)}
 
