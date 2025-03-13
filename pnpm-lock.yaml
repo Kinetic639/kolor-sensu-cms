@@ -160,6 +160,9 @@ importers:
       react-photo-album:
         specifier: ^3.0.2
         version: 3.0.2(@types/react@18.3.4)(react@18.3.1)
+      resend:
+        specifier: ^4.1.2
+        version: 4.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rss:
         specifier: ^1.2.2
         version: 1.2.2
@@ -9322,6 +9325,13 @@ packages:
         integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==,
       }
 
+  resend@4.1.2:
+    resolution:
+      {
+        integrity: sha512-km0btrAj/BqIaRlS+SoLNMaCAUUWEgcEvZpycfVvoXEwAHCxU+vp/ikxPgKRkyKyiR2iDcdUq5uIBTDK9oSSSQ==,
+      }
+    engines: { node: ">=18" }
+
   resolve-from@4.0.0:
     resolution:
       {
@@ -17199,6 +17209,13 @@ snapshots:
   require-from-string@2.0.2: {}
 
   requires-port@1.0.0: {}
+
+  resend@4.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      "@react-email/render": 1.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    transitivePeerDependencies:
+      - react
+      - react-dom
 
   resolve-from@4.0.0: {}
 
