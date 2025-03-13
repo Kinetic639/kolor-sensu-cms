@@ -10,7 +10,7 @@ export default defineType({
 			title: "Title",
 			type: "string",
 			options: {
-				list: ["mgr", "dr", "dr hab.", "prof."],
+				list: ["mgr", "mgr, (PhD student)", "dr", "dr hab.", "prof."],
 			},
 		}),
 		defineField({
