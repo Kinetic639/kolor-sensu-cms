@@ -1,5 +1,16 @@
 import React from "react";
-import { Body, Container, Head, Heading, Html, Tailwind, Text } from "@react-email/components";
+import {
+	Body,
+	Container,
+	Head,
+	Heading,
+	Html,
+	Tailwind,
+	Text,
+	Img,
+	Section,
+	Hr,
+} from "@react-email/components";
 
 interface ConsultationEmailProps {
 	name: string;
@@ -12,8 +23,6 @@ interface ConsultationEmailProps {
 	neurodiversityNeeds?: string[];
 	email: string;
 	phone: string;
-	message?: string;
-	agreement: boolean;
 }
 
 const diagnosisMapping: { [key: string]: string } = {
@@ -22,6 +31,9 @@ const diagnosisMapping: { [key: string]: string } = {
 	"3": "Nie mam pewności, potrzebuję konsultacji",
 	"4": "Nie mam diagnozy i nie podejrzewam neuroróżnorodności",
 };
+
+// Mood emojis based on the test UI
+const moodEmojis = ["🫥", "😰", "😩", "😔", "😕", "😶", "🙂", "😊", "😄", "😁", "🥳"];
 
 export const ConsultationEmail: React.FC<Readonly<ConsultationEmailProps>> = ({
 	name,
@@ -34,61 +46,93 @@ export const ConsultationEmail: React.FC<Readonly<ConsultationEmailProps>> = ({
 	neurodiversityNeeds,
 	email,
 	phone,
-	message,
-	agreement,
 }) => {
 	return (
 		<Html>
 			<Head />
 			<Tailwind>
-				<Body className="bg-white font-sans">
-					<Container className="mx-auto my-10 w-full max-w-[600px] rounded-md border border-gray-200 p-4">
-						<Heading className="mb-4 text-center text-xl font-bold">
-							Wyniki Testu od <strong>{name}</strong>
-						</Heading>
+				<Body className="bg-[#D8DCCF] font-sans">
+					<Container className="mx-auto my-10 w-full max-w-[800px] rounded-lg border border-gray-300 bg-white p-6 shadow-lg">
+						{/* Header */}
+						<Section className="rounded-t-md bg-[#1C3F4F] py-6 text-center text-white">
+							<Heading className="py-6 text-xl font-bold">
+								Nowe zgłoszenie od <span className="text-3xl">{name}</span>
+							</Heading>
+						</Section>
 
-						<Text className="mb-2 text-base">
-							Imię: <strong>{name}</strong>
-						</Text>
-						<Text className="mb-2 text-base">
-							Ocena nastroju: <strong>{moodRating}</strong>
-						</Text>
-						<Text className="mb-2 text-base">
-							Rodzaj spotkania: <strong>{meetingType}</strong>
-						</Text>
-						<Text className="mb-2 text-base">
-							Trudności emocjonalne: <strong>{emotionalDifficulties.join(", ")}</strong>
-						</Text>
-						<Text className="mb-2 text-base">
-							Obszary wsparcia życiowego: <strong>{lifeSupportAreas.join(", ")}</strong>
-						</Text>
-						<Text className="mb-2 text-base">
-							Wsparcie, które byłoby pomocne: <strong>{helpfulSupport.join(", ")}</strong>
-						</Text>
-						<Text className="mb-2 text-base">
-							Diagnoza neurodywersyjna: <strong>{diagnosisMapping[neurodiversityDiagnosis]}</strong>
-						</Text>
-						{neurodiversityNeeds && neurodiversityNeeds.length > 0 && (
-							<Text className="mb-2 text-base">
-								Potrzeby neurodywersyjne: <strong>{neurodiversityNeeds.join(", ")}</strong>
+						{/* Mood Section */}
+						<Section className="rounded-md bg-[#F5F7FA] text-center">
+							<Text className="mt-12 text-3xl font-semibold text-[#1C3F4F]">Samopoczucie</Text>
+							<Text className="mb-6 text-center text-3xl">
+								<span className="mr-4 text-3xl"> {moodRating}/10</span>{" "}
+								<span className="text-3xl">{moodEmojis[moodRating]}</span>
 							</Text>
-						)}
-						<Text className="mb-2 text-base">
-							Email: <strong>{email}</strong>
-						</Text>
-						<Text className="mb-2 text-base">
-							Telefon: <strong>{phone}</strong>
-						</Text>
-						{message && (
-							<Text className="mb-2 whitespace-pre-line text-base">
-								<strong>Wiadomość:</strong>
-								<br />
-								{message}
+							<Hr className="my-3 border-t border-gray-300" />
+							{/* Emotional Difficulties */}
+							<Text className="text-lg font-semibold text-[#1C3F4F]">
+								Z jakimi trudnościami emocjonalnymi aktualnie się zmagasz?
 							</Text>
-						)}
-						<Text className="mb-2 text-base">
-							Zgoda na kontakt: <strong>{agreement ? "Tak" : "Nie"}</strong>
-						</Text>
+							<Text>
+								{emotionalDifficulties.length > 0
+									? emotionalDifficulties.join(", ")
+									: "Brak odpowiedzi"}
+							</Text>
+							<Hr className="my-3 border-t border-gray-300" />
+
+							{/* Life Support Areas */}
+							<Text className="text-lg font-semibold text-[#1C3F4F]">
+								Obszary życia, w których czujesz, że potrzebujesz wsparcia:
+							</Text>
+							<Text>
+								{lifeSupportAreas.length > 0 ? lifeSupportAreas.join(", ") : "Brak odpowiedzi"}
+							</Text>
+							<Hr className="my-3 border-t border-gray-300" />
+
+							{/* Helpful Support */}
+							<Text className="text-lg font-semibold text-[#1C3F4F]">
+								Jakie wsparcie byłoby dla Ciebie pomocne?
+							</Text>
+							<Text>
+								{helpfulSupport.length > 0 ? helpfulSupport.join(", ") : "Brak odpowiedzi"}
+							</Text>
+							<Hr className="my-3 border-t border-gray-300" />
+							<Text className="text-lg font-semibold text-[#1C3F4F]">
+								🧩 Informacje neurodywersyjne
+							</Text>
+							<Text>
+								<strong>Diagnoza:</strong> {diagnosisMapping[neurodiversityDiagnosis]}
+							</Text>
+							{neurodiversityNeeds && neurodiversityNeeds.length > 0 && (
+								<Text className="mb-12">
+									<strong>Potrzeby neurodywersyjne:</strong> {neurodiversityNeeds.join(", ")}
+								</Text>
+							)}
+						</Section>
+
+						{/* Basic Information */}
+						<Section className="mx-4 mt-8 p-4 text-center">
+							<Text className="text-lg font-semibold text-[#1C3F4F]">📌 Podstawowe informacje</Text>
+							<Text>
+								<strong>Imię:</strong> {name}
+							</Text>
+							<Text>
+								<strong>Rodzaj spotkania:</strong> {meetingType}
+							</Text>
+							<Hr className="my-3 border-t border-gray-300" />
+							<Text className="mt-8 text-lg font-semibold text-[#1C3F4F]">📞 Dane kontaktowe</Text>
+							<Text>
+								<strong>Email:</strong> {email}
+							</Text>
+							<Text>
+								<strong>Telefon:</strong> {phone}
+							</Text>
+							<Hr className="my-3 border-t border-gray-300" />
+						</Section>
+
+						{/* Footer */}
+						<Section className="mt-6 text-center text-sm text-gray-600">
+							<Text>KolorSensu | © {new Date().getFullYear()} Wszystkie prawa zastrzeżone</Text>
+						</Section>
 					</Container>
 				</Body>
 			</Tailwind>

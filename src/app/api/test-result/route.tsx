@@ -1,6 +1,5 @@
 import { type NextRequest } from "next/server";
-import { render } from "@react-email/components";
-import { smtpEmail, transporter } from "@/lib/nodemailer";
+import { Resend } from "resend";
 import { ConsultationEmail } from "@/components/email/ConsultationEmail";
 
 interface ConsultationEmailProps {
@@ -19,6 +18,7 @@ interface ConsultationEmailProps {
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
+	const resend = new Resend(process.env.RESEND_API_KEY);
 	try {
 		const body = (await req.json()) as ConsultationEmailProps;
 
@@ -26,18 +26,20 @@ export async function POST(req: NextRequest): Promise<Response> {
 			return new Response("Email is required", { status: 400 });
 		}
 
-		// Ensure you await the render Promise to resolve the email HTML
-		const emailHtml = await render(<ConsultationEmail {...body} />);
-
 		const options = {
-			from: "Formularz konsultacji",
-			to: smtpEmail,
+			from: `Nowy Test <konsultacja@kolorsensu.pl>`,
+			to: process.env.RESEND_TARGET_EMAIL || "",
 			subject: `Nowe wyniki konsultacji od ${body.email}`,
-			html: emailHtml, // Make sure this is the resolved string
+			replyTo: `${body.email}`,
+			react: <ConsultationEmail {...body} />,
 		};
 
-		await transporter.sendMail(options);
-		return new Response("OK", { status: 200 });
+		const { data, error } = await resend.emails.send(options);
+		if (error) {
+			return Response.json({ error }, { status: 500 });
+		}
+
+		return Response.json(data);
 	} catch (error) {
 		console.error("Failed to send email:", error);
 		return new Response("Failed to send email", { status: 500 });
