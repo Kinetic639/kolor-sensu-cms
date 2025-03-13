@@ -9,6 +9,8 @@ import {
 	FaXTwitter,
 	FaYoutube,
 } from "react-icons/fa6";
+import { FaRegCalendarAlt } from "react-icons/fa";
+
 import { type IconType } from "react-icons";
 import Img from "@/app/ui/Img";
 import { cn } from "@/lib/utils";
@@ -25,6 +27,7 @@ export default function SpecialistCard({ specialist }: { specialist: Sanity.Spec
 		tiktok: FaTiktok,
 		twitter: FaXTwitter,
 		youtube: FaYoutube,
+		kalendarz: FaRegCalendarAlt,
 	};
 
 	return (
