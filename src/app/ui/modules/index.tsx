@@ -1,3 +1,4 @@
+import type { PortableTextBlock } from "@portabletext/types";
 import Hero from "./Hero";
 import HeroSplit from "./HeroSplit";
 import HeroSaaS from "./HeroSaaS";
@@ -26,7 +27,7 @@ interface ProductSectionModuleType {
 	_type: "productSectionModule";
 	_key: string;
 	sectionTitle: string;
-	description: string;
+	description: PortableTextBlock[];
 	image?: {
 		asset: {
 			_id: string;

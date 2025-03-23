@@ -17,7 +17,7 @@ interface ProductSection {
 		};
 		alt?: string;
 	};
-	reversed: boolean;
+	reversed?: boolean;
 	link: {
 		_type: string;
 		external?: string;
