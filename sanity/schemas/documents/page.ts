@@ -51,6 +51,7 @@ export default defineType({
 				{ type: "actionBanner" },
 				{ type: "embeddedPage" },
 				{ type: "richtextModule" },
+				{ type: "productSectionModule" },
 			],
 			options: {
 				insertMenu: {

@@ -1,3 +1,4 @@
+import type { PortableTextBlock } from "@portabletext/types";
 import Hero from "./Hero";
 import HeroSplit from "./HeroSplit";
 import HeroSaaS from "./HeroSaaS";
@@ -20,6 +21,38 @@ import HeroWithCard from "@/app/ui/modules/HeroWtihCard";
 import BannerText from "@/app/ui/modules/BannerText";
 import EmbeddedPage from "@/app/ui/modules/EmbeddedPage";
 import RichtextModule from "@/app/ui/modules/RichtextModule";
+import ProductSectionModule from "@/app/ui/modules/ProductSectionModule";
+
+interface ProductSectionModuleType {
+	_type: "productSectionModule";
+	_key: string;
+	sectionTitle: string;
+	description: PortableTextBlock[];
+	image?: {
+		asset: {
+			_id: string;
+			url: string;
+		};
+		alt?: string;
+	};
+	imagePosition: "left" | "right";
+	link: {
+		_type: string;
+		external?: string;
+		internal?: {
+			_type: string;
+			title: string;
+			metadata?: {
+				slug?: {
+					current: string;
+				};
+			};
+		};
+		label: string;
+		newTab?: boolean;
+	};
+	productType: "courses" | "freeMaterials";
+}
 
 export default function Modules({
 	modules,
@@ -67,18 +100,22 @@ export default function Modules({
 						return <ProductsModule {...(module as Sanity.ProductsModule)} key={module._key} />;
 					case "podcastModule":
 						return <PodcastModule key={module._key} />;
-					case "splitContent": // Add new case for SplitContent
+					case "splitContent":
 						return <SplitContent {...module} key={module._key} />;
-					case "hero.withCard": // Add new case for SplitContent
+					case "hero.withCard":
 						return <HeroWithCard {...module} key={module._key} />;
-					case "bannerText": // Add new case for SplitContent
+					case "bannerText":
 						return <BannerText {...module} key={module._key} />;
-					case "actionBanner": // Add new case for SplitContent
+					case "actionBanner":
 						return <ActionBanner {...module} key={module._key} />;
 					case "embeddedPage":
 						return <EmbeddedPage {...module} key={module._key} />;
 					case "richtextModule":
 						return <RichtextModule {...module} key={module._key} />;
+					case "productSectionModule":
+						return (
+							<ProductSectionModule {...(module as ProductSectionModuleType)} key={module._key} />
+						);
 					default:
 						return <div key={module._key} />;
 				}

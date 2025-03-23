@@ -40,6 +40,7 @@ import actionBanner from "@sanity/schemas/modules/actionBanner";
 import heroMosaic from "@sanity/schemas/modules/hero.mosaic";
 import embeddedPage from "@sanity/schemas/modules/embeddedPage";
 import richtextModule from "@sanity/schemas/modules/richtextModule";
+import productSectionModule from "@sanity/schemas/modules/productSectionModule";
 
 // modules
 
@@ -91,4 +92,5 @@ export const schemaTypes = [
 	actionBanner,
 	embeddedPage,
 	richtextModule,
+	productSectionModule,
 ];

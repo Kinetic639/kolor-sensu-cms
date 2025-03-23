@@ -4,7 +4,42 @@ import { ctaQuery } from "./ctaQuery";
 
 export const modulesQuery = groq`
   ...,
-    _type == 'embeddedPage' => {
+  _type == 'productSectionModule' => {
+    _type,
+    _key,
+    sectionTitle,
+    description[]{
+      ...,
+      _type,
+      _key,
+      style,
+      children[]{
+        ...,
+        _type,
+        _key,
+        marks,
+        text
+      },
+      markDefs[]{
+        ...,
+        _key,
+        _type,
+        href,
+        color
+      }
+    },
+    reversed,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    link{ ${linkQuery} },
+    productType
+  },
+  _type == 'embeddedPage' => {
     _type,
     _key,
     embedType,
